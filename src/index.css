@@ -7,6 +7,10 @@
   src: url("assets/fonts/plus.ttf");
 }
 
+* {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   padding: 0;
