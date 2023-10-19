@@ -52,7 +52,7 @@ export default function Carousel() {
       {images.map((item) => (
         <div
           key={item}
-          className="bg-white border border-slate-300 rounded flex items-center justify-center grayscale hover:grayscale-0 ultra:h-52 ultra:w-72 pc:h-44 pc:w-64 desktop:h-40 desktop:w-56 laptop:h-36 laptop:w-48 tablet:h-32 tablet:w-44 phone:h-28 phone:w-40 "
+          className="bg-white border border-slate-300 rounded flex items-center justify-center grayscale hover:grayscale-0 ultra:h-52 ultra:w-72 pc:h-44 pc:w-64 desktop:h-40 desktop:w-56 laptop:h-36 laptop:w-48 tablet:h-32 tablet:w-44 phone:h-28 phone:w-40"
         >
           <img
             src={item}
