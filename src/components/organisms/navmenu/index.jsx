@@ -232,7 +232,6 @@ export default function NavMenu() {
             </Fade>
 
             <Fade direction="down" duration={500} cascade>
-              {" "}
               <ul className="px-1 flex flex-col gap-3 mt-7">
                 <li className="py-3 flex justify-center bg-[#7859B6] border-[#7859B6] hover:bg-violet-600 text-white rounded-lg">
                   Register

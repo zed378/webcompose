@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { Fade, Slide } from "react-awesome-reveal";
 
 // components
@@ -11,8 +10,6 @@ import logoM from "@assets/images/logomobile.svg";
 
 export default function Navbar() {
   const nav = useNavigate();
-  const [opacity, setOpacity] = useState("0.4");
-  const [modal, setModal] = useState(false);
 
   return (
     <div className="w-full flex justify-between items-center">

@@ -12,5 +12,5 @@ module.exports = {
       ultra: "1920px",
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [],
 };
