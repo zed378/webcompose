@@ -72,14 +72,14 @@ export default function Hero() {
 
         {/* laptop image */}
         <div className="laptop:w-auto h-auto laptop:absolute ultra:bottom-[3rem] ultra:right-[3rem] pc:bottom-[2rem] pc:right-[2rem] desktop:bottom-[1.75rem] desktop:right-[1.75rem] laptop:bottom-[1.5rem] laptop:right-[1.5rem] phone:w-[90%] tablet:mt-4">
-          <div className="relative h-[6.25rem] w-[6.25rem] flex items-center justify-center laptop:top-12 laptop:left-[-2rem] tablet:top-[12rem] tablet:left-[90%] phone:top-[12rem] phone:left-[87.5%] ">
+          <div className="relative laptop:h-[6.25rem] laptop:w-[6.25rem] phone:w-[5rem] phone:h-[5rem] flex items-center justify-center laptop:top-12 laptop:left-[-2rem] tablet:top-[12rem] tablet:left-[90%] phone:top-[12rem] phone:left-[87.5%] ">
             <img
               src={play}
               alt={play}
-              className="w-[6.25rem] h-[6.25rem] absolute top-0 left-0 spinning"
+              className="laptop:w-[6.25rem] laptop:h-[6.25rem] phone:w-[5rem] phone:h-[5rem] absolute top-0 left-0 spinning"
             />
 
-            <BsFillPlayCircleFill className="text-white w-[5rem] h-[5rem]" />
+            <BsFillPlayCircleFill className="text-white laptop:w-[5rem] laptop:h-[5rem] phone:w-[4rem] phone:h-[4rem] " />
           </div>
 
           <div className="overflow-hidden rounded-3xl flex items-center justify-center ultra:h-[20rem] ultra:w-[35rem] pc:h-[17.5rem] pc:w-[30rem] desktop:h-[15rem] desktop:w-[25rem] laptop:h-[12.5rem] laptop:w-[20rem] tablet:h-[17.5rem] tablet:w-full phone:w-full phone:h-[17.5rem] ">
