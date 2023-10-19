@@ -48,7 +48,13 @@ export default function Carousel() {
   ];
 
   return (
-    <ScrollCarousel autoplay autoplaySpeed={3} speed={3} className="py-3">
+    <ScrollCarousel
+      autoplay
+      autoplaySpeed={3}
+      speed={3}
+      elementType="div"
+      className="py-3 overflow-hidden"
+    >
       {images.map((item) => (
         <div
           key={item}

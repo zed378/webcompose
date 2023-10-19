@@ -12,7 +12,7 @@ const RoutesC = () => {
             <Route
               path={path}
               element={
-                <div className="w-screen h-auto">
+                <div className="w-full h-full">
                   <Component />
                 </div>
               }
