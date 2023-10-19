@@ -12,7 +12,7 @@ const RoutesC = () => {
             <Route
               path={path}
               element={
-                <div className="relative w-full h-full">
+                <div className="w-full h-full">
                   <Component />
                 </div>
               }

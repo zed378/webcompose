@@ -27,7 +27,7 @@ export default function Hero() {
         <div className=" laptop:absolute pc:bottom-[7rem] desktop:bottom-[5rem] laptop:bottom-[4rem] tablet:bottom-[3.5rem] phone:mt-[8rem] laptop:left-12 tablet:left-0 ultra:w-[55%] pc:w-[55%] desktop:w-[55%] laptop:w-[60%] w-full laptop:p-0 tablet:px-7 box-border">
           <div className="w-full flex items-center gap-4">
             <Slide direction="left">
-              <h1 className="ultra:text-[8rem] pc:text-[6rem] desktop:text-[5.5rem] laptop:text-[5rem] tablet:text-[4.25rem] phone:text-5xl font-light text-white">
+              <h1 className="ultra:text-[8rem] pc:text-[6rem] desktop:text-[5.5rem] laptop:text-[5rem] tablet:text-[4.25rem] phone:text-[2.5rem] font-light text-white">
                 WE CREATE
               </h1>
             </Slide>
@@ -40,7 +40,7 @@ export default function Hero() {
           </div>
 
           <Slide direction="left">
-            <h1 className="ultra:text-[8rem] pc:text-[6rem] desktop:text-[5.5rem] laptop:text-[5rem] tablet:text-[4.25rem] phone:text-[2.85rem] text-white font-bold tablet:ml-10 phone:ml-5 ">
+            <h1 className="ultra:text-[8rem] pc:text-[6rem] desktop:text-[5.5rem] laptop:text-[5rem] tablet:text-[4.25rem] phone:text-[2.5rem] text-white font-bold tablet:ml-10 phone:ml-5 ">
               DEVELOPMENT
             </h1>
           </Slide>
