@@ -1,10 +1,10 @@
 import { Fade } from "react-awesome-reveal";
+import { cardData } from "@hooks/staticData";
+
+//  components
+import Why from "@components/molecules/why";
 
 // asset
-import date from "@assets/images/about/date.png";
-import mark from "@assets/images/about/mark.png";
-import money from "@assets/images/about/money.png";
-import search from "@assets/images/about/search.png";
 import laptop from "@assets/images/about/laptop.png";
 
 export default function AboutUs() {
@@ -27,13 +27,13 @@ export default function AboutUs() {
 
         <Fade cascade direction="down">
           <ul className="desktop:w-[67.5%] flex flex-col gap-4 mt-14 ">
-            <p className="text-gray-400 text-xl font-light ">
+            <p className="text-gray-400 desktop:text-xl font-light ">
               Founded in 2023, Web Compose is a tech agency masters in web
               development and web maintenance with popular programming
               technology.
             </p>
 
-            <p className="text-gray-400 text-xl font-light ">
+            <p className="text-gray-400 desktop:text-xl font-light ">
               We assist business owners in building and managing websites and
               applications so they can focus on growing their business with
               automated processes. We are ready to work with you in building web
@@ -47,75 +47,16 @@ export default function AboutUs() {
       {/* Why Us */}
       <div className="desktop:w-[40%] phone:w-full phone:mt-10 desktop:mt-0 ">
         <Fade direction="down">
-          <p className="text-zinc-400 phone:font-medium desktop:font-normal ">
+          <p className="text-zinc-400 phone:font-medium desktop:font-normal desktop:text-base phone:text-xl ">
             Some Number About Us
           </p>
         </Fade>
 
         <Fade direction="up" cascade duration={500}>
           <ul className="grid grid-cols-2 gap-3 mt-6">
-            <div className="bg-violet-100/50 ultra:min-h-[15rem] pc:min-h-[17.5rem] desktop:min-h-[18rem] laptop:min-h-[15rem] tablet:min-h-[15rem] phone:min-h-[17.5rem] rounded-3xl relative overflow-hidden pc:p-5 desktop:p-4 laptop:p-5 tablet:p-5 phone:p-4 flex flex-col gap-4 ">
-              <h1 className="ultra:text-4xl pc:text-3xl desktop:text-2xl tablet:text-4xl phone:text-2xl font-bold ">
-                Professional
-              </h1>
-
-              <p className="text-gray-400 font-light ultra:w-[60%] pc:w-[75%] desktop:w-[80%] laptop:w-full tablet:w-[80%] ">
-                We provide high-quality work as a timeline
-              </p>
-
-              <img
-                src={mark}
-                alt={mark}
-                className="absolute -z-0 ultra:-bottom-[3rem] ultra:-right-[3.5rem] ultra:w-52 pc:-bottom-[3rem] pc:-right-[3.5rem] pc:w-48  desktop:-bottom-[3rem] desktop:-right-[3rem] desktop:w-44 laptop:-bottom-[3.5rem] laptop:-right-[3.5rem] laptop:w-60 tablet:-bottom-[3rem] tablet:-right-[3rem] tablet:w-44 phone:-bottom-[3rem] phone:-right-[3rem] phone:w-40 "
-              />
-            </div>
-            <div className="bg-violet-100/50 ultra:min-h-[15rem] pc:min-h-[17.5rem] desktop:min-h-[18rem] laptop:min-h-[15rem] tablet:min-h-[15rem] phone:min-h-[17.5rem] rounded-3xl relative overflow-hidden pc:p-5 desktop:p-4 laptop:p-5 tablet:p-5 phone:p-4 flex flex-col gap-4 ">
-              <h1 className="ultra:text-4xl pc:text-3xl desktop:text-2xl tablet:text-4xl phone:text-2xl font-bold ">
-                Experienced
-              </h1>
-
-              <p className="text-gray-400 font-light ultra:w-[60%] pc:w-[75%] desktop:w-[80%] laptop:w-full tablet:w-[80%] ">
-                Every project will be done by an experienced front-end and
-                back-end Developer
-              </p>
-
-              <img
-                src={search}
-                alt={search}
-                className="absolute -z-0 ultra:-bottom-[3rem] ultra:-right-[3.5rem] ultra:w-52 pc:-bottom-[3rem] pc:-right-[3.5rem] pc:w-48  desktop:-bottom-[3rem] desktop:-right-[3rem] desktop:w-44 laptop:-bottom-[3.5rem] laptop:-right-[3.5rem] laptop:w-60 tablet:-bottom-[3rem] tablet:-right-[3rem] tablet:w-44 phone:-bottom-[3rem] phone:-right-[3rem] phone:w-40 "
-              />
-            </div>
-            <div className="bg-violet-100/50 ultra:min-h-[15rem] pc:min-h-[17.5rem] desktop:min-h-[18rem] laptop:min-h-[15rem] tablet:min-h-[15rem] phone:min-h-[17.5rem] rounded-3xl relative overflow-hidden pc:p-5 desktop:p-4 laptop:p-5 tablet:p-5 phone:p-4 flex flex-col gap-4 ">
-              <h1 className="ultra:text-4xl pc:text-3xl desktop:text-2xl tablet:text-4xl phone:text-2xl font-bold ">
-                Competitive Price
-              </h1>
-
-              <p className="text-gray-400 font-light ultra:w-[60%] pc:w-[75%] desktop:w-[80%] laptop:w-full tablet:w-[80%] ">
-                We offer you competitive prices for web development and
-                maintenance services.
-              </p>
-
-              <img
-                src={date}
-                alt={date}
-                className="absolute -z-0 ultra:-bottom-[3rem] ultra:-right-[3.5rem] ultra:w-52 pc:-bottom-[3rem] pc:-right-[3.5rem] pc:w-48  desktop:-bottom-[3rem] desktop:-right-[3rem] desktop:w-44 laptop:-bottom-[3.5rem] laptop:-right-[3.5rem] laptop:w-60 tablet:-bottom-[3rem] tablet:-right-[3rem] tablet:w-44 phone:-bottom-[3rem] phone:-right-[3rem] phone:w-40 "
-              />
-            </div>
-            <div className="bg-violet-100/50 ultra:min-h-[15rem] pc:min-h-[17.5rem] desktop:min-h-[18rem] laptop:min-h-[15rem] tablet:min-h-[15rem] phone:min-h-[17.5rem] rounded-3xl relative overflow-hidden pc:p-5 desktop:p-4 laptop:p-5 tablet:p-5 phone:p-4 flex flex-col gap-4 ">
-              <h1 className="ultra:text-4xl pc:text-3xl desktop:text-2xl tablet:text-4xl phone:text-2xl font-bold ">
-                Satisfying
-              </h1>
-
-              <p className="text-gray-400 font-light ultra:w-[60%] pc:w-[75%] desktop:w-[80%] laptop:w-full tablet:w-[80%] ">
-                Team members all over the world
-              </p>
-
-              <img
-                src={money}
-                alt={money}
-                className="absolute -z-0 ultra:-bottom-[3rem] ultra:-right-[3.5rem] ultra:w-52 pc:-bottom-[3rem] pc:-right-[3.5rem] pc:w-48  desktop:-bottom-[3rem] desktop:-right-[3rem] desktop:w-44 laptop:-bottom-[3.5rem] laptop:-right-[3.5rem] laptop:w-60 tablet:-bottom-[3rem] tablet:-right-[3rem] tablet:w-44 phone:-bottom-[3rem] phone:-right-[3rem] phone:w-40 "
-              />
-            </div>
+            {cardData.map((data, idx) => (
+              <Why key={idx} item={data} />
+            ))}
           </ul>
         </Fade>
       </div>
@@ -151,17 +92,17 @@ export default function AboutUs() {
 
           <Fade direction="right" cascade duration={500}>
             <ul className="flex items-center gap-2">
-              <button className="bg-white py-0 px-2 rounded-md">
+              <button className="bg-white py-0 px-3 rounded-md">
                 Check Our Portfolio
               </button>
-              <button className="bg-slate-600 py-0 px-2 rounded-md text-white ">
+              <button className="bg-slate-600 py-0 px-3 rounded-md text-white ">
                 Get In Touch
               </button>
             </ul>
           </Fade>
         </div>
 
-        <div className="w-full absolute tablet:top-0 left-0 flex justify-center laptop:pt-20 tablet:pt-64 tablet:mt-0 phone:mt-12 ">
+        <div className="w-full absolute tablet:top-0 left-0 flex justify-center laptop:pt-20 tablet:pt-64 tablet:mt-0 phone:mt-20 ">
           <Fade direction="up">
             <img
               src={laptop}

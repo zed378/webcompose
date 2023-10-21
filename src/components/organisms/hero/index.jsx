@@ -33,9 +33,12 @@ export default function Hero() {
             </Slide>
 
             <Slide direction="up">
-              <div className="rounded-full bg-white desktop:w-20 desktop:h-20 laptop:w-16 laptop:h-16 tablet:w-14 tablet:h-14 tablet:flex tablet:justify-center tablet:items-center animate-bounce phone:hidden">
+              <a
+                className="rounded-full bg-white desktop:w-20 desktop:h-20 laptop:w-16 laptop:h-16 tablet:w-14 tablet:h-14 tablet:flex tablet:justify-center tablet:items-center animate-bounce phone:hidden cursor-pointer"
+                href="#Carousel"
+              >
                 <BsArrowDown className="desktop:text-2xl laptop:text-xl text-black" />
-              </div>
+              </a>
             </Slide>
           </div>
 
@@ -53,9 +56,12 @@ export default function Hero() {
             <div className="relative flex items-end justify-center flex-col gap-1 h-20 tablet:hidden">
               <div className="rounded-full border border-white w-20 h-20 -ml-3 animate-pulse flex items-center justify-center tablet:hidden absolute z-10 left-[2px]">
                 <Fade>
-                  <div className="rounded-full bg-white w-16 h-16 flex items-center justify-center">
+                  <a
+                    href="#Carousel"
+                    className="rounded-full bg-white w-16 h-16 flex items-center justify-center"
+                  >
                     <BsArrowDown className="desktop:text-2xl laptop:text-xl" />
-                  </div>
+                  </a>
                 </Fade>
               </div>
 
