@@ -1,3 +1,6 @@
+import { Fade } from "react-awesome-reveal";
+
+// asset
 import logoFooter from "@assets/images/logoFooter.svg";
 import {
   BsInstagram,
@@ -16,44 +19,60 @@ export default function Footer() {
       <div className="w-screen absolute top-0 left-0 bg-white h-24 rounded-b-3xl "></div>
 
       <div className="ultra:w-[25%] pc:w-[30%] ">
-        <img src={logoFooter} alt={logoFooter} />
+        <Fade direction="down">
+          <img src={logoFooter} alt={logoFooter} />
+        </Fade>
 
-        <p className="text-white font-light mt-10 pc:w-[80%] ">
-          Feel free to reach our if you want to collaborate with us, or simply
-          have a chat.
-          <br />
-          <br />
-          Don’t like the forms? Drop us a line via email
-        </p>
+        <Fade direction="left">
+          <p className="text-white font-light mt-10 pc:w-[80%] ">
+            Feel free to reach our if you want to collaborate with us, or simply
+            have a chat.
+            <br />
+            <br />
+            Don’t like the forms? Drop us a line via email
+          </p>
+        </Fade>
 
-        <a
-          href="mailto:eva@webcompose.id"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-bold"
-        >
-          eva@webcompose.id
-        </a>
+        <Fade direction="up">
+          <a
+            href="mailto:eva@webcompose.id"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold"
+          >
+            eva@webcompose.id
+          </a>
+        </Fade>
 
-        <div className="flex items-center gap-8 mt-10 mb-12 ">
-          <p className="cursor-pointer text-white font-medium">Home</p>
-          <p className="cursor-pointer text-white font-medium">Our Services</p>
-          <p className="cursor-pointer text-white font-medium">Contact</p>
-          <p className="cursor-pointer text-white font-medium">Privacy</p>
-        </div>
+        <Fade direction="right" duration={500} cascade>
+          <ul className="flex items-center gap-8 mt-10 mb-12 ">
+            <li className="cursor-pointer text-white font-medium">Home</li>
+            <li className="cursor-pointer text-white font-medium">
+              Our Services
+            </li>
+            <li className="cursor-pointer text-white font-medium">Contact</li>
+            <li className="cursor-pointer text-white font-medium">Privacy</li>
+          </ul>
+        </Fade>
       </div>
 
-      <hr />
+      <Fade direction="up">
+        <hr />
+      </Fade>
 
-      <div className="flex laptop:items-center laptop:justify-between phone:flex-col-reverse phone:gap-4 phone:pt-4 laptop:pt-10 ">
-        <p className="text-white font-light ">
-          © {year} Web Compose. All rights reserved.
-        </p>
+      <div className="flex laptop:flex-row laptop:items-center laptop:justify-between phone:flex-col-reverse phone:gap-4 phone:pt-4 laptop:pt-10 ">
+        <Fade direction="down">
+          <p className="text-white font-light ">
+            © {year} Web Compose. All rights reserved.
+          </p>
+        </Fade>
 
-        <div className="flex items-center gap-5 text-white text-2xl ">
-          <BsInstagram /> <BsFacebook /> <BsLinkedin /> <BsGithub />{" "}
-          <BsWhatsapp />
-        </div>
+        <Fade direction="down" cascade duration={300}>
+          <ul className="flex items-center gap-5 text-white text-2xl ">
+            <BsInstagram /> <BsFacebook /> <BsLinkedin /> <BsGithub />{" "}
+            <BsWhatsapp />
+          </ul>
+        </Fade>
       </div>
     </div>
   );
