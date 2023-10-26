@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Fade } from "react-awesome-reveal";
 import { testimonyCard } from "@hooks/staticData";
 
@@ -18,6 +18,12 @@ export default function Testimony() {
     id > 1 && setId(id - 1);
     id === 1 && setId(3);
   };
+
+  useEffect(() => {
+    const interval = setInterval(increment, 7000);
+
+    return () => clearInterval(interval);
+  }, [id]);
 
   return (
     <div
