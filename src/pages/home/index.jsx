@@ -3,6 +3,7 @@ import Carousel from "@components/organisms/carousel";
 import ServiceHome from "@components/organisms/serviceHome";
 import AboutUs from "@components/organisms/aboutUs";
 import Porto from "@components/organisms/porto";
+import Testimony from "@components/organisms/testimony";
 import Footer from "@components/organisms/footer";
 
 function Home() {
@@ -13,6 +14,7 @@ function Home() {
       <ServiceHome />
       <AboutUs />
       <Porto />
+      <Testimony />
       <Footer />
     </div>
   );

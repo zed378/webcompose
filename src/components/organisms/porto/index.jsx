@@ -139,11 +139,24 @@ export default function Porto() {
         </ul>
       </Fade>
 
-      <ul className="laptop:hidden w-full mt-20 flex flex-col gap-6">
+      <div className="laptop:hidden w-full mt-20 flex flex-col gap-6">
         {portoMobile.map((item, idx) => (
           <PortoCardMobile item={item} key={idx} />
         ))}
-      </ul>
+      </div>
+
+      <Fade direction="down">
+        <div className="w-full flex justify-center mt-4">
+          <a
+            href="https://github.com/zed378"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-3 text-white rounded-lg bg-[#644A98] hover:bg-[#6f35e4] tablet:flex items-center justify-center text-sm mt-5 laptop:hidden "
+          >
+            Check Full Portofolio
+          </a>
+        </div>
+      </Fade>
     </div>
   );
 }

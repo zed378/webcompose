@@ -12,6 +12,11 @@ import dayatm from "@assets/images/porto/dayatm.png";
 import journey from "@assets/images/porto/journey.png";
 import journeym from "@assets/images/porto/journeym.png";
 
+// testimony assets
+import dayat1 from "@assets/images/client/dayat.webp";
+import henny from "@assets/images/client/henny.webp";
+import zed from "@assets/images/client/zed.webp";
+
 export const cardData = [
   {
     title: "Professional",
@@ -74,5 +79,29 @@ export const portoMobile = [
     desc: "The Journey is a simple blog built using ReactJs and ExpressJS. This application has features for posting posts, commenting on posts and liking posts. This application is like a personal diary that we can share with other people.",
     img: journeym,
     link: "https://travel.webcompose.id",
+  },
+];
+
+export const testimonyCard = [
+  {
+    id: 1,
+    img: zed,
+    name: "Muhammad Zawawi",
+    title: "Founder Tech Agency",
+    desc: "Web Compose focuses on the end-user and helps improve retention. They excel in user experience and big-picture thinking.",
+  },
+  {
+    id: 2,
+    img: dayat1,
+    name: "Moch Rochmat Hidayat",
+    title: "Freelancer, Indonesia",
+    desc: "Web Compose helps me to simplify the way I invited my colleagues and friend.",
+  },
+  {
+    id: 3,
+    img: henny,
+    name: "Henny Irmawan",
+    title: "CEO & Founder, Mentari Edukids, Indonesia",
+    desc: "I think everyone deserve their business to facing new way of approachment using internet. Web Compose is a tech agency you can trust.",
   },
 ];
