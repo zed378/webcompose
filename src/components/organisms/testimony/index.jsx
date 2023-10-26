@@ -29,7 +29,7 @@ export default function Testimony() {
       </Fade>
 
       <div className="w-full flex justify-between flex-wrap items-start mt-6 ">
-        <div className="laptop:w-[35%] phone:hidden ">
+        <div className="laptop:w-[35%] phone:hidden laptop:block ">
           <Fade direction="up">
             <h1 className="text-zinc-500 ultra:text-xl ">
               Our clients consist of all
@@ -39,7 +39,7 @@ export default function Testimony() {
           </Fade>
         </div>
 
-        <div className="laptop:w-[65%] phone:w-full flex flex-col pl-[2rem] ">
+        <div className="laptop:w-[65%] phone:w-full flex flex-col laptop:pl-[2rem] ">
           {testimonyCard.map((item, idx) => (
             <TestimonialCard
               key={idx}
