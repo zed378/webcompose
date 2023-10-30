@@ -22,7 +22,7 @@ export default function TestimonialCard({ item, id, incre, decre }) {
             </h1>
           </Fade>
           <Fade direction="up">
-            <p className="desktop:text-sm phone:text-xs text-zinc-500">
+            <p className="desktop:text-sm phone:text-xs text-zinc-500 ">
               {item.title}
             </p>
           </Fade>
@@ -47,7 +47,7 @@ export default function TestimonialCard({ item, id, incre, decre }) {
       </Fade>
 
       <Fade direction="up">
-        <h1 className="desktop:text-4xl laptop:text-3xl phone:text-2xl font-medium">
+        <h1 className="desktop:text-4xl laptop:text-3xl phone:text-2xl font-medium ">
           {item.desc}
         </h1>
       </Fade>

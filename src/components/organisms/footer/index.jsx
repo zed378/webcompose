@@ -15,8 +15,8 @@ export default function Footer() {
   const year = date.getFullYear();
 
   return (
-    <div className="bg-[#644A98] ultra:px-24 ultra:pt-44 ultra:pb-16 pc:px-20 pc:pt-40 pc:pb-14 desktop:px-20 desktop:pt-40 desktop:pb-14 laptop:px-16 laptop:pt-36 laptop:pb-14 tablet:px-20 tablet:pt-36 tablet:pb-14 phone:px-10 phone:pt-36 phone:pb-14 text-white flex flex-col gap-4 relative ">
-      <div className="w-screen absolute top-0 left-0 bg-white h-24 rounded-b-3xl "></div>
+    <div className="bg-[#644A98] ultra:px-24 ultra:pb-16 pc:px-20 pc:pb-14 desktop:px-20 desktop:pt-36 desktop:pb-14 laptop:px-16 laptop:pt-44 laptop:pb-14 tablet:px-20 tablet:pt-36 tablet:pb-14 phone:px-10 phone:pt-36 phone:pb-14 text-white flex flex-col gap-4 relative ">
+      <div className="w-screen absolute top-0 left-0 bg-white h-5 rounded-b-full "></div>
 
       <div className="ultra:w-[25%] pc:w-[30%] ">
         <Fade direction="down">

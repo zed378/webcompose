@@ -5,7 +5,7 @@ import { cardData } from "@hooks/staticData";
 import Why from "@components/molecules/why";
 
 // asset
-import laptop from "@assets/images/about/laptop.png";
+import laptop from "@assets/images/about/laptop.webp";
 
 export default function AboutUs() {
   return (

@@ -1,16 +1,16 @@
 // about assets
-import date from "@assets/images/about/date.png";
-import mark from "@assets/images/about/mark.png";
-import money from "@assets/images/about/money.png";
-import search from "@assets/images/about/search.png";
+import date from "@assets/images/about/date.webp";
+import mark from "@assets/images/about/mark.webp";
+import money from "@assets/images/about/money.webp";
+import search from "@assets/images/about/search.webp";
 
 // porto assets
-import mentari from "@assets/images/porto/mentari.png";
-import mentarim from "@assets/images/porto/mentarim.png";
-import dayat from "@assets/images/porto/dayat.png";
-import dayatm from "@assets/images/porto/dayatm.png";
-import journey from "@assets/images/porto/journey.png";
-import journeym from "@assets/images/porto/journeym.png";
+import mentari from "@assets/images/porto/mentari.webp";
+import mentarim from "@assets/images/porto/mentarim.webp";
+import dayat from "@assets/images/porto/dayat.webp";
+import dayatm from "@assets/images/porto/dayatm.webp";
+import journey from "@assets/images/porto/journey.webp";
+import journeym from "@assets/images/porto/journeym.webp";
 
 // testimony assets
 import dayat1 from "@assets/images/client/dayat.webp";
@@ -88,20 +88,20 @@ export const testimonyCard = [
     img: zed,
     name: "Muhammad Zawawi",
     title: "Founder Tech Agency",
-    desc: "Web Compose focuses on the end-user and helps improve retention. They excel in user experience and big-picture thinking.",
+    desc: "Web Compose places a strong emphasis on the end-user, leading to enhanced retention rates. Their expertise lies in delivering exceptional user experiences and demonstrating a keen understanding of the broader strategic perspective.",
   },
   {
     id: 2,
     img: dayat1,
     name: "Moch Rochmat Hidayat",
     title: "Freelancer, Indonesia",
-    desc: "Web Compose helps me to simplify the way I invited my colleagues and friend.",
+    desc: "Web Compose has facilitated the streamlining of how I extended invitations to my colleagues and friends for my wedding.",
   },
   {
     id: 3,
     img: henny,
     name: "Henny Irmawan",
     title: "CEO & Founder, Mentari Edukids, Indonesia",
-    desc: "I think everyone deserve their business to facing new way of approachment using internet. Web Compose is a tech agency you can trust.",
+    desc: "Alhamdulillah, the outcomes have conformed to our expectations. Furthermore, they have demonstrated a commitment to ongoing enhancements in response to our specific requests. The user interface has been harmonized with our color branding, facilitating a more intuitive comprehension of features that cater to budgetary and business requirements. In addition, their exceptional patience and expedited completion of the project exceeded our initial projections.",
   },
 ];

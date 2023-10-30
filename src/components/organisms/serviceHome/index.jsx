@@ -1,9 +1,9 @@
 import { Fade } from "react-awesome-reveal";
 
 // asset
-import coding from "@assets/images/coding.jpg";
-import dashboard from "@assets/images/dashboard.png";
-import laptop from "@assets/images/laptop.jpg";
+import coding from "@assets/images/coding.webp";
+import dashboard from "@assets/images/dashboard.webp";
+import laptop from "@assets/images/laptop.webp";
 
 export default function ServiceHome() {
   return (
@@ -24,7 +24,7 @@ export default function ServiceHome() {
       <Fade direction="up" duration={500} cascade>
         <ul className="w-full grid desktop:grid-cols-3 laptop:grid-cols-2 gap-4 mt-20 ">
           <li
-            className="min-h-[20rem] rounded-xl overflow-hidden relative h-[36rem] tablet:px-10 phone:px-5 tablet:py-12 phone:py-7 bg-cover "
+            className="min-h-[20rem] rounded-xl overflow-hidden relative h-[32rem] tablet:px-10 phone:px-5 tablet:py-12 phone:py-7 bg-cover "
             style={{ backgroundImage: `url(${coding})` }}
           >
             <div className="vignette"></div>
@@ -55,7 +55,7 @@ export default function ServiceHome() {
           </li>
 
           <li
-            className="min-h-[20rem] rounded-xl overflow-hidden relative h-[36rem] tablet:px-10 phone:px-5 tablet:py-12 phone:py-7 bg-cover "
+            className="min-h-[20rem] rounded-xl overflow-hidden relative h-[32rem] tablet:px-10 phone:px-5 tablet:py-12 phone:py-7 bg-cover "
             style={{ backgroundImage: `url(${laptop})` }}
           >
             <div className="vignette"></div>
@@ -87,7 +87,7 @@ export default function ServiceHome() {
           </li>
 
           <li
-            className="min-h-[20rem] rounded-xl overflow-hidden relative h-[36rem] tablet:px-10 phone:px-5 tablet:py-12 phone:py-7 bg-cover "
+            className="min-h-[20rem] rounded-xl overflow-hidden relative h-[32rem] tablet:px-10 phone:px-5 tablet:py-12 phone:py-7 bg-cover "
             style={{ backgroundImage: `url(${dashboard})` }}
           >
             <div className="vignette"></div>

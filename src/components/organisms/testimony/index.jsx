@@ -9,18 +9,41 @@ import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 export default function Testimony() {
   const [id, setId] = useState(1);
 
-  const increment = () => {
-    id < 3 && setId(id + 1);
-    id === 3 && setId(1);
-  };
-
   const decrement = () => {
     id > 1 && setId(id - 1);
     id === 1 && setId(3);
   };
 
+  const increment = () => {
+    id < 3 && setId(id + 1);
+    id === 3 && setId(1);
+  };
+
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe || isRightSwipe) {
+      isLeftSwipe && increment();
+      isRightSwipe && decrement();
+    }
+  };
+
   useEffect(() => {
-    const interval = setInterval(increment, 7000);
+    const interval = setInterval(increment, 20000);
 
     return () => clearInterval(interval);
   }, [id]);
@@ -45,7 +68,12 @@ export default function Testimony() {
           </Fade>
         </div>
 
-        <div className="laptop:w-[65%] phone:w-full flex flex-col laptop:pl-[2rem] ">
+        <div
+          className="laptop:w-[65%] phone:w-full flex flex-col laptop:pl-[2rem] mb-10 "
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           {testimonyCard.map((item, idx) => (
             <TestimonialCard
               key={idx}

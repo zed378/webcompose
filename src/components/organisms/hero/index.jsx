@@ -4,9 +4,9 @@ import { Fade, Slide } from "react-awesome-reveal";
 import Navbar from "@components/molecules/navbar";
 
 // asset
-import bgHero from "@assets/images/bgHero.png";
-import laptop from "@assets/images/laptop.jpg";
-import play from "@assets/images/play.png";
+import bgHero from "@assets/images/bgHero.webp";
+import laptop from "@assets/images/laptop.webp";
+import play from "@assets/images/play.webp";
 import { BsArrowDown, BsStarFill, BsFillPlayCircleFill } from "react-icons/bs";
 
 export default function Hero() {

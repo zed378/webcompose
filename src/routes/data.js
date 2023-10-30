@@ -1,4 +1,6 @@
 import Home from "@pages/home";
+import Services from "@pages/services";
+import ContactUs from "@pages/contact";
 
 const routes = [
   {
@@ -7,10 +9,14 @@ const routes = [
     component: Home,
   },
   {
+    id: 2,
+    path: "/services",
+    component: Services,
+  },
+  {
     id: 3,
-    path: "/dashboard",
-    requireAuth: true,
-    // component: Dashboard,
+    path: "/contact",
+    component: ContactUs,
   },
 ];
 

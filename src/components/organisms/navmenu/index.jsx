@@ -89,7 +89,7 @@ export default function NavMenu() {
             <div
               className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer"
               onClick={() => {
-                nav("/");
+                nav("/services");
                 setModal(!modal);
               }}
             >
@@ -112,7 +112,7 @@ export default function NavMenu() {
             <div
               className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer"
               onClick={() => {
-                nav("/");
+                nav("/contact");
                 setModal(!modal);
               }}
             >
@@ -188,7 +188,7 @@ export default function NavMenu() {
               <div
                 className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer"
                 onClick={() => {
-                  nav("/");
+                  nav("/services");
                   setModal(!modal);
                 }}
               >
@@ -211,7 +211,7 @@ export default function NavMenu() {
               <div
                 className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer"
                 onClick={() => {
-                  nav("/");
+                  nav("/contact");
                   setModal(!modal);
                 }}
               >
