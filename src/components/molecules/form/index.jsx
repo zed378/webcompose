@@ -29,7 +29,7 @@ export default function ContactForm() {
       }}
     >
       {({ errors, touched, values }) => (
-        <Form className="ultra:w-[40rem] desktop:w-[35rem] phone:w-full phone:mt-10  bg-white rounded-xl px-10 py-9 ">
+        <Form className="ultra:w-[40rem] desktop:w-[35rem] phone:w-full phone:mt-10 bg-white rounded-xl tablet:px-10 phone:px-5 tablet:py-9 phone:py-7 ">
           <Fade direction="down" cascade duration={500}>
             <h1 className="font-medium mb-10 text-lg ">
               We want to hear your needs
@@ -100,7 +100,7 @@ export default function ContactForm() {
               <label className="text-lg" htmlFor="phone">
                 Phone
               </label>
-              <div className="w-full flex flex-wrap items-start gap-4 ">
+              <div className="w-full flex items-start tablet:gap-3 phone:gap-2 ">
                 <Field
                   className="outline-none border border-1 border-gray-300 rounded-lg py-3 px-1 text-sm w-1/5 "
                   name="dial"
@@ -119,17 +119,17 @@ export default function ContactForm() {
                   ))}
                 </Field>
                 <Field
-                  className="outline-none border border-1 border-gray-300 rounded-lg py-3 px-3 text-sm w-[75%] "
+                  className="outline-none border border-1 border-gray-300 rounded-lg py-3 px-3 text-sm w-full "
                   id="phone"
                   name="phone"
                   type="number"
                   value={values.phone}
                   placeholder="8123123123"
                 />
-                {errors.phone && touched.phone ? (
-                  <div className="text-xs text-red-500 ">{errors.phone}</div>
-                ) : null}{" "}
               </div>
+              {errors.phone && touched.phone ? (
+                <div className="text-xs text-red-500 ">{errors.phone}</div>
+              ) : null}
             </ul>
           </Fade>
 
