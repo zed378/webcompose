@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import { Formik, Form, Field } from "formik";
+import axios from "axios";
 
+// Hooks
 import { countryData } from "@hooks/countryCodes";
 import { messageSchema } from "@hooks/inputValidation";
 
+// Components
+import LoaderAnim from "@components/atoms/loader";
+
 export default function ContactForm() {
   const [loading, setLoading] = useState(false);
-  const [dial, setDial] = useState(null);
+  const [msg, setMsg] = useState("");
 
   return (
     <Formik
@@ -15,17 +20,38 @@ export default function ContactForm() {
         firstName: "",
         lastName: "",
         email: "",
-        dial: "",
-        phone: dial + "",
+        dial: "+62",
+        phone: "",
         message: "",
         checked: false,
       }}
       validationSchema={messageSchema}
-      onSubmit={(values, { resetForm }) => {
-        // same shape as initial values
-        console.log(values);
+      onSubmit={async (values, { resetForm }) => {
+        setLoading(true);
 
-        // resetForm();
+        await axios
+          .post("https://backend.webcompose.id/mail/send", {
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            phone: values.dial + values.phone,
+            message: values.message,
+          })
+          .then((data) => {
+            setLoading(false);
+            resetForm();
+            setMsg(data.data.message);
+            setTimeout(() => {
+              setMsg("");
+            }, 5000);
+          })
+          .catch((err) => {
+            setLoading(false);
+            setMsg(err.data.message.solution);
+            setTimeout(() => {
+              setMsg("");
+            }, 5000);
+          });
       }}
     >
       {({ errors, touched, values }) => (
@@ -40,6 +66,22 @@ export default function ContactForm() {
             </h1>
           </Fade>
 
+          <Fade direction="up" duration={500}>
+            {msg && msg.includes("Success") ? (
+              <h1 className="text-center px-3 py-2 border border-violet-500 bg-violet-200 text-violet-500 rounded-lg mb-3 ">
+                {msg}
+              </h1>
+            ) : (
+              <h1
+                className={`text-center px-3 py-2 border border-red-500 bg-red-200 text-red-500 rounded-lg mb-3 ${
+                  msg === "" && "hidden"
+                } `}
+              >
+                {msg}
+              </h1>
+            )}
+          </Fade>
+
           <div className="w-full flex justify-between laptop:flex-row phone:flex-col gap-3 items-start mb-6 ">
             <Fade direction="down" cascade duration={500}>
               <ul className="w-full flex flex-col gap-2 ">
@@ -51,6 +93,7 @@ export default function ContactForm() {
                   id="firstName"
                   name="firstName"
                   placeholder="First Name"
+                  disabled={loading}
                 />
                 {errors.firstName && touched.firstName ? (
                   <div className="text-xs text-red-500 ">
@@ -69,6 +112,7 @@ export default function ContactForm() {
                   id="lastName"
                   name="lastName"
                   placeholder="Last Name"
+                  disabled={loading}
                 />
                 {errors.lastName && touched.lastName ? (
                   <div className="text-xs text-red-500 ">{errors.lastName}</div>
@@ -88,6 +132,7 @@ export default function ContactForm() {
                 name="email"
                 type="email"
                 placeholder="you@yourcompany.com"
+                disabled={loading}
               />
               {errors.email && touched.email ? (
                 <div className="text-xs text-red-500 ">{errors.email}</div>
@@ -106,14 +151,11 @@ export default function ContactForm() {
                   name="dial"
                   id="dial"
                   as="select"
+                  disabled={loading}
                 >
                   <option value={"+" + 62}>ID (+62)</option>
                   {countryData.map((item, idx) => (
-                    <option
-                      key={idx}
-                      value={"+" + item.Dial}
-                      onClick={() => setDial("+" + item.Dial)}
-                    >
+                    <option key={idx} value={"+" + item.Dial}>
                       {item.Name} (+{item.Dial})
                     </option>
                   ))}
@@ -125,6 +167,7 @@ export default function ContactForm() {
                   type="number"
                   value={values.phone}
                   placeholder="8123123123"
+                  disabled={loading}
                 />
               </div>
               {errors.phone && touched.phone ? (
@@ -144,6 +187,7 @@ export default function ContactForm() {
                 name="message"
                 type="text"
                 as="textarea"
+                disabled={loading}
               />
               {errors.message && touched.message ? (
                 <div className="text-xs text-red-500 ">{errors.message}</div>
@@ -159,6 +203,7 @@ export default function ContactForm() {
                   type="checkbox"
                   name="checked"
                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  disabled={loading}
                 />
                 <label className="text-lg" htmlFor="checked">
                   You agree to our friendly privacy policy.
@@ -172,10 +217,18 @@ export default function ContactForm() {
 
           <Fade direction="down" cascade duration={500}>
             <button
+              disabled={loading}
               type="submit"
-              className="w-full text-white rounded-lg bg-[#7F56D9] hover:bg-[#6438c2] py-3 text-sm "
+              className={`w-full text-white rounded-lg bg-[#7F56D9] hover:bg-[#6438c2] py-3 text-sm disabled:cursor-wait `}
             >
-              Send Message
+              {loading && <LoaderAnim />}{" "}
+              {loading ? (
+                <span className="animate-pulse">
+                  Sending Message. Please, wait.
+                </span>
+              ) : (
+                "Send Message"
+              )}
             </button>
           </Fade>
         </Form>

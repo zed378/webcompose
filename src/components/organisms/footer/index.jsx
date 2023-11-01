@@ -1,4 +1,5 @@
 import { Fade } from "react-awesome-reveal";
+import { useNavigate } from "react-router-dom";
 
 // asset
 import logoFooter from "@assets/images/logoFooter.svg";
@@ -13,6 +14,8 @@ import {
 export default function Footer() {
   const date = new Date();
   const year = date.getFullYear();
+
+  const nav = useNavigate();
 
   return (
     <div className="bg-[#644A98] ultra:px-24 ultra:pb-16 pc:px-20 pc:pb-14 desktop:px-20 desktop:pt-36 desktop:pb-14 laptop:px-16 laptop:pt-44 laptop:pb-14 tablet:px-20 tablet:pt-36 tablet:pb-14 phone:px-10 phone:pt-36 phone:pb-14 text-white flex flex-col gap-4 relative ">
@@ -35,23 +38,41 @@ export default function Footer() {
 
         <Fade direction="up">
           <a
-            href="mailto:eva@webcompose.id"
+            href="mailto:contact@webcompose.id"
             target="_blank"
             rel="noopener noreferrer"
             className="font-bold"
           >
-            eva@webcompose.id
+            contact@webcompose.id
           </a>
         </Fade>
 
         <Fade direction="right" duration={500} cascade>
           <ul className="flex items-center gap-8 mt-10 mb-12 ">
-            <li className="cursor-pointer text-white font-medium">Home</li>
-            <li className="cursor-pointer text-white font-medium">
+            <li
+              className="cursor-pointer text-white font-medium"
+              onClick={() => nav("/")}
+            >
+              Home
+            </li>
+            <li
+              className="cursor-pointer text-white font-medium"
+              onClick={() => nav("/services")}
+            >
               Our Services
             </li>
-            <li className="cursor-pointer text-white font-medium">Contact</li>
-            <li className="cursor-pointer text-white font-medium">Privacy</li>
+            <li
+              className="cursor-pointer text-white font-medium"
+              onClick={() => nav("/contact")}
+            >
+              Contact
+            </li>
+            <li
+              className="cursor-pointer text-white font-medium"
+              onClick={() => nav("/")}
+            >
+              Privacy
+            </li>
           </ul>
         </Fade>
       </div>
