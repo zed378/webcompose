@@ -43,7 +43,7 @@ export default function Testimony() {
   };
 
   useEffect(() => {
-    const interval = setInterval(increment, 20000);
+    const interval = setInterval(() => increment, 20000);
 
     return () => clearInterval(interval);
   }, [id]);

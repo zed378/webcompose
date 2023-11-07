@@ -12,22 +12,17 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, { payload }) => {
-      state.user = payload.user;
-      state.token = payload.token;
-
-      window.localStorage.setItem("user", JSON.stringify(payload.user));
-      window.localStorage.setItem("token", JSON.stringify(payload.token));
+      state.user = payload.data.data;
+      state.token = payload.data.token;
+      window.localStorage.setItem("token", JSON.stringify(payload.data.token));
     },
     setUpdateUser: (state, { payload }) => {
-      state.user = payload.user;
+      state.user = payload.data;
       state.token = payload.token;
-
-      window.localStorage.setItem("user", JSON.stringify(payload.user));
-      window.localStorage.setItem("token", JSON.stringify(payload.token));
+      window.localStorage.setItem("token", JSON.stringify(payload.data.token));
     },
     removeUser: (state) => {
       state.user = null;
-      window.localStorage.removeItem("user");
       window.localStorage.removeItem("token");
     },
   },

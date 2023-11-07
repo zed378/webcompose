@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useWindowSize from "@rooks/use-window-size";
 import { Fade, Slide } from "react-awesome-reveal";
+import { useSelector, useDispatch } from "react-redux";
+import { removeUser } from "@redux/features/auth/authSlice";
 
 // assets
 import home from "@assets/images/home.svg";
@@ -18,6 +20,10 @@ export default function NavMenu() {
 
   const { innerWidth } = useWindowSize();
   const [isWeb, setIsWeb] = useState(false);
+
+  const { user } = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (innerWidth >= 1024) {
@@ -61,6 +67,27 @@ export default function NavMenu() {
           onMouseEnter={() => setModal(true)}
           onMouseLeave={() => setModal(false)}
         >
+          {user && (
+            <Fade direction="up" cascade duration={500}>
+              <ul className="flex items-start gap-2">
+                <img
+                  src={process.env.REACT_APP_PROFILE + user?.picture}
+                  alt={process.env.REACT_APP_PROFILE + user?.picture}
+                  srcset={process.env.REACT_APP_PROFILE + user?.picture}
+                  className="w-14 h-14 rounded-full"
+                />
+                <div className="m-0">
+                  <h1 className="m-0">
+                    {user?.firstName} {user?.lastName}
+                  </h1>
+                  <p className="text-zinc-500 text-sm m-0 ">
+                    {user?.username ? "@" + user?.username : user?.email}
+                  </p>
+                </div>
+              </ul>
+              <hr />
+            </Fade>
+          )}
           <Fade direction="up" cascade duration={300}>
             {/* home */}
             <div
@@ -132,27 +159,45 @@ export default function NavMenu() {
             {/* end of contact us */}
           </Fade>
 
-          <Fade direction="down" duration={500} cascade>
-            <ul className="px-1 flex flex-col gap-3 mt-7">
-              <li
-                className="py-3 flex justify-center bg-[#7859B6] border-[#7859B6] hover:bg-violet-600 text-white rounded-lg cursor-pointer "
-                onClick={() => {
-                  nav("/contact");
-                }}
-              >
-                Register
-              </li>
+          {!user ? (
+            <Fade direction="down" duration={500} cascade>
+              <ul className="px-1 flex flex-col gap-3 mt-7">
+                <li
+                  className="py-3 flex justify-center bg-[#7859B6] border-[#7859B6] hover:bg-violet-600 text-white rounded-lg cursor-pointer "
+                  onClick={() => {
+                    nav("/register");
+                    setModal(!modal);
+                  }}
+                >
+                  Register
+                </li>
 
-              <li
-                className="py-3 flex justify-center bg-white hover:bg-violet-100 border border-[#7859B6] text-[#7859B6] rounded-lg cursor-pointer "
-                onClick={() => {
-                  nav("/login");
-                }}
-              >
-                Login
-              </li>
-            </ul>
-          </Fade>
+                <li
+                  className="py-3 flex justify-center bg-white hover:bg-violet-100 border border-[#7859B6] text-[#7859B6] rounded-lg cursor-pointer "
+                  onClick={() => {
+                    nav("/login");
+                    setModal(!modal);
+                  }}
+                >
+                  Login
+                </li>
+              </ul>
+            </Fade>
+          ) : (
+            <Fade direction="down" duration={500} cascade>
+              <ul className="px-1 flex flex-col gap-3 mt-7">
+                <li
+                  className="py-3 flex justify-center bg-[#7859B6] border-[#7859B6] hover:bg-violet-600 text-white rounded-lg cursor-pointer "
+                  onClick={() => {
+                    dispatch(removeUser());
+                    setModal(!modal);
+                  }}
+                >
+                  Logout
+                </li>
+              </ul>
+            </Fade>
+          )}
         </div>
       )}
 
@@ -167,6 +212,29 @@ export default function NavMenu() {
             <GrClose size={20} onClick={() => setModal(false)} />
           </div>
           <hr />
+
+          {user && (
+            <Fade direction="up" cascade duration={500}>
+              <ul className="flex items-start gap-2 p-4">
+                <img
+                  src={process.env.REACT_APP_PROFILE + user?.picture}
+                  alt={process.env.REACT_APP_PROFILE + user?.picture}
+                  srcset={process.env.REACT_APP_PROFILE + user?.picture}
+                  className="w-14 h-14 rounded-full"
+                />
+                <div className="m-0">
+                  <h1 className="m-0">
+                    {user?.firstName} {user?.lastName}
+                  </h1>
+                  <p className="text-zinc-500 text-sm m-0 ">
+                    {user?.username ? "@" + user?.username : user?.email}
+                  </p>
+                  <p className="text-zinc-500 text-xs m-0 ">{user?.role}</p>
+                </div>
+              </ul>
+              <hr />
+            </Fade>
+          )}
 
           <div className="px-4 py-10 shadow bg-white w-full h-auto flex flex-col gap-2 mt-5 rounded-lg">
             <Fade direction="up" cascade duration={300}>
@@ -240,27 +308,45 @@ export default function NavMenu() {
               {/* end of contact us */}
             </Fade>
 
-            <Fade direction="down" duration={500} cascade>
-              <ul className="px-1 flex flex-col gap-3 mt-7">
-                <li
-                  className="py-3 flex justify-center bg-[#7859B6] border-[#7859B6] hover:bg-violet-600 text-white rounded-lg cursor-pointer "
-                  onClick={() => {
-                    nav("/login");
-                  }}
-                >
-                  Register
-                </li>
+            {!user ? (
+              <Fade direction="down" duration={500} cascade>
+                <ul className="px-1 flex flex-col gap-3 mt-7">
+                  <li
+                    className="py-3 flex justify-center bg-[#7859B6] border-[#7859B6] hover:bg-violet-600 text-white rounded-lg cursor-pointer "
+                    onClick={() => {
+                      nav("/register");
+                      setModal(!modal);
+                    }}
+                  >
+                    Register
+                  </li>
 
-                <li
-                  className="py-3 flex justify-center bg-white hover:bg-violet-100 border border-[#7859B6] text-[#7859B6] rounded-lg cursor-pointer "
-                  onClick={() => {
-                    nav("/login");
-                  }}
-                >
-                  Login
-                </li>
-              </ul>
-            </Fade>
+                  <li
+                    className="py-3 flex justify-center bg-white hover:bg-violet-100 border border-[#7859B6] text-[#7859B6] rounded-lg cursor-pointer "
+                    onClick={() => {
+                      nav("/login");
+                      setModal(!modal);
+                    }}
+                  >
+                    Login
+                  </li>
+                </ul>
+              </Fade>
+            ) : (
+              <Fade direction="down" duration={500} cascade>
+                <ul className="px-1 flex flex-col gap-3 mt-7">
+                  <li
+                    className="py-3 flex justify-center bg-[#7859B6] border-[#7859B6] hover:bg-violet-600 text-white rounded-lg cursor-pointer "
+                    onClick={() => {
+                      dispatch(removeUser());
+                      setModal(!modal);
+                    }}
+                  >
+                    Logout
+                  </li>
+                </ul>
+              </Fade>
+            )}
           </div>
         </div>
       )}

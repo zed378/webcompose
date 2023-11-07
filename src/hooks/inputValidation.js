@@ -27,3 +27,20 @@ export const loginSchema = Yup.object().shape({
     .min(3, "Password Too Short!")
     .required("Required! Password Cannot Be Empty."),
 });
+
+export const registerSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .min(2, "First Name Too Short!")
+    .max(75, "First Name Too Long!")
+    .required("Required! First Name Cannot Be Empty."),
+  lastName: Yup.string()
+    .min(2, "Last Name Too Short!")
+    .max(75, "Last Name Too Long!")
+    .required("Required! Last Name Cannot Be Empty."),
+  email: Yup.string()
+    .email("Invalid email")
+    .required("Required! Email Cannot Be Empty."),
+  password: Yup.string()
+    .min(3, "Password Too Short!")
+    .required("Required! Password Cannot Be Empty."),
+});
