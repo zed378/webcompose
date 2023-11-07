@@ -21,3 +21,9 @@ export const messageSchema = Yup.object().shape({
     .required("Required! Message Cannot Be Empty!"),
   checked: Yup.boolean().oneOf([true], "Required! Please, Check The Box!"),
 });
+
+export const loginSchema = Yup.object().shape({
+  password: Yup.string()
+    .min(3, "Password Too Short!")
+    .required("Required! Password Cannot Be Empty."),
+});

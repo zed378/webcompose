@@ -1,16 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 import { Formik, Form, Field } from "formik";
 import axios from "axios";
 
 // Hooks
 import { countryData } from "@hooks/countryCodes";
-import { messageSchema } from "@hooks/inputValidation";
+import { messageSchema, loginSchema } from "@hooks/inputValidation";
 
 // Components
 import LoaderAnim from "@components/atoms/loader";
 
-export default function ContactForm() {
+export function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
 
@@ -230,6 +231,138 @@ export default function ContactForm() {
                 "Send Message"
               )}
             </button>
+          </Fade>
+        </Form>
+      )}
+    </Formik>
+  );
+}
+
+export function LoginForm() {
+  const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState("");
+
+  const nav = useNavigate();
+
+  return (
+    <Formik
+      initialValues={{
+        user: "",
+        password: "",
+      }}
+      validationSchema={loginSchema}
+      onSubmit={async (values, { resetForm }) => {
+        setLoading(true);
+
+        await axios
+          .post("http://localhost:5000/auth/login", {
+            user: values.user,
+            password: values.password,
+          })
+          .then((data) => {
+            setLoading(false);
+            resetForm();
+            setMsg(data.data.message);
+            setTimeout(() => {
+              setMsg("");
+            }, 5000);
+          })
+          .catch((err) => {
+            setLoading(false);
+            console.log(err);
+            setMsg(err.response.data.message);
+            setTimeout(() => {
+              setMsg("");
+            }, 5000);
+          });
+      }}
+    >
+      {({ errors, touched, values }) => (
+        <Form className=" phone:w-full bg-white rounded-xl tablet:px-10 phone:px-5 tablet:py-9 phone:py-7 ">
+          <Fade direction="up">
+            <h1 className="text-violet-500 text-center font-medium mb-2 ultra:text-6xl pc:text-4xl desktop:text-4xl laptop:text-4xl tablet:text-4xl phone:text-3xl w-full ">
+              LOGIN
+            </h1>
+          </Fade>
+
+          <Fade direction="down">
+            <p className="text-center font-bold ">Welcome to Web Compose</p>
+            <p className="text-center mb-10 ">
+              Makes your ideas happen with Us!
+            </p>
+          </Fade>
+
+          <Fade direction="up" duration={500}>
+            {msg && msg.includes("Success") ? (
+              <h1 className="text-center px-3 py-2 border border-violet-500 bg-violet-200 text-violet-500 rounded-lg mb-3 ">
+                {msg}
+              </h1>
+            ) : (
+              <h1
+                className={`text-center px-3 py-2 border border-red-500 bg-red-200 text-red-500 rounded-lg mb-3 ${
+                  msg === "" && "hidden"
+                } `}
+              >
+                {msg}
+              </h1>
+            )}
+          </Fade>
+
+          <Fade direction="down" cascade duration={500}>
+            <ul className="w-full flex flex-col gap-2 mb-6 ">
+              <label className="text-lg" htmlFor="user">
+                Email or Username
+              </label>
+              <Field
+                className="outline-none border border-1 border-gray-300 rounded-lg py-3 px-3 text-sm w-full "
+                id="user"
+                name="user"
+                placeholder="you@yourcompany.com"
+                disabled={loading}
+              />
+              {errors.user && touched.user ? (
+                <div className="text-xs text-red-500 ">{errors.user}</div>
+              ) : null}{" "}
+            </ul>
+          </Fade>
+
+          <Fade direction="down" cascade duration={500}>
+            <ul className="w-full flex flex-col gap-2 ">
+              <label className="text-lg" htmlFor="firstName">
+                Password
+              </label>
+              <Field
+                className="outline-none border border-1 border-gray-300 rounded-lg py-3 px-3 text-sm w-full "
+                id="password"
+                name="password"
+                placeholder="Password"
+                type="password"
+                disabled={loading}
+              />
+              {errors.password && touched.password ? (
+                <div className="text-xs text-red-500 ">{errors.password}</div>
+              ) : null}
+            </ul>
+          </Fade>
+
+          <Fade direction="down" cascade duration={500}>
+            <button
+              disabled={loading}
+              type="submit"
+              className={`w-full text-white rounded-lg bg-[#7F56D9] hover:bg-[#6438c2] py-3 text-base disabled:cursor-wait ${
+                loading && "animate-pulse"
+              } mt-10 `}
+            >
+              {loading && <LoaderAnim />} Login
+            </button>
+          </Fade>
+          <Fade direction="up" cascade duration={500}>
+            <p
+              className="text-sm text-center mt-2 cursor-pointer "
+              onClick={() => nav("/register")}
+            >
+              Don't have account? Click here to <b>Register!</b>
+            </p>
           </Fade>
         </Form>
       )}

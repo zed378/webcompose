@@ -1,6 +1,7 @@
 import Home from "@pages/home";
 import Services from "@pages/services";
 import ContactUs from "@pages/contact";
+import Login from "@pages/login";
 
 const routes = [
   {
@@ -17,6 +18,11 @@ const routes = [
     id: 3,
     path: "/contact",
     component: ContactUs,
+  },
+  {
+    id: 4,
+    path: "/login",
+    component: Login,
   },
 ];
 

@@ -3,7 +3,7 @@ import { Fade } from "react-awesome-reveal";
 // component
 import Navbar from "@components/molecules/navbar";
 import Footer from "@components/organisms/footer";
-import ContactForm from "@components/molecules/form";
+import { ContactForm } from "@components/molecules/form";
 
 // assets
 import bgContact from "@assets/images/bgContact.webp";
@@ -14,7 +14,7 @@ export default function ContactUs() {
   return (
     <>
       <div className="min-h-screen w-full tablet:p-3 phone:p-1">
-        <div className="w-full min-h-screen relative laptop:overflow-hidden rounded-2xl tablet:rounded-[40px] laptop:rounded-[45px] bg-gradient-to-r from-[#9B73EC] to-[#634996] ultra:px-8 ultra:py-10 pc:px-7 pc:py-9 desktop:px-6 desktop:py-8 laptop:px-5 laptop:py-7 tablet:px-4 tablet:py-6 p-3">
+        <div className="w-full h-full relative laptop:overflow-hidden rounded-2xl tablet:rounded-[40px] laptop:rounded-[45px] bg-gradient-to-r from-[#9B73EC] to-[#634996] ultra:px-8 ultra:py-10 pc:px-7 pc:py-9 desktop:px-6 desktop:py-8 laptop:px-5 laptop:py-7 tablet:px-4 tablet:py-6 p-3">
           <Navbar />
 
           <Fade triggerOnce>

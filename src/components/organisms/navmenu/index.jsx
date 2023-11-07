@@ -133,13 +133,22 @@ export default function NavMenu() {
           </Fade>
 
           <Fade direction="down" duration={500} cascade>
-            {" "}
             <ul className="px-1 flex flex-col gap-3 mt-7">
-              <li className="py-3 flex justify-center bg-[#7859B6] border-[#7859B6] hover:bg-violet-600 text-white rounded-lg">
+              <li
+                className="py-3 flex justify-center bg-[#7859B6] border-[#7859B6] hover:bg-violet-600 text-white rounded-lg cursor-pointer "
+                onClick={() => {
+                  nav("/contact");
+                }}
+              >
                 Register
               </li>
 
-              <li className="py-3 flex justify-center bg-white hover:bg-violet-100 border border-[#7859B6] text-[#7859B6] rounded-lg">
+              <li
+                className="py-3 flex justify-center bg-white hover:bg-violet-100 border border-[#7859B6] text-[#7859B6] rounded-lg cursor-pointer "
+                onClick={() => {
+                  nav("/login");
+                }}
+              >
                 Login
               </li>
             </ul>
@@ -233,11 +242,21 @@ export default function NavMenu() {
 
             <Fade direction="down" duration={500} cascade>
               <ul className="px-1 flex flex-col gap-3 mt-7">
-                <li className="py-3 flex justify-center bg-[#7859B6] border-[#7859B6] hover:bg-violet-600 text-white rounded-lg">
+                <li
+                  className="py-3 flex justify-center bg-[#7859B6] border-[#7859B6] hover:bg-violet-600 text-white rounded-lg cursor-pointer "
+                  onClick={() => {
+                    nav("/login");
+                  }}
+                >
                   Register
                 </li>
 
-                <li className="py-3 flex justify-center bg-white hover:bg-violet-100 border border-[#7859B6] text-[#7859B6] rounded-lg">
+                <li
+                  className="py-3 flex justify-center bg-white hover:bg-violet-100 border border-[#7859B6] text-[#7859B6] rounded-lg cursor-pointer "
+                  onClick={() => {
+                    nav("/login");
+                  }}
+                >
                   Login
                 </li>
               </ul>
