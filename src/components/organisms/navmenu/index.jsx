@@ -70,18 +70,23 @@ export default function NavMenu() {
           {user && (
             <Fade direction="up" cascade duration={500}>
               <ul className="flex items-start gap-2">
-                <img
-                  src={process.env.REACT_APP_PROFILE + user?.picture}
-                  alt={process.env.REACT_APP_PROFILE + user?.picture}
-                  srcset={process.env.REACT_APP_PROFILE + user?.picture}
-                  className="w-14 h-14 rounded-full"
-                />
+                <div
+                  className="w-14 h-14 rounded-full overflow-hidden bg-cover bg-center "
+                  style={{
+                    backgroundImage: `url(${
+                      process.env.REACT_APP_PROFILE + user?.picture
+                    })`,
+                  }}
+                ></div>
                 <div className="m-0">
-                  <h1 className="m-0">
+                  <h1 className="m-0 font-medium ">
                     {user?.firstName} {user?.lastName}
                   </h1>
-                  <p className="text-zinc-500 text-sm m-0 ">
-                    {user?.username ? "@" + user?.username : user?.email}
+                  <p className="text-zinc-500 text-sm m-0 font-light ">
+                    {user?.email}
+                  </p>
+                  <p className="text-zinc-500 text-xs m-0 font-light ">
+                    {user?.role}
                   </p>
                 </div>
               </ul>
@@ -215,21 +220,25 @@ export default function NavMenu() {
 
           {user && (
             <Fade direction="up" cascade duration={500}>
-              <ul className="flex items-start gap-2 p-4">
-                <img
-                  src={process.env.REACT_APP_PROFILE + user?.picture}
-                  alt={process.env.REACT_APP_PROFILE + user?.picture}
-                  srcset={process.env.REACT_APP_PROFILE + user?.picture}
-                  className="w-14 h-14 rounded-full"
-                />
+              <ul className="flex items-start gap-5 p-4">
+                <div
+                  className="w-14 h-14 rounded-full overflow-hidden bg-cover bg-center "
+                  style={{
+                    backgroundImage: `url(${
+                      process.env.REACT_APP_PROFILE + user?.picture
+                    })`,
+                  }}
+                ></div>
                 <div className="m-0">
-                  <h1 className="m-0">
+                  <h1 className="m-0 font-medium ">
                     {user?.firstName} {user?.lastName}
                   </h1>
-                  <p className="text-zinc-500 text-sm m-0 ">
-                    {user?.username ? "@" + user?.username : user?.email}
+                  <p className="text-zinc-500 text-sm m-0 font-light ">
+                    {user?.email}
                   </p>
-                  <p className="text-zinc-500 text-xs m-0 ">{user?.role}</p>
+                  <p className="text-zinc-500 text-xs m-0 font-light ">
+                    {user?.role}
+                  </p>
                 </div>
               </ul>
               <hr />
@@ -240,13 +249,13 @@ export default function NavMenu() {
             <Fade direction="up" cascade duration={300}>
               {/* home */}
               <div
-                className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer"
+                className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer gap-5"
                 onClick={() => {
                   nav("/");
                   setModal(!modal);
                 }}
               >
-                <div className="w-[20%] pl-2 pt-1">
+                <div className="pl-2 pt-1">
                   <img src={home} alt={home} className="w-[22px] h-auto" />
                 </div>
 
@@ -263,13 +272,13 @@ export default function NavMenu() {
 
               {/* services */}
               <div
-                className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer"
+                className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer gap-5"
                 onClick={() => {
                   nav("/services");
                   setModal(!modal);
                 }}
               >
-                <div className="w-[20%] pl-2 pt-1">
+                <div className="pl-2 pt-1">
                   <img src={stars} alt={stars} className="w-[22px] h-auto" />
                 </div>
 
@@ -286,13 +295,13 @@ export default function NavMenu() {
 
               {/* contact us */}
               <div
-                className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer"
+                className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer gap-5"
                 onClick={() => {
                   nav("/contact");
                   setModal(!modal);
                 }}
               >
-                <div className="w-[20%] pl-2 pt-1">
+                <div className="pl-2 pt-1">
                   <img src={send} alt={send} className="w-[22px] h-auto" />
                 </div>
 
