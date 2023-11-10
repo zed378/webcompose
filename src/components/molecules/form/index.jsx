@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Fade } from "react-awesome-reveal";
 import { Formik, Form, Field } from "formik";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "@redux/features/auth/authSlice";
 import { API } from "@hooks/api";

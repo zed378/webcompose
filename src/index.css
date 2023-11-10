@@ -7,16 +7,40 @@
   src: url("assets/fonts/plus.ttf");
 }
 
+@layer base {
+  html {
+    font-family: "plus", "DM Sans", sans-serif !important;
+    font-feature-settings: "kern" !important;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.5px;
+  }
+}
+
+input.defaultCheckbox::before {
+  content: url("assets/svg/checked.svg");
+  color: white;
+  opacity: 0;
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0px);
+}
+
+input:checked.defaultCheckbox::before {
+  opacity: 1;
+}
+
 * {
   scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "plus", sans-serif;
-  background-color: white;
+  font-family: "plus", "DM Sans", sans-serif;
+}
+
+option {
+  color: black;
 }
 
 a {

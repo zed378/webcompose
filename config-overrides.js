@@ -7,7 +7,7 @@ module.exports = {
       resolve: {
         alias: {
           "@components": path.resolve(__dirname, "src/components/"),
-          "@styles": path.resolve(__dirname, "src/styles/"),
+          "@styles": path.resolve(__dirname, "src/assets/css"),
           "@pages": path.resolve(__dirname, "src/pages/"),
           "@redux": path.resolve(__dirname, "src/redux/"),
           "@assets": path.resolve(__dirname, "src/assets/"),
@@ -15,6 +15,8 @@ module.exports = {
           "@hooks": path.resolve(__dirname, "src/hooks/"),
           "@layouts": path.resolve(__dirname, "src/layouts/"),
           "@route": path.resolve(__dirname, "src/routes/"),
+          "@variables": path.resolve(__dirname, "src/variables"),
+          "@views": path.resolve(__dirname, "src/views"),
         },
         extensions: [
           ".js",
