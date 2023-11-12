@@ -2,13 +2,10 @@ import React from "react";
 
 // Admin Imports
 import MainDashboard from "@views/admin/default";
+import UserManagement from "@views/user";
 import NFTMarketplace from "@views/admin/marketplace";
 import Profile from "@views/admin/profile";
 import DataTables from "@views/admin/tables";
-import RTLDefault from "@views/rtl/default";
-
-// Auth Imports
-import SignIn from "../views/auth/SignIn";
 
 // Icon Imports
 import {
@@ -16,8 +13,9 @@ import {
   MdOutlineShoppingCart,
   MdBarChart,
   MdPerson,
-  MdLock,
 } from "react-icons/md";
+
+import { RiUserSettingsLine } from "react-icons/ri";
 
 const routes = [
   {
@@ -26,6 +24,13 @@ const routes = [
     path: "default",
     icon: <MdHome className="h-6 w-6" />,
     component: <MainDashboard />,
+  },
+  {
+    name: "User Management",
+    layout: "/admin",
+    path: "user-management",
+    icon: <RiUserSettingsLine className="h-6 w-6" />,
+    component: <UserManagement />,
   },
   {
     name: "NFT Marketplace",
@@ -48,20 +53,6 @@ const routes = [
     path: "profile",
     icon: <MdPerson className="h-6 w-6" />,
     component: <Profile />,
-  },
-  {
-    name: "Sign In",
-    layout: "/auth",
-    path: "login",
-    icon: <MdLock className="h-6 w-6" />,
-    component: <SignIn />,
-  },
-  {
-    name: "RTL Admin",
-    layout: "/rtl",
-    path: "rtl",
-    icon: <MdHome className="h-6 w-6" />,
-    component: <RTLDefault />,
   },
 ];
 export default routes;

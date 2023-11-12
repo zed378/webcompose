@@ -21,6 +21,7 @@
     "date-format": "^4.0.14",
     "formik": "^2.4.5",
     "framer-motion": "^10.16.4",
+    "node-format-date": "^1.0.9",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",

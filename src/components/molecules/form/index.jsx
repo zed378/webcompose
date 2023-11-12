@@ -74,7 +74,7 @@ export function ContactForm() {
 
           <Fade direction="up" duration={500}>
             {msg && msg.includes("Success") ? (
-              <h1 className="text-center px-3 py-2 border border-violet-500 bg-violet-200 text-violet-500 rounded-lg mb-3 ">
+              <h1 className="text-center px-3 py-2 border border-purple-500 bg-purple-200 text-purple-500 rounded-lg mb-3 ">
                 {msg}
               </h1>
             ) : (
@@ -208,7 +208,7 @@ export function ContactForm() {
                   id="checked"
                   type="checkbox"
                   name="checked"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                   disabled={loading}
                 />
                 <label className="text-lg" htmlFor="checked">
@@ -275,7 +275,8 @@ export function LoginForm() {
             setMsg(data.data.message);
             setTimeout(() => {
               setMsg("");
-            }, 5000);
+              nav("/dashboard/default");
+            }, 3000);
           })
           .catch((err) => {
             setLoading(false);
@@ -289,7 +290,7 @@ export function LoginForm() {
       {({ errors, touched, values }) => (
         <Form className=" phone:w-full bg-white rounded-xl tablet:px-10 phone:px-5 tablet:py-9 phone:py-7 ">
           <Fade direction="up">
-            <h1 className="text-violet-500 text-center font-medium mb-2 ultra:text-6xl pc:text-4xl desktop:text-4xl laptop:text-4xl tablet:text-4xl phone:text-3xl w-full ">
+            <h1 className="text-purple-500 text-center font-medium mb-2 ultra:text-6xl pc:text-4xl desktop:text-4xl laptop:text-4xl tablet:text-4xl phone:text-3xl w-full ">
               LOGIN
             </h1>
           </Fade>
@@ -303,7 +304,7 @@ export function LoginForm() {
 
           <Fade direction="up" duration={500}>
             {msg && msg.includes("Success") ? (
-              <h1 className="text-center px-3 py-2 border border-violet-500 bg-violet-200 text-violet-500 rounded-lg mb-3 ">
+              <h1 className="text-center px-3 py-2 border border-purple-500 bg-purple-200 text-purple-500 rounded-lg mb-3 ">
                 {msg}
               </h1>
             ) : (
@@ -409,6 +410,7 @@ export function RegisterForm() {
             setMsg(data.data.message);
             setTimeout(() => {
               setMsg("");
+              nav("/login");
             }, 8000);
           })
           .catch((err) => {
@@ -423,7 +425,7 @@ export function RegisterForm() {
       {({ errors, touched, values }) => (
         <Form className=" phone:w-full bg-white rounded-xl tablet:px-10 phone:px-5 tablet:py-9 phone:py-7 ">
           <Fade direction="up">
-            <h1 className="text-violet-500 text-center font-medium mb-2 ultra:text-6xl pc:text-4xl desktop:text-4xl laptop:text-4xl tablet:text-4xl phone:text-3xl w-full ">
+            <h1 className="text-purple-500 text-center font-medium mb-2 ultra:text-6xl pc:text-4xl desktop:text-4xl laptop:text-4xl tablet:text-4xl phone:text-3xl w-full ">
               REGISTER
             </h1>
           </Fade>
@@ -437,7 +439,7 @@ export function RegisterForm() {
 
           <Fade direction="up" duration={500}>
             {msg && msg.includes("Success") ? (
-              <h1 className="text-center px-3 py-2 border border-violet-500 bg-violet-200 text-violet-500 rounded-lg mb-3 ">
+              <h1 className="text-center px-3 py-2 border border-purple-500 bg-purple-200 text-purple-500 rounded-lg mb-3 ">
                 {msg}
               </h1>
             ) : (

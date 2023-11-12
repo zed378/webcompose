@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import routes from "@route/data";
 import AdminLayout from "@layouts/admin";
-import AuthLayout from "@layouts/auth";
 import RtlLayout from "@layouts/rtl";
 
 const RoutesC = () => {
@@ -23,8 +22,8 @@ const RoutesC = () => {
             />
           );
         })}
-        <Route path="auth/*" element={<AuthLayout />} />
-        <Route path="admin/*" element={<AdminLayout />} />
+
+        <Route path="dashboard/*" element={<AdminLayout />} />
         <Route path="rtl/*" element={<RtlLayout />} />
       </Routes>
     </Router>

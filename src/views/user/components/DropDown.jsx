@@ -1,7 +1,7 @@
-import React from "react";
+import { useState, useEffect, useRef } from "react";
 
 function useOutsideAlerter(ref, setX) {
-  React.useEffect(() => {
+  useEffect(() => {
     /**
      * Alert if clicked on outside of element
      */
@@ -21,8 +21,8 @@ function useOutsideAlerter(ref, setX) {
 
 const Dropdown = (props) => {
   const { button, children, classNames, animation } = props;
-  const wrapperRef = React.useRef(null);
-  const [openWrapper, setOpenWrapper] = React.useState(false);
+  const wrapperRef = useRef(null);
+  const [openWrapper, setOpenWrapper] = useState(false);
   useOutsideAlerter(wrapperRef, setOpenWrapper);
 
   return (
@@ -31,7 +31,7 @@ const Dropdown = (props) => {
         {button}
       </div>
       <div
-        className={`${classNames} absolute z-10 top-9 ${
+        className={`${classNames} absolute z-10 top-9 ultra:right-36  phone:right-28 ${
           animation
             ? animation
             : "origin-top-right transition-all duration-300 ease-in-out"
