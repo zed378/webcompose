@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import {
   useGlobalFilter,
   usePagination,
@@ -6,19 +6,27 @@ import {
   useTable,
 } from "react-table";
 import { formatFullDate } from "node-format-date";
+import { useDispatch, useSelector } from "react-redux";
 
 // components
 import CardMenu from "./CardMenu";
 import Card from "@components/card";
 
 // assets
-import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
+import { BiLeftArrow, BiRightArrow, BiMessageSquareEdit } from "react-icons/bi";
+import { CiSquarePlus } from "react-icons/ci";
+
+// hooks
+import { setCreateUserModal } from "@redux/features/user/userSlice";
 
 const ColumnsTable = (props) => {
   const { columnsData, tableData, tableName, refetch } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
+
+  const { createModal } = useSelector((state) => state.userSlice);
+  const dispatch = useDispatch();
 
   const tableInstance = useTable(
     {
@@ -43,11 +51,27 @@ const ColumnsTable = (props) => {
   } = tableInstance;
   initialState.pageSize = 10;
 
+  useEffect(() => {
+    if (!createModal) {
+      refetch();
+    }
+  }, [createModal]);
+
   return (
     <Card extra={"w-full mb-10 pb-10 p-4 h-full"}>
-      <header className="relative flex items-center justify-between">
+      <header className="relative flex laptop:flex-row phone:flex-col laptop:items-center phone:items-start justify-between">
         <div className="text-xl font-bold text-indigo-700 dark:text-white">
           {tableName} User Data
+        </div>
+
+        <div
+          className="flex items-center cursor-pointer border border-indigo-500 hover:bg-indigo-100 dark:border-white dark:hover:bg-indigo-100 rounded-lg px-2 py-1 phone:gap-2 "
+          onClick={() => {
+            dispatch(setCreateUserModal({ data: true }));
+          }}
+        >
+          <CiSquarePlus className="w-6 h-6 text-indigo-500 dark:text-white font-black " />
+          <h1 className="text-sm text-indigo-700 dark:text-white ">Add Data</h1>
         </div>
       </header>
 
@@ -80,12 +104,17 @@ const ColumnsTable = (props) => {
                     let data;
                     if (cell.column.Header === "AVATAR") {
                       data = (
-                        <img
-                          src={process.env.REACT_APP_PROFILE + cell.value}
-                          alt={cell.value}
-                          srcSet={process.env.REACT_APP_PROFILE + cell.value}
-                          className="w-7 h-7 rounded-full ml-3"
-                        />
+                        <div className="ml-3 relative w-8 h-8 rounded-full cursor-pointer">
+                          <img
+                            src={process.env.REACT_APP_PROFILE + cell.value}
+                            alt={cell.value}
+                            srcSet={process.env.REACT_APP_PROFILE + cell.value}
+                            className="w-8 h-8 rounded-full "
+                          />
+                          <div className="w-8 h-8 rounded-full absolute top-0 left-0 z-10 flex items-center justify-center hover:bg-gray-400/80 ">
+                            <BiMessageSquareEdit className="w-5 h-5 text-red-500 hidden hover:inline-block " />
+                          </div>
+                        </div>
                       );
                     } else if (cell.column.Header === "NAME") {
                       data = (

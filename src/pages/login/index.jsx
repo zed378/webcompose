@@ -9,7 +9,7 @@ import bgHero from "@assets/images/bgHero.webp";
 
 export default function Login() {
   return (
-    <div className="phone:min-h-screen desktop:h-screen w-full tablet:p-3 phone:p-1">
+    <div className="phone:h-screen desktop:h-screen w-full tablet:p-3 phone:p-1">
       <div className="w-full h-full relative overflow-hidden rounded-2xl tablet:rounded-[40px] laptop:rounded-[45px] bg-gradient-to-r from-[#9B73EC] to-[#634996] ultra:px-8 ultra:py-10 pc:px-7 pc:py-9 desktop:px-6 desktop:py-8 laptop:px-5 laptop:py-7 tablet:px-4 tablet:py-6 p-3">
         <Navbar />
 
@@ -21,7 +21,7 @@ export default function Login() {
           />
         </Fade>
 
-        <div className="w-full flex justify-between flex-wrap items-start tablet:px-2 laptop:px-4 pc:mt-20 phone:mt-10 ">
+        <div className="w-full flex justify-between flex-wrap items-start tablet:px-2 laptop:px-4 pc:mt-20 tablet:mt-10 phone:mt-20 ">
           {/* Form */}
           <div className="desktop:w-1/3 ultra:w-[30%] phone:w-full flex ">
             <LoginForm />

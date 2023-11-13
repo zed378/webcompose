@@ -11,6 +11,7 @@ import {
   LiaUserSlashSolid,
   LiaUserTimesSolid,
   LiaUserCheckSolid,
+  LiaUserShieldSolid,
 } from "react-icons/lia";
 
 // hooks
@@ -18,6 +19,9 @@ import {
   setUserData,
   setOpenUserModal,
   setActiveModal,
+  setDisableModal,
+  setDeleteModal,
+  setRoleModal,
 } from "@redux/features/user/userSlice";
 
 function CardMenu(props) {
@@ -26,13 +30,20 @@ function CardMenu(props) {
 
   const dispatch = useDispatch();
 
-  const { openModal, activeModal } = useSelector((state) => state.userSlice);
+  const { openModal, activeModal, disableModal, deleteModal, roleModal } =
+    useSelector((state) => state.userSlice);
 
   useEffect(() => {
-    if (!openModal || !activeModal) {
+    if (
+      !openModal ||
+      !activeModal ||
+      !disableModal ||
+      !deleteModal ||
+      !roleModal
+    ) {
       refetch();
     }
-  }, [openModal, activeModal]);
+  }, [openModal, activeModal, disableModal, deleteModal, roleModal]);
 
   return (
     <Dropdown
@@ -66,6 +77,19 @@ function CardMenu(props) {
             Edit User
           </p>
           <p
+            className="hover:text-black mt-2 flex cursor-pointer items-center gap-2 pt-1 text-gray-600 hover:text-indigo-500"
+            onClick={() => {
+              dispatch(setUserData({ data }));
+              dispatch(setRoleModal({ data: true }));
+            }}
+          >
+            <span>
+              <LiaUserShieldSolid />
+            </span>
+            Edit Role
+          </p>
+
+          <p
             className={`hover:text-black mt-2 flex ${
               data.isActive ? "cursor-not-allowed" : "cursor-pointer"
             } items-center gap-2 pt-1 text-gray-600 hover:text-indigo-500`}
@@ -85,13 +109,25 @@ function CardMenu(props) {
             className={`hover:text-black mt-2 flex ${
               data.isActive ? "cursor-pointer" : "cursor-not-allowed"
             } items-center gap-2 pt-1 text-gray-600 hover:text-indigo-500`}
+            onClick={() => {
+              if (data.isActive) {
+                dispatch(setUserData({ data }));
+                dispatch(setDisableModal({ data: true }));
+              }
+            }}
           >
             <span>
               <LiaUserSlashSolid />
             </span>
             Disable User
           </p>
-          <p className="hover:text-black mt-2 flex cursor-pointer items-center gap-2 pt-1 text-gray-600 hover:text-indigo-500">
+          <p
+            className="hover:text-black mt-2 flex cursor-pointer items-center gap-2 pt-1 text-gray-600 hover:text-indigo-500"
+            onClick={() => {
+              dispatch(setUserData({ data }));
+              dispatch(setDeleteModal({ data: true }));
+            }}
+          >
             <span>
               <LiaUserTimesSolid />
             </span>

@@ -9,7 +9,7 @@ import bgHero from "@assets/images/bgHero.webp";
 
 export default function Register() {
   return (
-    <div className="min-h-screen w-full tablet:p-3 phone:p-1">
+    <div className="phone:h-screen laptop:min-h-screen w-full tablet:p-3 phone:p-1">
       <div className="w-full h-full relative overflow-hidden rounded-2xl tablet:rounded-[40px] laptop:rounded-[45px] bg-gradient-to-r from-[#9B73EC] to-[#634996] ultra:px-8 ultra:py-10 pc:px-7 pc:py-9 desktop:px-6 desktop:py-8 laptop:px-5 laptop:py-7 tablet:px-4 tablet:py-6 p-3">
         <Navbar />
 

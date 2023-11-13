@@ -4,7 +4,14 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 // components
 import Navbar from "@components/navbar";
 import Sidebar from "@components/sidebar";
-import { ModalEditUser, ModalActivateUser } from "@components/molecules/modal";
+import {
+  ModalEditUser,
+  ModalActivateUser,
+  ModalDisableUser,
+  ModalDeleteUser,
+  ModalCreatetUser,
+  ModalEditRole,
+} from "@components/molecules/modal";
 
 // hooks
 import routes from "@route/routes";
@@ -19,7 +26,14 @@ export default function Admin(props) {
   const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
 
   const nav = useNavigate();
-  const { openModal, activeModal } = useSelector((state) => state.userSlice);
+  const {
+    openModal,
+    activeModal,
+    disableModal,
+    deleteModal,
+    createModal,
+    roleModal,
+  } = useSelector((state) => state.userSlice);
 
   React.useEffect(() => {
     if (!localStorage.token) {
@@ -76,8 +90,15 @@ export default function Admin(props) {
 
   return (
     <>
+      {/* user table modal */}
+      {createModal && <ModalCreatetUser />}
       {openModal && <ModalEditUser />}
       {activeModal && <ModalActivateUser />}
+      {disableModal && <ModalDisableUser />}
+      {deleteModal && <ModalDeleteUser />}
+      {roleModal && <ModalEditRole />}
+      {/* end of user table modal */}
+
       <div className="flex h-full w-full">
         <Sidebar open={open} onClose={() => setOpen(false)} />
         {/* Navbar & Main Content */}

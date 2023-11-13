@@ -3,8 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: null,
   message: null,
+  createModal: false,
+  roleModal: false,
   openModal: false,
   activeModal: false,
+  disableModal: false,
+  deleteModal: false,
   loading: false,
 };
 
@@ -16,6 +20,10 @@ export const userSlice = createSlice({
       state.user = payload.data;
     },
 
+    setCreateUserModal: (state, { payload }) => {
+      state.createModal = payload.data;
+    },
+
     setOpenUserModal: (state, { payload }) => {
       state.openModal = payload.data;
     },
@@ -24,8 +32,20 @@ export const userSlice = createSlice({
       state.activeModal = payload.data;
     },
 
+    setDisableModal: (state, { payload }) => {
+      state.disableModal = payload.data;
+    },
+
     setLoadingUser: (state, { payload }) => {
       state.loading = payload.data;
+    },
+
+    setRoleModal: (state, { payload }) => {
+      state.roleModal = payload.data;
+    },
+
+    setDeleteModal: (state, { payload }) => {
+      state.deleteModal = payload.data;
     },
 
     setMessage: (state, { payload }) => {
@@ -36,10 +56,14 @@ export const userSlice = createSlice({
 
 export const {
   setUserData,
+  setCreateUserModal,
   setActiveModal,
   setOpenUserModal,
   setLoadingUser,
   setMessage,
+  setDisableModal,
+  setDeleteModal,
+  setRoleModal,
 } = userSlice.actions;
 
 export default userSlice.reducer;
