@@ -7,6 +7,7 @@ import { removeUser } from "@redux/features/auth/authSlice";
 
 // assets
 import home from "@assets/images/home.svg";
+import dash from "@assets/images/dash.svg";
 import stars from "@assets/images/stars.svg";
 import send from "@assets/images/send.svg";
 import wc from "@assets/images/wc.svg";
@@ -116,6 +117,31 @@ export default function NavMenu() {
               </div>
             </div>
             {/* end of home */}
+
+            {/* dashboard */}
+            {user && (
+              <div
+                className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer"
+                onClick={() => {
+                  nav("/dashboard/default");
+                  setModal(!modal);
+                }}
+              >
+                <div className="w-[20%] pl-2 pt-1">
+                  <img src={dash} alt={dash} className="w-[22px] h-auto" />
+                </div>
+
+                <div className="flex flex-col w-[80%]">
+                  <h1 className="font-bold text-[1rem] text-black m-0 p-0">
+                    Dashboard
+                  </h1>
+                  <p className="text-sm text-slate-600">
+                    Place for control everything
+                  </p>
+                </div>
+              </div>
+            )}
+            {/* end of dashboard */}
 
             {/* services */}
             <div
@@ -269,6 +295,31 @@ export default function NavMenu() {
                 </div>
               </div>
               {/* end of home */}
+
+              {/* dashboard */}
+              {user && (
+                <div
+                  className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer"
+                  onClick={() => {
+                    nav("/dashboard/default");
+                    setModal(!modal);
+                  }}
+                >
+                  <div className="w-[20%] pl-2 pt-1">
+                    <img src={dash} alt={dash} className="w-[22px] h-auto" />
+                  </div>
+
+                  <div className="flex flex-col w-[80%]">
+                    <h1 className="font-bold text-[1rem] text-black m-0 p-0">
+                      Dashboard
+                    </h1>
+                    <p className="text-sm text-slate-600">
+                      Place for control everything
+                    </p>
+                  </div>
+                </div>
+              )}
+              {/* end of dashboard */}
 
               {/* services */}
               <div

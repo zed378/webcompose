@@ -14,6 +14,7 @@ import {
   setDeleteModal,
   setRoleModal,
 } from "@redux/features/user/userSlice";
+
 import {
   createNewUser,
   updateFullUser,
@@ -27,6 +28,7 @@ export function ModalCreatetUser() {
   const dispatch = useDispatch();
 
   const { message, loading } = useSelector((state) => state.userSlice);
+  const { user: dataLogin } = useSelector((state) => state.auth);
 
   const [data, setData] = useState({
     firstName: "",
@@ -34,7 +36,7 @@ export function ModalCreatetUser() {
     username: "",
     email: "",
     password: "",
-    role: "AUTHENTICATED",
+    role: "",
   });
 
   const handleOnchange = (e) => {
@@ -182,14 +184,22 @@ export function ModalCreatetUser() {
               className="text-indigo-500 p-1 border-2 border-indigo-500  "
               value={"AUTHENTICATED"}
             >
-              AUTHENTICATED
+              -- Choose Role --
             </option>
             <option
               className="text-indigo-500 p-1 border-2 border-indigo-500  "
-              value={"SYS"}
+              value={"AUTHENTICATED"}
             >
-              SYS
+              AUTHENTICATED
             </option>
+            {dataLogin.role === "SYS" && (
+              <option
+                className="text-indigo-500 p-1 border-2 border-indigo-500  "
+                value={"SYS"}
+              >
+                SYS
+              </option>
+            )}
             <option
               className="text-indigo-500 p-1 border-2 border-indigo-500  "
               value={"ADMIN"}
@@ -254,8 +264,8 @@ export function ModalCreatetUser() {
           </button>
 
           <button
-            disabled={loading}
-            className="border hover:bg-red-50 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
+            disabled={loading || data.role === ""}
+            className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
               createNewUser(data).then((data) => {
                 dispatch(setMessage({ data: data.message }));
@@ -407,7 +417,7 @@ export function ModalEditUser() {
 
           <button
             disabled={loading}
-            className="border hover:bg-red-50 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
+            className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
               updateFullUser(data).then((data) => {
                 dispatch(setMessage({ data: data.message }));
@@ -426,6 +436,7 @@ export function ModalEditRole() {
   const dispatch = useDispatch();
 
   const { user, message, loading } = useSelector((state) => state.userSlice);
+  const { user: dataLogin } = useSelector((state) => state.auth);
 
   const [data, setData] = useState({
     id: "",
@@ -444,7 +455,7 @@ export function ModalEditRole() {
   useEffect(() => {
     setData({
       id: user.id,
-      role: user.firstName,
+      role: user.role,
     });
   }, []);
 
@@ -503,14 +514,22 @@ export function ModalEditRole() {
             className="text-indigo-500 p-1 border-2 border-indigo-500  "
             value={"AUTHENTICATED"}
           >
-            AUTHENTICATED
+            -- Choose Role --
           </option>
           <option
             className="text-indigo-500 p-1 border-2 border-indigo-500  "
-            value={"SYS"}
+            value={"AUTHENTICATED"}
           >
-            SYS
+            AUTHENTICATED
           </option>
+          {dataLogin.role === "SYS" && (
+            <option
+              className="text-indigo-500 p-1 border-2 border-indigo-500  "
+              value={"SYS"}
+            >
+              SYS
+            </option>
+          )}
           <option
             className="text-indigo-500 p-1 border-2 border-indigo-500  "
             value={"ADMIN"}
@@ -555,8 +574,8 @@ export function ModalEditRole() {
           </button>
 
           <button
-            disabled={loading}
-            className="border hover:bg-red-50 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
+            disabled={loading || data.role === ""}
+            className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
               updateUserRole(data).then((data) => {
                 dispatch(setMessage({ data: data.message }));
@@ -638,7 +657,7 @@ export function ModalActivateUser() {
 
           <button
             disabled={loading}
-            className="border hover:bg-red-50 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
+            className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
               activateUser(id).then((data) => {
                 dispatch(setMessage({ data: data.message }));
@@ -720,7 +739,7 @@ export function ModalDisableUser() {
 
           <button
             disabled={loading}
-            className="border hover:bg-red-50 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
+            className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
               disableUser(id).then((data) => {
                 dispatch(setMessage({ data: data.message }));
@@ -802,7 +821,7 @@ export function ModalDeleteUser() {
 
           <button
             disabled={loading}
-            className="border hover:bg-red-50 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
+            className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
               deleteUser(id).then((data) => {
                 dispatch(setMessage({ data: data.message }));

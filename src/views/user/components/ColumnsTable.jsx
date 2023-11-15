@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   useGlobalFilter,
   usePagination,
@@ -20,11 +20,13 @@ import { CiSquarePlus } from "react-icons/ci";
 import { setCreateUserModal } from "@redux/features/user/userSlice";
 
 const ColumnsTable = (props) => {
-  const { columnsData, tableData, tableName, refetch } = props;
+  const { columnsData, tableData, tableName, refetch, setSearch, dataTotal } =
+    props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
 
+  const { user } = useSelector((state) => state.auth);
   const { createModal } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
 
@@ -58,10 +60,40 @@ const ColumnsTable = (props) => {
   }, [createModal]);
 
   return (
-    <Card extra={"w-full mb-10 pb-10 p-4 h-full"}>
-      <header className="relative flex laptop:flex-row phone:flex-col laptop:items-center phone:items-start justify-between">
+    <Card
+      extra={`w-full mb-10 pb-10 p-4 h-full ${dataTotal === 0 && "hidden"}`}
+    >
+      <header className="relative flex laptop:flex-row phone:flex-col laptop:items-center phone:items-start justify-between gap-2">
         <div className="text-xl font-bold text-indigo-700 dark:text-white">
           {tableName} User Data
+        </div>
+
+        <div className="relative laptop:w-2/5 phone:w-full ">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg
+              className="w-4 h-4 text-gray-500 dark:text-gray-400 cursor-pointer "
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 20"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+              />
+            </svg>
+          </div>
+
+          <input
+            type="search"
+            id="default-search"
+            className="block w-full px-4 py-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500 focus:outline-none"
+            placeholder="Search Name, Username..."
+            onChange={(e) => setSearch(e.target.value)}
+          />
         </div>
 
         <div
@@ -111,8 +143,8 @@ const ColumnsTable = (props) => {
                             srcSet={process.env.REACT_APP_PROFILE + cell.value}
                             className="w-8 h-8 rounded-full "
                           />
-                          <div className="w-8 h-8 rounded-full absolute top-0 left-0 z-10 flex items-center justify-center hover:bg-gray-400/80 ">
-                            <BiMessageSquareEdit className="w-5 h-5 text-red-500 hidden hover:inline-block " />
+                          <div className="w-8 h-8 rounded-full absolute top-0 left-0 hover:z-10 -z-10 flex items-center justify-center hover:bg-gray-400/80 ">
+                            <BiMessageSquareEdit className="w-5 h-5 text-indigo-500 " />
                           </div>
                         </div>
                       );
@@ -153,9 +185,16 @@ const ColumnsTable = (props) => {
                         </p>
                       );
                     } else if (cell.column.Header === "ACTION") {
-                      data = (
-                        <CardMenu data={cell.row.original} refetch={refetch} />
-                      );
+                      data =
+                        user.role === "ADMIN" &&
+                        cell.row.original.role === "SYS" ? (
+                          ""
+                        ) : (
+                          <CardMenu
+                            data={cell.row.original}
+                            refetch={refetch}
+                          />
+                        );
                     } else if (cell.column.Header === "MEMBER SINCE") {
                       data = (
                         <p className="mr-[10px] text-sm font-semibold text-navy-700 dark:text-white">

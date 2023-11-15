@@ -25,7 +25,7 @@ import {
 } from "@redux/features/user/userSlice";
 
 function CardMenu(props) {
-  const { transparent, data, refetch } = props;
+  const { transparent, data, refetch, hidden } = props;
   const [open, setOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -34,16 +34,34 @@ function CardMenu(props) {
     useSelector((state) => state.userSlice);
 
   useEffect(() => {
-    if (
-      !openModal ||
-      !activeModal ||
-      !disableModal ||
-      !deleteModal ||
-      !roleModal
-    ) {
+    if (!openModal) {
       refetch();
     }
-  }, [openModal, activeModal, disableModal, deleteModal, roleModal]);
+  }, [openModal]);
+
+  useEffect(() => {
+    if (!activeModal) {
+      refetch();
+    }
+  }, [activeModal]);
+
+  useEffect(() => {
+    if (!disableModal) {
+      refetch();
+    }
+  }, [disableModal]);
+
+  useEffect(() => {
+    if (!deleteModal) {
+      refetch();
+    }
+  }, [deleteModal]);
+
+  useEffect(() => {
+    if (!roleModal) {
+      refetch();
+    }
+  }, [roleModal]);
 
   return (
     <Dropdown
@@ -51,7 +69,9 @@ function CardMenu(props) {
         <button
           onClick={() => setOpen(!open)}
           open={open}
-          className={`flex items-center text-xl hover:cursor-pointer ${
+          className={`${
+            hidden ? "hidden" : "flex"
+          } items-center text-xl hover:cursor-pointer ${
             transparent
               ? "bg-none text-white hover:bg-none active:bg-none"
               : "bg-lightPrimary p-1 text-brand-500 hover:bg-gray-100 dark:bg-navy-700 dark:text-white dark:hover:bg-white/20 dark:active:bg-white/10"

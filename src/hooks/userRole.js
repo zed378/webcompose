@@ -1,5 +1,15 @@
 import { API } from "./api";
 
+export const allUsers = async () => {
+  try {
+    const { data } = await API.get("/user/all");
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getSYS = async () => {
   try {
     const { data } = await API.post("/user/filtered", {
