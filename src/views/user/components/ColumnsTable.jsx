@@ -17,7 +17,11 @@ import { BiLeftArrow, BiRightArrow, BiMessageSquareEdit } from "react-icons/bi";
 import { CiSquarePlus } from "react-icons/ci";
 
 // hooks
-import { setCreateUserModal } from "@redux/features/user/userSlice";
+import {
+  setCreateUserModal,
+  setUpdateProfileModal,
+  setUserData,
+} from "@redux/features/user/userSlice";
 
 const ColumnsTable = (props) => {
   const { columnsData, tableData, tableName, refetch, setSearch, dataTotal } =
@@ -27,7 +31,9 @@ const ColumnsTable = (props) => {
   const data = useMemo(() => tableData, [tableData]);
 
   const { user } = useSelector((state) => state.auth);
-  const { createModal } = useSelector((state) => state.userSlice);
+  const { createModal, updateProfileModal } = useSelector(
+    (state) => state.userSlice
+  );
   const dispatch = useDispatch();
 
   const tableInstance = useTable(
@@ -58,6 +64,12 @@ const ColumnsTable = (props) => {
       refetch();
     }
   }, [createModal]);
+
+  useEffect(() => {
+    if (!updateProfileModal) {
+      refetch();
+    }
+  }, [updateProfileModal]);
 
   return (
     <Card
@@ -137,14 +149,24 @@ const ColumnsTable = (props) => {
                     if (cell.column.Header === "AVATAR") {
                       data = (
                         <div className="ml-3 relative w-8 h-8 rounded-full cursor-pointer">
-                          <img
-                            src={process.env.REACT_APP_PROFILE + cell.value}
-                            alt={cell.value}
-                            srcSet={process.env.REACT_APP_PROFILE + cell.value}
-                            className="w-8 h-8 rounded-full "
+                          <div
+                            className="w-8 h-8 rounded-full bg-cover bg-center "
+                            style={{
+                              backgroundImage: `url(${
+                                process.env.REACT_APP_PROFILE + cell.value
+                              })`,
+                            }}
                           />
-                          <div className="w-8 h-8 rounded-full absolute top-0 left-0 hover:z-10 -z-10 flex items-center justify-center hover:bg-gray-400/80 ">
-                            <BiMessageSquareEdit className="w-5 h-5 text-indigo-500 " />
+                          <div
+                            className="w-8 h-8 rounded-full absolute top-0 -right-8 flex items-center justify-center hover:bg-gray-400/80 "
+                            onClick={() => {
+                              dispatch(
+                                setUserData({ data: cell?.row?.original })
+                              );
+                              dispatch(setUpdateProfileModal({ data: true }));
+                            }}
+                          >
+                            <BiMessageSquareEdit className="w-5 h-5 text-indigo-500 dark:text-white " />
                           </div>
                         </div>
                       );
@@ -186,8 +208,8 @@ const ColumnsTable = (props) => {
                       );
                     } else if (cell.column.Header === "ACTION") {
                       data =
-                        user.role === "ADMIN" &&
-                        cell.row.original.role === "SYS" ? (
+                        user?.role === "ADMIN" &&
+                        cell.row?.original?.role === "SYS" ? (
                           ""
                         ) : (
                           <CardMenu

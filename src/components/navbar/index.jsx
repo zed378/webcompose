@@ -141,13 +141,15 @@ const Navbar = (props) => {
         {/* Profile & Dropdown */}
         <Dropdown
           button={
-            <img
-              className="h-10 w-10 rounded-full cursor-pointer"
-              src={
-                user?.picture
-                  ? process.env.REACT_APP_PROFILE + user?.picture
-                  : avatar
-              }
+            <div
+              className="h-10 w-10 rounded-full cursor-pointer bg-contain bg-center "
+              style={{
+                backgroundImage: `url(${
+                  user?.picture
+                    ? process.env.REACT_APP_PROFILE + user?.picture
+                    : avatar
+                })`,
+              }}
               alt="Profile Pics"
             />
           }

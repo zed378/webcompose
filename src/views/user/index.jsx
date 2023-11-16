@@ -278,7 +278,7 @@ export default function UserManagement() {
               className={`inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg ${
                 tbName === "All"
                   ? "text-indigo-600 border-b-2 border-indigo-600 rounded-t-lg active dark:text-indigo-500 dark:border-indigo-500"
-                  : "text-gray-500 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                  : "text-gray-700 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
               }  group`}
             >
               <VscCheckAll className="w-8 h-8 mr-1 " />
@@ -291,7 +291,7 @@ export default function UserManagement() {
               className={`inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg ${
                 tbName === "System Admin"
                   ? "text-indigo-600 border-b-2 border-indigo-600 rounded-t-lg active dark:text-indigo-500 dark:border-indigo-500"
-                  : "text-gray-500 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                  : "text-gray-700 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
               }  group`}
             >
               <MdOutlineAdminPanelSettings className="w-8 h-8 mr-1 " />
@@ -304,7 +304,7 @@ export default function UserManagement() {
               className={`inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg ${
                 tbName === "Admin"
                   ? "text-indigo-600 border-b-2 border-indigo-600 rounded-t-lg active dark:text-indigo-500 dark:border-indigo-500"
-                  : "text-gray-500 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                  : "text-gray-700 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
               }  group`}
             >
               <TbSettingsStar className="w-8 h-8 mr-1 " />
@@ -317,7 +317,7 @@ export default function UserManagement() {
               className={`inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg ${
                 tbName === "Marketing"
                   ? "text-indigo-600 border-b-2 border-indigo-600 rounded-t-lg active dark:text-indigo-500 dark:border-indigo-500"
-                  : "text-gray-500 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                  : "text-gray-700 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
               }  group`}
             >
               <MdOutlineMarkEmailRead className="w-8 h-8 mr-1 " />
@@ -330,7 +330,7 @@ export default function UserManagement() {
               className={`inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg ${
                 tbName === "Common User"
                   ? "text-indigo-600 border-b-2 border-indigo-600 rounded-t-lg active dark:text-indigo-500 dark:border-indigo-500"
-                  : "text-gray-500 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                  : "text-gray-700 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
               }  group`}
             >
               <MdPerson4 className="w-8 h-8 mr-1 " />
@@ -343,7 +343,7 @@ export default function UserManagement() {
               className={`inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg ${
                 tbName === "Client"
                   ? "text-indigo-600 border-b-2 border-indigo-600 rounded-t-lg active dark:text-indigo-500 dark:border-indigo-500"
-                  : "text-gray-500 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                  : "text-gray-700 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
               }  group`}
             >
               <BsPersonHearts className="w-8 h-8 mr-1 " />
@@ -356,7 +356,7 @@ export default function UserManagement() {
               className={`inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg ${
                 tbName === "Developer"
                   ? "text-indigo-600 border-b-2 border-indigo-600 rounded-t-lg active dark:text-indigo-500 dark:border-indigo-500"
-                  : "text-gray-500 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                  : "text-gray-700 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
               }  group`}
             >
               <GiDevilMask className="w-8 h-8 mr-1 " />
@@ -369,7 +369,7 @@ export default function UserManagement() {
               className={`inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg ${
                 tbName === "HR"
                   ? "text-indigo-600 border-b-2 border-indigo-600 rounded-t-lg active dark:text-indigo-500 dark:border-indigo-500"
-                  : "text-gray-500 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                  : "text-gray-700 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
               }  group`}
             >
               <FaUserTie className="w-8 h-8 mr-1 " />
@@ -401,7 +401,7 @@ export default function UserManagement() {
             <img
               src={nodata}
               alt={nodata}
-              srcset={nodata}
+              srcet={nodata}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
@@ -434,7 +434,7 @@ export default function UserManagement() {
             <img
               src={nodata}
               alt={nodata}
-              srcset={nodata}
+              srcSet={nodata}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
@@ -467,7 +467,7 @@ export default function UserManagement() {
             <img
               src={nodata}
               alt={nodata}
-              srcset={nodata}
+              srcSet={nodata}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
@@ -499,7 +499,7 @@ export default function UserManagement() {
             <img
               src={nodata}
               alt={nodata}
-              srcset={nodata}
+              srcSet={nodata}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
@@ -531,7 +531,7 @@ export default function UserManagement() {
             <img
               src={nodata}
               alt={nodata}
-              srcset={nodata}
+              srcSet={nodata}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
@@ -563,7 +563,7 @@ export default function UserManagement() {
             <img
               src={nodata}
               alt={nodata}
-              srcset={nodata}
+              srcSet={nodata}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
@@ -595,7 +595,7 @@ export default function UserManagement() {
             <img
               src={nodata}
               alt={nodata}
-              srcset={nodata}
+              srcSet={nodata}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
@@ -627,7 +627,7 @@ export default function UserManagement() {
             <img
               src={nodata}
               alt={nodata}
-              srcset={nodata}
+              srcSet={nodata}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">

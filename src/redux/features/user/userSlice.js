@@ -9,6 +9,7 @@ const initialState = {
   activeModal: false,
   disableModal: false,
   deleteModal: false,
+  updateProfileModal: false,
   loading: false,
 };
 
@@ -48,6 +49,10 @@ export const userSlice = createSlice({
       state.deleteModal = payload.data;
     },
 
+    setUpdateProfileModal: (state, { payload }) => {
+      state.updateProfileModal = payload.data;
+    },
+
     setMessage: (state, { payload }) => {
       state.message = payload.data;
     },
@@ -63,6 +68,7 @@ export const {
   setMessage,
   setDisableModal,
   setDeleteModal,
+  setUpdateProfileModal,
   setRoleModal,
 } = userSlice.actions;
 

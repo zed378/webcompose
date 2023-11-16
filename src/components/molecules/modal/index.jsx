@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+// components
+import Dropzone from "react-dropzone";
+
 // assets
 import { AiOutlineClose } from "react-icons/ai";
 
@@ -13,8 +16,9 @@ import {
   setDisableModal,
   setDeleteModal,
   setRoleModal,
+  setUpdateProfileModal,
+  setLoadingUser,
 } from "@redux/features/user/userSlice";
-
 import {
   createNewUser,
   updateFullUser,
@@ -22,7 +26,11 @@ import {
   disableUser,
   deleteUser,
   updateUserRole,
+  updatePict,
 } from "@hooks/userUpdate";
+import { converter } from "@hooks/sizeConverter";
+
+// Function
 
 export function ModalCreatetUser() {
   const dispatch = useDispatch();
@@ -50,6 +58,7 @@ export function ModalCreatetUser() {
 
   useEffect(() => {
     if (message !== null) {
+      dispatch(setLoadingUser({ data: false }));
       setTimeout(() => {
         dispatch(setMessage({ data: null }));
       }, 3000);
@@ -267,6 +276,7 @@ export function ModalCreatetUser() {
             disabled={loading || data.role === ""}
             className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
+              dispatch(setLoadingUser({ data: true }));
               createNewUser(data).then((data) => {
                 dispatch(setMessage({ data: data.message }));
               });
@@ -312,6 +322,8 @@ export function ModalEditUser() {
 
   useEffect(() => {
     if (message !== null) {
+      dispatch(setLoadingUser({ data: false }));
+      dispatch(setLoadingUser({ data: false }));
       setTimeout(() => {
         dispatch(setMessage({ data: null }));
       }, 3000);
@@ -419,6 +431,7 @@ export function ModalEditUser() {
             disabled={loading}
             className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
+              dispatch(setLoadingUser({ data: true }));
               updateFullUser(data).then((data) => {
                 dispatch(setMessage({ data: data.message }));
               });
@@ -461,6 +474,7 @@ export function ModalEditRole() {
 
   useEffect(() => {
     if (message !== null) {
+      dispatch(setLoadingUser({ data: false }));
       setTimeout(() => {
         dispatch(setMessage({ data: null }));
       }, 3000);
@@ -486,7 +500,9 @@ export function ModalEditRole() {
             dispatch(setRoleModal({ data: false }));
           }}
         />
-        <h1 className="text-3xl text-indigo-500 dark:text-white">Edit User</h1>
+        <h1 className="text-3xl text-indigo-500 dark:text-white">
+          Edit User Role
+        </h1>
 
         <hr className="dark:border-gray-400 my-4" />
 
@@ -577,6 +593,7 @@ export function ModalEditRole() {
             disabled={loading || data.role === ""}
             className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
+              dispatch(setLoadingUser({ data: true }));
               updateUserRole(data).then((data) => {
                 dispatch(setMessage({ data: data.message }));
               });
@@ -603,6 +620,7 @@ export function ModalActivateUser() {
 
   useEffect(() => {
     if (message !== null) {
+      dispatch(setLoadingUser({ data: false }));
       setTimeout(() => {
         dispatch(setMessage({ data: null }));
       }, 3000);
@@ -659,6 +677,7 @@ export function ModalActivateUser() {
             disabled={loading}
             className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
+              dispatch(setLoadingUser({ data: true }));
               activateUser(id).then((data) => {
                 dispatch(setMessage({ data: data.message }));
               });
@@ -685,6 +704,7 @@ export function ModalDisableUser() {
 
   useEffect(() => {
     if (message !== null) {
+      dispatch(setLoadingUser({ data: false }));
       setTimeout(() => {
         dispatch(setMessage({ data: null }));
       }, 3000);
@@ -711,7 +731,7 @@ export function ModalDisableUser() {
           }}
         />
         <h1 className="text-3xl text-indigo-500 dark:text-white">
-          Activate User
+          Disable User
         </h1>
 
         <hr className="dark:border-gray-400 my-4" />
@@ -741,6 +761,7 @@ export function ModalDisableUser() {
             disabled={loading}
             className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
+              dispatch(setLoadingUser({ data: true }));
               disableUser(id).then((data) => {
                 dispatch(setMessage({ data: data.message }));
               });
@@ -767,6 +788,7 @@ export function ModalDeleteUser() {
 
   useEffect(() => {
     if (message !== null) {
+      dispatch(setLoadingUser({ data: false }));
       setTimeout(() => {
         dispatch(setMessage({ data: null }));
       }, 3000);
@@ -793,7 +815,7 @@ export function ModalDeleteUser() {
           }}
         />
         <h1 className="text-3xl text-indigo-500 dark:text-white">
-          Activate User
+          Delete User
         </h1>
 
         <hr className="dark:border-gray-400 my-4" />
@@ -823,10 +845,164 @@ export function ModalDeleteUser() {
             disabled={loading}
             className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
+              dispatch(setLoadingUser({ data: true }));
               deleteUser(id).then((data) => {
                 dispatch(setMessage({ data: data.message }));
               });
             }}
+          >
+            SAVE
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export function ModalUpdateUserPicture() {
+  const dispatch = useDispatch();
+
+  const { user, message, loading } = useSelector((state) => state.userSlice);
+
+  const [progress, setProgress] = useState(0);
+  const [upload, setUpload] = useState(false);
+
+  const [id, setId] = useState("");
+  const [data, setData] = useState(null);
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      dispatch(setLoadingUser({ data: true }));
+      setUpload(true);
+
+      const config = {
+        headers: {
+          "Content-type": "multipart/form-data",
+        },
+        onUploadProgress: (progressEvent) => {
+          const { loaded, total } = progressEvent;
+          let precentage = Math.floor((loaded * 100) / total);
+          setProgress(precentage);
+        },
+      };
+
+      // Store form data as object
+      const formData = new FormData();
+      formData.set("id", id);
+      formData.set("picture", data[0], data[0].name);
+
+      updatePict(config, formData).then((data) => {
+        dispatch(setLoadingUser({ data: false }));
+        dispatch(setMessage({ data: data.message }));
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    setId(user.id);
+  }, []);
+  useEffect(() => {
+    if (progress === 100) {
+      setTimeout(() => {
+        setUpload(false);
+      }, 3000);
+    }
+  }, [progress]);
+
+  useEffect(() => {
+    if (message !== null) {
+      dispatch(setLoadingUser({ data: false }));
+      setTimeout(() => {
+        dispatch(setMessage({ data: null }));
+      }, 3000);
+      setTimeout(() => {
+        dispatch(setUpdateProfileModal({ data: false }));
+      }, 5000);
+    }
+  }, [message]);
+
+  return (
+    <>
+      <div
+        className="fixed top-0 left-0 w-screen h-screen z-50 bg-navy-700/80 "
+        onClick={() => {
+          dispatch(setUpdateProfileModal({ data: false }));
+        }}
+      ></div>
+
+      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-[22.5rem] max-w-[35rem] h-auto rounded-lg py-4 px-6 z-[60] bg-white dark:bg-navy-800 ">
+        <AiOutlineClose
+          className="text-red-500 text-2xl absolute top-2 right-2 cursor-pointer "
+          onClick={() => {
+            dispatch(setUpdateProfileModal({ data: false }));
+          }}
+        />
+        <h1 className="text-3xl text-indigo-500 dark:text-white">
+          Update User Profile
+        </h1>
+
+        <hr className="dark:border-gray-400 my-4" />
+
+        {message && (
+          <h1 className="border border-indigo-500 text-indigo-500 text-center p-2 rounded-md dark:text-white dark:border-white mb-4 ">
+            {message}
+          </h1>
+        )}
+
+        <Dropzone
+          onDrop={(file) => {
+            setData(file);
+          }}
+        >
+          {({ getRootProps, getInputProps }) => (
+            <section>
+              <div
+                {...getRootProps()}
+                className="w-full h-72 rounded-lg border-2 border-dashed border-gray-400 p-3 flex flex-col items-center justify-center gap-2 relative "
+              >
+                <input {...getInputProps()} />
+                <p className="text-gray-700 dark:text-white ">
+                  {data
+                    ? data[0]?.name
+                    : "Drag 'n' drop some files here, or click to select files"}
+                </p>
+                {data && (
+                  <p className="text-gray-700 dark:text-white ">
+                    {converter(data[0].size)}
+                  </p>
+                )}
+
+                {upload && (
+                  <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-700">
+                    <div
+                      className="bg-indigo-600 h-1.5 rounded-full dark:bg-white"
+                      style={{ width: `${progress + "%"}` }}
+                    ></div>
+                  </div>
+                )}
+              </div>
+            </section>
+          )}
+        </Dropzone>
+
+        <div className="w-full flex laptop:flex-row phone:flex-col-reverse mt-7 laptop:justify-end gap-2 ">
+          <button
+            disabled={loading}
+            className="border hover:bg-red-50 hover:border-red-700 hover:text-red-700 border-red-500 text-red-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
+            onClick={() => {
+              dispatch(setUpdateProfileModal({ data: false }));
+            }}
+          >
+            CANCEL
+          </button>
+
+          <button
+            disabled={loading || data === null}
+            className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
+            onClick={handleSubmit}
           >
             SAVE
           </button>

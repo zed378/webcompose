@@ -11,6 +11,7 @@ import {
   ModalDeleteUser,
   ModalCreatetUser,
   ModalEditRole,
+  ModalUpdateUserPicture,
 } from "@components/molecules/modal";
 
 // hooks
@@ -33,6 +34,7 @@ export default function Admin(props) {
     deleteModal,
     createModal,
     roleModal,
+    updateProfileModal,
   } = useSelector((state) => state.userSlice);
 
   React.useEffect(() => {
@@ -97,6 +99,7 @@ export default function Admin(props) {
       {disableModal && <ModalDisableUser />}
       {deleteModal && <ModalDeleteUser />}
       {roleModal && <ModalEditRole />}
+      {updateProfileModal && <ModalUpdateUserPicture />}
       {/* end of user table modal */}
 
       <div className="flex h-full w-full">

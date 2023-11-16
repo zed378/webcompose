@@ -10,7 +10,7 @@ export default function PortoCardMobile({ item }) {
           <img
             src={item.img}
             alt={item.img}
-            srcset={item.img}
+            srcSet={item.img}
             className="w-full "
           />
 

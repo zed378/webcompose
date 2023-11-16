@@ -2,7 +2,7 @@ import Router from "@route/index";
 import { useEffect } from "react";
 import { setAuthToken, API } from "@hooks/api";
 import { useDispatch } from "react-redux";
-import { setUser, removeUser } from "@redux/features/auth/authSlice";
+import { setUpdateUser, removeUser } from "@redux/features/auth/authSlice";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token.slice(1, -1));
@@ -16,7 +16,7 @@ function App() {
       await API.get("/auth/verify").then((data) => {
         data.data
           ? dispatch(
-              setUser({
+              setUpdateUser({
                 data: data.data,
               })
             )
@@ -24,6 +24,7 @@ function App() {
       });
     } catch (error) {
       console.log(error);
+      dispatch(removeUser());
     }
   };
 

@@ -80,3 +80,13 @@ export const deleteUser = async (id) => {
     console.log(error);
   }
 };
+
+export const updatePict = async (config, val) => {
+  try {
+    const { data } = await API.post("/user/profile", val, config);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

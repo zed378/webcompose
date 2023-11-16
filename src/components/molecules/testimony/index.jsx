@@ -10,7 +10,7 @@ export default function TestimonialCard({ item, id, incre, decre }) {
           <img
             src={item.img}
             alt={item.img}
-            srcset={item.img}
+            srcSet={item.img}
             className="ultra:w-28 desktop:w-24 laptop:w-20 phone:w-16"
           />
         </Fade>
