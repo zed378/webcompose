@@ -39,7 +39,7 @@ const Banner = () => {
           }}
         >
           <span
-            className="w-8 h-8 cursor-pointer rounded-full bg-indigo-600 absolute -bottom-0 -right-2 z-50 flex items-center justify-center"
+            className="w-8 h-8 cursor-pointer rounded-full hover:bg-indigo-400 bg-indigo-600 absolute -bottom-0 -right-2 z-50 flex items-center justify-center"
             onClick={() => {
               dispatch(setUserData({ data: user }));
               dispatch(setUpdateProfileModal({ data: true }));
