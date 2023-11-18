@@ -264,15 +264,15 @@ export function LoginForm() {
           user: values.user,
           password: values.password,
         })
-          .then((data) => {
+          .then(({ data }) => {
             setLoading(false);
             dispatch(
               setUser({
-                data: data.data,
+                data,
               })
             );
             resetForm();
-            setMsg(data.data.message);
+            setMsg(data.message);
             setTimeout(() => {
               setMsg("");
               nav("/dashboard/default");

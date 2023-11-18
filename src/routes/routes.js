@@ -26,6 +26,13 @@ const routes = [
     component: <MainDashboard />,
   },
   {
+    name: "Profile",
+    layout: "/admin",
+    path: "profile",
+    icon: <MdPerson className="h-6 w-6" />,
+    component: <Profile />,
+  },
+  {
     name: "User Management",
     layout: "/admin",
     path: "user-management",
@@ -46,13 +53,6 @@ const routes = [
     icon: <MdBarChart className="h-6 w-6" />,
     path: "data-tables",
     component: <DataTables />,
-  },
-  {
-    name: "Profile",
-    layout: "/admin",
-    path: "profile",
-    icon: <MdPerson className="h-6 w-6" />,
-    component: <Profile />,
   },
 ];
 export default routes;

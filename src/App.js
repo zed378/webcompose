@@ -13,11 +13,11 @@ function App() {
 
   const verify = async () => {
     try {
-      await API.get("/auth/verify").then((data) => {
+      await API.get("/auth/verify").then(({ data }) => {
         data.data
           ? dispatch(
               setUpdateUser({
-                data: data.data,
+                data,
               })
             )
           : dispatch(removeUser());

@@ -29,6 +29,8 @@ import {
   updatePict,
 } from "@hooks/userUpdate";
 import { converter } from "@hooks/sizeConverter";
+import { setUpdateUser } from "@redux/features/auth/authSlice";
+import { API } from "@hooks/api";
 
 // Function
 
@@ -294,6 +296,7 @@ export function ModalEditUser() {
   const dispatch = useDispatch();
 
   const { user, message, loading } = useSelector((state) => state.userSlice);
+  const { user: currentUser } = useSelector((state) => state.auth);
 
   const [data, setData] = useState({
     id: "",
@@ -432,8 +435,26 @@ export function ModalEditUser() {
             className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
               dispatch(setLoadingUser({ data: true }));
-              updateFullUser(data).then((data) => {
-                dispatch(setMessage({ data: data.message }));
+              updateFullUser(data).then(async (val) => {
+                dispatch(setMessage({ data: val.message }));
+
+                if (
+                  currentUser.firstName === user.firstName &&
+                  currentUser.lastName === user.lastName
+                ) {
+                  try {
+                    await API.get("/auth/verify").then(({ data }) => {
+                      data.data &&
+                        dispatch(
+                          setUpdateUser({
+                            data,
+                          })
+                        );
+                    });
+                  } catch (error) {
+                    dispatch(setMessage({ data: error.message }));
+                  }
+                }
               });
             }}
           >
@@ -863,6 +884,7 @@ export function ModalUpdateUserPicture() {
   const dispatch = useDispatch();
 
   const { user, message, loading } = useSelector((state) => state.userSlice);
+  const { user: currentUser } = useSelector((state) => state.auth);
 
   const [progress, setProgress] = useState(0);
   const [upload, setUpload] = useState(false);
@@ -892,12 +914,30 @@ export function ModalUpdateUserPicture() {
       formData.set("id", id);
       formData.set("picture", data[0], data[0].name);
 
-      updatePict(config, formData).then((data) => {
+      updatePict(config, formData).then(async (data) => {
         dispatch(setLoadingUser({ data: false }));
         dispatch(setMessage({ data: data.message }));
+
+        if (
+          currentUser.firstName === user.firstName &&
+          currentUser.lastName === user.lastName
+        ) {
+          try {
+            await API.get("/auth/verify").then(({ data }) => {
+              data.data &&
+                dispatch(
+                  setUpdateUser({
+                    data,
+                  })
+                );
+            });
+          } catch (error) {
+            dispatch(setMessage({ data: error.message }));
+          }
+        }
       });
     } catch (error) {
-      console.log(error);
+      dispatch(setMessage({ data: error.message }));
     }
   };
 
