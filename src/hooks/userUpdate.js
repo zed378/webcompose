@@ -90,3 +90,15 @@ export const updatePict = async (config, val) => {
     console.log(error);
   }
 };
+
+export const checkUsername = async (val) => {
+  try {
+    const { data } = await API.post("/user/checkname", {
+      username: val,
+    });
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

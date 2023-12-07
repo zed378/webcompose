@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useDebounce } from "use-debounce";
 
 // components
 import Dropzone from "react-dropzone";
 
 // assets
 import { AiOutlineClose } from "react-icons/ai";
+import loadingimg from "@assets/images/loadingimg.svg";
 
 // hooks
 import {
@@ -27,6 +29,7 @@ import {
   deleteUser,
   updateUserRole,
   updatePict,
+  checkUsername,
 } from "@hooks/userUpdate";
 import { converter } from "@hooks/sizeConverter";
 import { setUpdateUser } from "@redux/features/auth/authSlice";
@@ -36,6 +39,9 @@ import { API } from "@hooks/api";
 
 export function ModalCreatetUser() {
   const dispatch = useDispatch();
+  const [text, setText] = useState("");
+  const [debouncedText] = useDebounce(text, 500);
+  const [uname, setUname] = useState("");
 
   const { message, loading } = useSelector((state) => state.userSlice);
   const { user: dataLogin } = useSelector((state) => state.auth);
@@ -51,6 +57,13 @@ export function ModalCreatetUser() {
 
   const handleOnchange = (e) => {
     e.preventDefault();
+
+    if (e.target.name === "username" && e.target.value !== "") {
+      setUname("");
+      setText(e.target.value);
+    } else {
+      setUname("");
+    }
 
     setData({
       ...data,
@@ -69,6 +82,14 @@ export function ModalCreatetUser() {
       }, 5000);
     }
   }, [message]);
+
+  useEffect(() => {
+    if (debouncedText) {
+      checkUsername(debouncedText).then((data) => {
+        setUname(data.message);
+      });
+    }
+  }, [debouncedText]);
 
   return (
     <>
@@ -172,6 +193,15 @@ export function ModalCreatetUser() {
             onChange={handleOnchange}
             className={`mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none border-gray-200 dark:!border-white/10 dark:text-white`}
           />
+          {uname && data?.username !== "" && (
+            <span
+              className={`text-sm ${
+                uname.includes("taken") ? "text-red-500" : "text-green-500"
+              } `}
+            >
+              <b>{data?.username}</b> {uname}
+            </span>
+          )}
         </div>
 
         <div className="w-full mt-2">
@@ -294,6 +324,9 @@ export function ModalCreatetUser() {
 
 export function ModalEditUser() {
   const dispatch = useDispatch();
+  const [text, setText] = useState("");
+  const [debouncedText] = useDebounce(text, 500);
+  const [uname, setUname] = useState("");
 
   const { user, message, loading } = useSelector((state) => state.userSlice);
   const { user: currentUser } = useSelector((state) => state.auth);
@@ -307,6 +340,13 @@ export function ModalEditUser() {
 
   const handleOnchange = (e) => {
     e.preventDefault();
+
+    if (e.target.name === "username" && e.target.value !== "") {
+      setUname("");
+      setText(e.target.value);
+    } else {
+      setUname("");
+    }
 
     setData({
       ...data,
@@ -335,6 +375,14 @@ export function ModalEditUser() {
       }, 5000);
     }
   }, [message]);
+
+  useEffect(() => {
+    if (debouncedText) {
+      checkUsername(debouncedText).then((data) => {
+        setUname(data.message);
+      });
+    }
+  }, [debouncedText]);
 
   return (
     <>
@@ -417,6 +465,15 @@ export function ModalEditUser() {
             onChange={handleOnchange}
             className={`mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none border-gray-200 dark:!border-white/10 dark:text-white`}
           />
+          {uname && data?.username !== "" && (
+            <span
+              className={`text-sm ${
+                uname.includes("taken") ? "text-red-500" : "text-green-500"
+              } `}
+            >
+              <b>{data?.username}</b> {uname}
+            </span>
+          )}
         </div>
 
         <div className="w-full flex laptop:flex-row phone:flex-col-reverse mt-7 laptop:justify-end gap-2 ">
@@ -886,7 +943,7 @@ export function ModalUpdateUserPicture() {
   const { user, message, loading } = useSelector((state) => state.userSlice);
   const { user: currentUser } = useSelector((state) => state.auth);
 
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(100);
   const [upload, setUpload] = useState(false);
 
   const [id, setId] = useState("");
@@ -944,6 +1001,7 @@ export function ModalUpdateUserPicture() {
   useEffect(() => {
     setId(user.id);
   }, []);
+
   useEffect(() => {
     if (progress === 100) {
       setTimeout(() => {
@@ -1001,7 +1059,7 @@ export function ModalUpdateUserPicture() {
             <section>
               <div
                 {...getRootProps()}
-                className="w-full h-72 rounded-lg border-2 border-dashed border-gray-400 p-3 flex flex-col items-center justify-center gap-2 relative "
+                className="w-full h-72 rounded-lg border-2 border-dashed border-gray-400 p-3 flex flex-col items-center justify-center gap-2 relative cursor-pointer "
               >
                 <input {...getInputProps()} />
                 <p className="text-gray-700 dark:text-white ">
@@ -1021,6 +1079,21 @@ export function ModalUpdateUserPicture() {
                       className="bg-indigo-600 h-1.5 rounded-full dark:bg-white"
                       style={{ width: `${progress + "%"}` }}
                     ></div>
+                    <p
+                      className={`text-gray-700 dark:text-white flex items-center gap-2 mt-1 ${
+                        progress === 100 && "animate-pulse"
+                      } `}
+                    >
+                      <img
+                        src={loadingimg}
+                        alt={loadingimg}
+                        srcSet={loadingimg}
+                        className="w-5 h-5 animate-spin "
+                      />
+                      {progress === 100
+                        ? "We finishing the process. Wait for a moment."
+                        : `Uploading ${progress}%`}
+                    </p>
                   </div>
                 )}
               </div>
