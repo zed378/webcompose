@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import dateformat from "dateformat";
 
 // components
 import Card from "@components/card";
@@ -39,7 +40,7 @@ const Banner = () => {
           }}
         >
           <span
-            className="w-8 h-8 cursor-pointer rounded-full hover:bg-indigo-400 bg-indigo-600 absolute -bottom-0 -right-2 z-50 flex items-center justify-center"
+            className="w-8 h-8 cursor-pointer rounded-full hover:bg-indigo-400 bg-indigo-600 absolute -bottom-0 -right-2 z-10 flex items-center justify-center"
             onClick={() => {
               dispatch(setUserData({ data: user }));
               dispatch(setUpdateProfileModal({ data: true }));
@@ -66,6 +67,11 @@ const Banner = () => {
             <FiEdit2 className="w-4 h-4 dark:text-white" />
           </span>
         </div>
+
+        <p className="text-base font-normal text-gray-600">
+          <span className="font-medium text-gray-700">Member since:</span>{" "}
+          {dateformat(user?.join, "dddd, dS mmmm, yyyy")}
+        </p>
         <p className="text-base font-normal text-gray-600">{user?.email}</p>
         <p className="text-base font-normal text-gray-600">{user?.username}</p>
         <p className="text-base font-normal text-gray-600">{user?.role}</p>

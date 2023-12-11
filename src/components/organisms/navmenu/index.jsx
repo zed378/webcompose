@@ -299,13 +299,13 @@ export default function NavMenu() {
               {/* dashboard */}
               {user && (
                 <div
-                  className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer"
+                  className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer gap-5"
                   onClick={() => {
                     nav("/dashboard/default");
                     setModal(!modal);
                   }}
                 >
-                  <div className="w-[20%] pl-2 pt-1">
+                  <div className="pl-2 pt-1">
                     <img src={dash} alt={dash} className="w-[22px] h-auto" />
                   </div>
 

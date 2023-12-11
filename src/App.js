@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { setUpdateUser, removeUser } from "@redux/features/auth/authSlice";
 
 if (localStorage.token) {
-  setAuthToken(localStorage.token.slice(1, -1));
+  setAuthToken(localStorage.token);
 }
 
 function App() {
@@ -30,6 +30,12 @@ function App() {
 
   useEffect(() => {
     verify();
+
+    if (localStorage?.theme === "dark") {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
   }, []);
 
   return <Router />;

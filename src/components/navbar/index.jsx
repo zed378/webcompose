@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import Dropdown from "@components/dropdown";
 import { FiAlignJustify } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -13,11 +13,19 @@ import avatar from "@assets/img/avatars/default.webp";
 
 const Navbar = (props) => {
   const { onOpenSidenav, brandText } = props;
-  const [darkmode, setDarkmode] = React.useState(false);
+  const [darkmode, setDarkmode] = useState(false);
 
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const nav = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.theme === "dark") {
+      setDarkmode(true);
+    } else {
+      setDarkmode(false);
+    }
+  }, [localStorage.theme]);
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
@@ -125,9 +133,11 @@ const Navbar = (props) => {
           onClick={() => {
             if (darkmode) {
               document.body.classList.remove("dark");
+              localStorage.setItem("theme", "light");
               setDarkmode(false);
             } else {
               document.body.classList.add("dark");
+              localStorage.setItem("theme", "dark");
               setDarkmode(true);
             }
           }}

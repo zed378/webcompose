@@ -12,7 +12,7 @@ export const authSlice = createSlice({
     setUser: (state, { payload }) => {
       state.user = payload.data.data;
       state.token = payload.data.token;
-      window.localStorage.setItem("token", JSON.stringify(payload.data.token));
+      window.localStorage.setItem("token", payload.data.token);
     },
 
     setUpdateDataUser: (state, { payload }) => {
@@ -23,7 +23,7 @@ export const authSlice = createSlice({
       state.user = payload.data.data;
       state.token = payload.data.token;
       window.localStorage.removeItem("token");
-      window.localStorage.setItem("token", JSON.stringify(payload.data.token));
+      window.localStorage.setItem("token", payload.data.token);
     },
 
     removeUser: (state) => {

@@ -13,12 +13,12 @@ const ProfileOverview = () => {
           <Banner />
         </div>
 
-        <div className="col-span-6 lg:!mb-0">
-          <Storage />
-        </div>
-
         <div className="z-0 col-span-6 lg:!mb-0">
           <Upload />
+        </div>
+
+        <div className="col-span-6 lg:!mb-0">
+          <Storage />
         </div>
       </div>
       {/* all project & ... */}
