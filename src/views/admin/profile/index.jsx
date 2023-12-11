@@ -3,7 +3,7 @@ import General from "./components/General";
 import Notification from "./components/Notification";
 import Project from "./components/Project";
 import Storage from "./components/Storage";
-import Upload from "./components/Upload";
+import Reset from "./components/Reset";
 
 const ProfileOverview = () => {
   return (
@@ -14,7 +14,7 @@ const ProfileOverview = () => {
         </div>
 
         <div className="z-0 col-span-6 lg:!mb-0">
-          <Upload />
+          <Reset />
         </div>
 
         <div className="col-span-6 lg:!mb-0">

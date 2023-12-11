@@ -15,7 +15,7 @@ import loadingimg from "@assets/images/loadingimg.svg";
 // hooks
 import { requestOTP, resetPassword } from "@hooks/authHooks";
 
-const Upload = () => {
+const Reset = () => {
   const { user } = useSelector((state) => state.auth);
 
   const [pass, setPass] = useState("");
@@ -321,4 +321,4 @@ const Upload = () => {
   );
 };
 
-export default Upload;
+export default Reset;
