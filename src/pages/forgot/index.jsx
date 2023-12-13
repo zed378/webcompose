@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import useWindowSize from "@rooks/use-window-size";
 import { useSelector } from "react-redux";
 import { Fade } from "react-awesome-reveal";
@@ -18,7 +19,7 @@ import loadingimg from "@assets/images/loadingimg.svg";
 import { requestOTP, resetPassword } from "@hooks/authHooks";
 
 export default function Forgot() {
-  const { user } = useSelector((state) => state.auth);
+  const nav = useNavigate();
 
   const [email, setEmail] = useState("");
 
@@ -47,20 +48,14 @@ export default function Forgot() {
       });
     } else if (innerWidth >= 1280 && innerWidth < 1440) {
       setStyle({
-        width: "50px",
-        height: "50px",
-        fontSize: "16px",
-      });
-    } else if (innerWidth >= 1024 && innerWidth < 1280) {
-      setStyle({
-        width: "46px",
-        height: "46px",
-        fontSize: "16px",
-      });
-    } else if (innerWidth >= 640 && innerWidth < 1024) {
-      setStyle({
         width: "42px",
         height: "42px",
+        fontSize: "16px",
+      });
+    } else if (innerWidth >= 640 && innerWidth < 1280) {
+      setStyle({
+        width: "50px",
+        height: "50px",
         fontSize: "16px",
       });
     } else if (innerWidth < 640) {
@@ -100,26 +95,26 @@ export default function Forgot() {
     }
   };
 
-  const reset = () => {
+  const reset = (e) => {
+    e.preventDefault();
     setSubmitLoading(true);
-    resetPassword(user?.email, confPass, parseInt(otp))
+    resetPassword(email, confPass, parseInt(otp))
       .then((data) => {
         setMsg(data?.message);
         setSubmitLoading(false);
         setPass("");
         setConfPass("");
-        setIsReqOTP(false);
         setPassMsg("");
         setOtp("");
 
         setTimeout(() => {
           setMsg("");
+          nav("/login");
         }, 5000);
       })
       .catch((err) => {
         setMsg(err?.response?.data?.message);
         setSubmitLoading(false);
-        setIsReqOTP(false);
         setOtp("");
 
         setTimeout(() => {
@@ -136,7 +131,7 @@ export default function Forgot() {
     } else {
       setPassMsg("");
     }
-  }, [confPass]);
+  }, [confPass, pass]);
 
   return (
     <div className="phone:h-screen desktop:h-screen w-full tablet:p-3 phone:p-1">

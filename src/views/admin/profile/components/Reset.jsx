@@ -131,7 +131,7 @@ const Reset = () => {
     } else {
       setPassMsg("");
     }
-  }, [confPass]);
+  }, [confPass, pass]);
 
   return (
     <Card className="h-full w-full rounded-[20px] bg-white bg-clip-border p-3 shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:shadow-none 2xl:grid-cols-12">

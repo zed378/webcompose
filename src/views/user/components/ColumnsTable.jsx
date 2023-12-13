@@ -157,17 +157,40 @@ const ColumnsTable = (props) => {
                               })`,
                             }}
                           />
-                          <div
-                            className="w-8 h-8 rounded-full absolute top-0 -right-8 flex items-center justify-center hover:bg-gray-400/80 "
-                            onClick={() => {
-                              dispatch(
-                                setUserData({ data: cell?.row?.original })
-                              );
-                              dispatch(setUpdateProfileModal({ data: true }));
-                            }}
-                          >
-                            <BiMessageSquareEdit className="w-5 h-5 text-indigo-500 dark:text-white " />
-                          </div>
+                          {cell.row?.original?.role === "SYS" &&
+                            user?.role === "SYS" && (
+                              <div
+                                className="w-8 h-8 rounded-full absolute top-0 -right-8 flex items-center justify-center hover:bg-gray-400/80 "
+                                onClick={() => {
+                                  dispatch(
+                                    setUserData({ data: cell?.row?.original })
+                                  );
+                                  dispatch(
+                                    setUpdateProfileModal({ data: true })
+                                  );
+                                }}
+                              >
+                                <BiMessageSquareEdit className="w-5 h-5 text-indigo-500 dark:text-white " />
+                              </div>
+                            )}
+
+                          {cell.row?.original?.role !== "SYS" &&
+                            (user?.role === "SYS" ||
+                              user?.role === "ADMIN") && (
+                              <div
+                                className="w-8 h-8 rounded-full absolute top-0 -right-8 flex items-center justify-center hover:bg-gray-400/80 "
+                                onClick={() => {
+                                  dispatch(
+                                    setUserData({ data: cell?.row?.original })
+                                  );
+                                  dispatch(
+                                    setUpdateProfileModal({ data: true })
+                                  );
+                                }}
+                              >
+                                <BiMessageSquareEdit className="w-5 h-5 text-indigo-500 dark:text-white " />
+                              </div>
+                            )}
                         </div>
                       );
                     } else if (cell.column.Header === "NAME") {
