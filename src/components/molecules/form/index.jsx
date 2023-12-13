@@ -373,6 +373,12 @@ export function LoginForm() {
             >
               Don't have account? Click here to <b>Register!</b>
             </p>
+            <p
+              className="text-sm text-center cursor-pointer font-medium hover:underline "
+              onClick={() => nav("/forgot")}
+            >
+              Forgot Password
+            </p>
           </Fade>
         </Form>
       )}

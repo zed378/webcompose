@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+
+// components
 import Dropdown from "@components/dropdown";
+
+// assets
 import { FiAlignJustify } from "react-icons/fi";
-import { Link } from "react-router-dom";
 import { BsArrowBarUp } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { RiMoonFill, RiSunFill } from "react-icons/ri";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { useSelector, useDispatch } from "react-redux";
-import { removeUser } from "@redux/features/auth/authSlice";
-import { useNavigate } from "react-router-dom";
 import avatar from "@assets/img/avatars/default.webp";
+
+// Hooks
+import { removeUser } from "@redux/features/auth/authSlice";
 
 const Navbar = (props) => {
   const { onOpenSidenav, brandText } = props;
@@ -175,20 +180,20 @@ const Navbar = (props) => {
               <div className="h-px w-full bg-gray-200 dark:bg-white/20 " />
 
               <div className="flex flex-col p-4">
-                <a
-                  href=" "
-                  className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
+                <div
+                  className="text-sm text-gray-800 dark:text-white hover:dark:text-white cursor-pointer "
+                  onClick={() => nav("/")}
+                >
+                  Landing Page
+                </div>
+                <div
+                  className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white cursor-pointer "
+                  onClick={() => nav("/dashboard/profile")}
                 >
                   Profile Settings
-                </a>
-                <a
-                  href=" "
-                  className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
-                >
-                  Newsletter Settings
-                </a>
+                </div>
                 <div
-                  className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
+                  className="mt-3 text-sm font-medium text-red-500 hover:text-red-500 cursor-pointer "
                   onClick={() => {
                     dispatch(removeUser());
                     nav("/login");

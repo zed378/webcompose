@@ -3,6 +3,7 @@ import Services from "@pages/services";
 import ContactUs from "@pages/contact";
 import Login from "@pages/login";
 import Register from "@pages/register";
+import Forgot from "@pages/forgot";
 
 const routes = [
   {
@@ -29,6 +30,11 @@ const routes = [
     id: 5,
     path: "/register",
     component: Register,
+  },
+  {
+    id: 6,
+    path: "/forgot",
+    component: Forgot,
   },
 ];
 
