@@ -27,6 +27,7 @@ module.exports = {
           ".png",
           ".jpeg",
           ".jpg",
+          ".webp",
         ],
         fallback: {
           fs: false,

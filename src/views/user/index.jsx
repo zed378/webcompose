@@ -46,36 +46,36 @@ export default function UserManagement() {
 
   const refetchData = () => {
     allUsers().then((data) => {
-      setAll(data.total);
-      setAllData(data.data);
+      setAll(data?.total);
+      setAllData(data?.data);
     });
     getSYS().then((data) => {
-      setSys(data.total);
-      setSysData(data.data);
+      setSys(data?.total);
+      setSysData(data?.data);
     });
     getAdmin().then((data) => {
-      setAdmin(data.total);
-      setAdmData(data.data);
+      setAdmin(data?.total);
+      setAdmData(data?.data);
     });
     getMarketing().then((data) => {
-      setMarketing(data.total);
-      setMarkData(data.data);
+      setMarketing(data?.total);
+      setMarkData(data?.data);
     });
     getAuthenticated().then((data) => {
-      setAuthenticated(data.total);
-      setAuth(data.data);
+      setAuthenticated(data?.total);
+      setAuth(data?.data);
     });
     getClient().then((data) => {
-      setClient(data.total);
-      setClt(data.data);
+      setClient(data?.total);
+      setClt(data?.data);
     });
     getDev().then((data) => {
-      setDev(data.total);
-      setDevel(data.data);
+      setDev(data?.total);
+      setDevel(data?.data);
     });
     getHR().then((data) => {
-      setHrd(data.total);
-      setHrds(data.data);
+      setHrd(data?.total);
+      setHrds(data?.data);
     });
   };
 

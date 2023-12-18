@@ -6,6 +6,7 @@ import UserManagement from "@views/user";
 import NFTMarketplace from "@views/admin/marketplace";
 import Profile from "@views/admin/profile";
 import DataTables from "@views/admin/tables";
+import ApproachingManagement from "@views/approaching";
 
 // Icon Imports
 import {
@@ -13,6 +14,7 @@ import {
   MdOutlineShoppingCart,
   MdBarChart,
   MdPerson,
+  MdOutlineSettingsSuggest,
 } from "react-icons/md";
 
 import { RiUserSettingsLine } from "react-icons/ri";
@@ -38,6 +40,13 @@ const routes = [
     path: "user-management",
     icon: <RiUserSettingsLine className="h-6 w-6" />,
     component: <UserManagement />,
+  },
+  {
+    name: "Approaching",
+    layout: "/admin",
+    path: "approach-management",
+    icon: <MdOutlineSettingsSuggest className="h-6 w-6" />,
+    component: <ApproachingManagement />,
   },
   {
     name: "NFT Marketplace",

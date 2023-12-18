@@ -276,6 +276,7 @@ export function LoginForm() {
             setTimeout(() => {
               setMsg("");
               nav("/dashboard/default");
+              window.location.reload(true);
             }, 3000);
           })
           .catch((err) => {
