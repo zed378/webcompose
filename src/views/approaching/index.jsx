@@ -32,6 +32,8 @@ import {
   getRejected,
 } from "@hooks/approachStatus";
 
+import { userColumns, noAction } from "./variables/tableColumns";
+
 export default function ApproachingManagement() {
   const { user } = useSelector((state) => state.auth);
 
@@ -52,7 +54,19 @@ export default function ApproachingManagement() {
 
   // approaching data
   const [appData, setAppData] = useState([]);
-  const allAppData = appData?.filter((val) => {});
+  const allAppData = appData?.filter((val) => {
+    if (search === "") {
+      return val;
+    } else if (
+      val.company.company_name
+        .toLowerCase()
+        .includes(search.toLocaleLowerCase()) ||
+      val.user.firstName.toLowerCase().includes(search.toLocaleLowerCase()) ||
+      val.user.lastName.toLowerCase().includes(search.toLocaleLowerCase())
+    ) {
+      return val;
+    }
+  });
 
   //   table name
   const [tbName, setTbName] = useState("Approaching");
@@ -91,6 +105,40 @@ export default function ApproachingManagement() {
     });
   }, []);
 
+  const refetchData = () => {
+    getApproaching().then((data) => {
+      setApp(data?.total);
+      setAppData(data?.data);
+    });
+    getMeeting().then((data) => {
+      setMeeting(data?.total);
+    });
+    getQuoteSent().then((data) => {
+      setQs(data?.total);
+    });
+    getContractSent().then((data) => {
+      setCs(data?.total);
+    });
+    getDP().then((data) => {
+      setDp(data?.total);
+    });
+    getProjectOnProgress().then((data) => {
+      setPop(data?.total);
+    });
+    getProjectDone().then((data) => {
+      setPd(data?.total);
+    });
+    getInvoiceSent().then((data) => {
+      setIs(data?.total);
+    });
+    getLastPaymentDone().then((data) => {
+      setLpd(data?.total);
+    });
+    getRejected().then((data) => {
+      setRejected(data?.total);
+    });
+  };
+
   return (
     <div>
       {/* Card widget */}
@@ -100,7 +148,7 @@ export default function ApproachingManagement() {
           title={"Approaching"}
           subtitle={app}
           styling={`cursor-pointer ${
-            tbName === "Approaching" && "border border-indigo-600"
+            tbName === "Approaching" && "outline outline-indigo-500"
           }`}
           click={() => setTbName("Approaching")}
         />
@@ -109,7 +157,7 @@ export default function ApproachingManagement() {
           title={"Meeting"}
           subtitle={meeting}
           styling={`cursor-pointer ${
-            tbName === "Meeting" && "border border-indigo-600"
+            tbName === "Meeting" && "outline outline-indigo-500"
           }`}
           click={() => setTbName("Meeting")}
         />
@@ -118,7 +166,7 @@ export default function ApproachingManagement() {
           title={"Quotation Sent"}
           subtitle={qs}
           styling={`cursor-pointer ${
-            tbName === "Quotation Sent" && "border border-indigo-600"
+            tbName === "Quotation Sent" && "outline outline-indigo-500"
           }`}
           click={() => setTbName("Quotation Sent")}
         />
@@ -127,7 +175,7 @@ export default function ApproachingManagement() {
           title={"Contract Sent"}
           subtitle={cs}
           styling={`cursor-pointer ${
-            tbName === "Contract Sent" && "border border-indigo-600"
+            tbName === "Contract Sent" && "outline outline-indigo-500"
           }`}
           click={() => setTbName("Contract Sent")}
         />
@@ -136,7 +184,7 @@ export default function ApproachingManagement() {
           title={"Down Payment"}
           subtitle={dp}
           styling={`cursor-pointer ${
-            tbName === "Down Payment" && "border border-indigo-600"
+            tbName === "Down Payment" && "outline outline-indigo-500"
           }`}
           click={() => setTbName("Down Payment")}
         />
@@ -145,7 +193,7 @@ export default function ApproachingManagement() {
           title={"Project On Progress"}
           subtitle={pop}
           styling={`cursor-pointer ${
-            tbName === "Project On Progress" && "border border-indigo-600"
+            tbName === "Project On Progress" && "outline outline-indigo-500"
           }`}
           click={() => setTbName("Project On Progress")}
         />
@@ -154,7 +202,7 @@ export default function ApproachingManagement() {
           title={"Project Done"}
           subtitle={pd}
           styling={`cursor-pointer ${
-            tbName === "Project Done" && "border border-indigo-600"
+            tbName === "Project Done" && "outline outline-indigo-500"
           }`}
           click={() => setTbName("Project Done")}
         />
@@ -163,7 +211,7 @@ export default function ApproachingManagement() {
           title={"Invoice Sent"}
           subtitle={is}
           styling={`cursor-pointer ${
-            tbName === "Invoice Sent" && "border border-indigo-600"
+            tbName === "Invoice Sent" && "outline outline-indigo-500"
           }`}
           click={() => setTbName("Invoice Sent")}
         />
@@ -172,7 +220,7 @@ export default function ApproachingManagement() {
           title={"Last Payment Done"}
           subtitle={lpd}
           styling={`cursor-pointer ${
-            tbName === "Last Payment Done" && "border border-indigo-600"
+            tbName === "Last Payment Done" && "outline outline-indigo-500"
           }`}
           click={() => setTbName("Last Payment Done")}
         />
@@ -181,12 +229,44 @@ export default function ApproachingManagement() {
           title={"Rejected"}
           subtitle={rejected}
           styling={`cursor-pointer ${
-            tbName === "Rejected" && "border border-indigo-600"
+            tbName === "Rejected" && "outline outline-indigo-500"
           }`}
           click={() => setTbName("Rejected")}
         />
       </div>
       {/* End of Card widget */}
+
+      {/* Approaching Table */}
+      {tbName === "Approaching" && (
+        <div className="mt-10">
+          <ColumnsTable
+            columnsData={userColumns}
+            tableData={allAppData}
+            tableName={tbName}
+            setSearch={setSearch}
+            refetch={refetchData}
+            dataTotal={app}
+          />
+          <div
+            className={`${
+              app > 0
+                ? "hidden"
+                : "w-full flex flex-col mt-10 justify-center items-center"
+            }`}
+          >
+            <img
+              src={nodata}
+              alt={nodata}
+              srcet={nodata}
+              className="max-w-[500px] "
+            />
+            <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
+              No Data Found
+            </h1>
+          </div>
+        </div>
+      )}
+      {/* End of Approaching Table */}
     </div>
   );
 }

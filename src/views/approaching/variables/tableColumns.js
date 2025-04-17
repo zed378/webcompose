@@ -1,31 +1,26 @@
 export const userColumns = [
   {
-    Header: "AVATAR",
-    accessor: "picture",
+    Header: "DATE",
+    accessor: "date",
   },
   {
-    Header: "NAME",
-    accessor: "name",
+    Header: "APPROACH BY",
+    accessor: "approachingBy",
   },
   {
-    Header: "EMAIL",
-    accessor: "email",
+    Header: "USER NAME",
   },
   {
-    Header: "USERNAME",
-    accessor: "username",
+    Header: "COMPANY NAME",
+    accessor: "company.company_name",
   },
   {
-    Header: "MEMBER SINCE",
-    accessor: "join",
+    Header: "PLATFORM",
+    accessor: "platform.name",
   },
   {
-    Header: "ROLE",
-    accessor: "role",
-  },
-  {
-    Header: "STATUS",
-    accessor: "isActive",
+    Header: "NOTES",
+    accessor: "notes",
   },
   {
     Header: "ACTION",

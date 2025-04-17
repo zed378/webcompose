@@ -77,7 +77,7 @@ const ColumnsTable = (props) => {
     >
       <header className="relative flex laptop:flex-row phone:flex-col laptop:items-center phone:items-start justify-between gap-2">
         <div className="text-xl font-bold text-indigo-700 dark:text-white">
-          {tableName} User Data
+          {tableName} Data
         </div>
 
         <div className="relative laptop:w-2/5 phone:w-full ">
@@ -103,7 +103,7 @@ const ColumnsTable = (props) => {
             type="search"
             id="default-search"
             className="block w-full px-4 py-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500 focus:outline-none"
-            placeholder="Search Name, Username..."
+            placeholder="Search  Client or Company name..."
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
@@ -146,87 +146,39 @@ const ColumnsTable = (props) => {
                 <tr {...row.getRowProps()} key={index}>
                   {row.cells.map((cell, index) => {
                     let data;
-                    if (cell?.column?.Header === "AVATAR") {
-                      data = (
-                        <div className="ml-3 relative w-8 h-8 rounded-full cursor-pointer">
-                          <div
-                            className="w-8 h-8 rounded-full bg-cover bg-center "
-                            style={{
-                              backgroundImage: `url(${
-                                process.env.REACT_APP_PROFILE + cell?.value
-                              })`,
-                            }}
-                          />
-                          {cell.row?.original?.role === "SYS" &&
-                            user?.role === "SYS" && (
-                              <div
-                                className="w-8 h-8 rounded-full absolute top-0 -right-8 flex items-center justify-center hover:bg-gray-400/80 "
-                                onClick={() => {
-                                  dispatch(
-                                    setUserData({ data: cell?.row?.original })
-                                  );
-                                  dispatch(
-                                    setUpdateProfileModal({ data: true })
-                                  );
-                                }}
-                              >
-                                <BiMessageSquareEdit className="w-5 h-5 text-indigo-500 dark:text-white " />
-                              </div>
-                            )}
 
-                          {cell.row?.original?.role !== "SYS" &&
-                            (user?.role === "SYS" ||
-                              user?.role === "ADMIN") && (
-                              <div
-                                className="w-8 h-8 rounded-full absolute top-0 -right-8 flex items-center justify-center hover:bg-gray-400/80 "
-                                onClick={() => {
-                                  dispatch(
-                                    setUserData({ data: cell?.row?.original })
-                                  );
-                                  dispatch(
-                                    setUpdateProfileModal({ data: true })
-                                  );
-                                }}
-                              >
-                                <BiMessageSquareEdit className="w-5 h-5 text-indigo-500 dark:text-white " />
-                              </div>
-                            )}
-                        </div>
+                    console.log(cell);
+
+                    if (cell?.column?.Header === "DATE") {
+                      data = (
+                        <p className="mr-[10px] text-sm font-semibold text-navy-700 dark:text-white">
+                          {formatFullDate(cell?.value)}
+                        </p>
                       );
-                    } else if (cell?.column?.Header === "NAME") {
+                    } else if (cell?.column?.Header === "APPROACH BY") {
                       data = (
                         <p className="mr-[10px] text-sm font-semibold text-navy-700 dark:text-white">
                           {cell?.value}
                         </p>
                       );
-                    } else if (cell?.column?.Header === "EMAIL") {
+                    } else if (cell?.column?.Header === "USER NAME") {
+                      data = (
+                        <p className="mr-[10px] text-sm font-semibold text-navy-700 dark:text-white">
+                          {cell?.row?.original?.user?.firstName +
+                            "  " +
+                            cell?.row?.original?.user?.lastName}
+                        </p>
+                      );
+                    } else if (cell?.column?.Header === "COMPANY NAME") {
                       data = (
                         <p className="mr-[10px] text-sm font-semibold text-navy-700 dark:text-white">
                           {cell?.value}
                         </p>
                       );
-                    } else if (cell?.column?.Header === "USERNAME") {
+                    } else if (cell?.column?.Header === "PLATFORM") {
                       data = (
                         <p className="mr-[10px] text-sm font-semibold text-navy-700 dark:text-white">
                           {cell?.value}
-                        </p>
-                      );
-                    } else if (cell?.column?.Header === "ROLE") {
-                      data = (
-                        <p className="mr-[10px] text-sm font-semibold text-navy-700 dark:text-white">
-                          {cell?.value}
-                        </p>
-                      );
-                    } else if (cell?.column?.Header === "STATUS") {
-                      data = (
-                        <p
-                          className={`mr-[10px] text-sm font-semibold ${
-                            cell?.value === true
-                              ? "text-teal-500"
-                              : "text-red-500"
-                          } `}
-                        >
-                          {cell?.value === true ? "Active" : "Disable"}
                         </p>
                       );
                     } else if (cell?.column?.Header === "ACTION") {
@@ -240,10 +192,10 @@ const ColumnsTable = (props) => {
                             refetch={refetch}
                           />
                         );
-                    } else if (cell?.column?.Header === "MEMBER SINCE") {
+                    } else if (cell?.column?.Header === "NOTES") {
                       data = (
                         <p className="mr-[10px] text-sm font-semibold text-navy-700 dark:text-white">
-                          {formatFullDate(cell?.value)}
+                          {cell?.value}
                         </p>
                       );
                     }
