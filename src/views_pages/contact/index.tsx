@@ -10,6 +10,14 @@ import bgContact from "@assets/images/bgContact.webp";
 import { BsTelephone } from "react-icons/bs";
 import { CiMail } from "react-icons/ci";
 
+function getImgPath(image: any): string {
+  if (!image) return "";
+  if (typeof image === "string") return image;
+  if ((image as any)?.src) return (image as any).src;
+  if ((image as any)?.default) return (image as any).default;
+  return String(image);
+}
+
 export default function ContactUs() {
   return (
     <>
@@ -19,7 +27,7 @@ export default function ContactUs() {
 
           <Fade triggerOnce>
             <img
-              src={bgContact as any}
+              src={getImgPath(bgContact)}
               alt="Contact background"
               className="absolute -bottom-24 -left-14 hidden desktop:block laptop:scale-75 laptop:-bottom-24 laptop:-left-14 pc:scale-100 pc:-bottom-24 pc:-left-14 ultra:scale-110 ultra:-bottom-24 ultra:-left-14 w-[700px] "
             />

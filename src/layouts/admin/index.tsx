@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { usePathname, useRouter } from "next/navigation";
 
 // components
 import Navbar from "@components/navbar";
@@ -17,21 +19,20 @@ import {
 // hooks
 import routes from "@route/routes";
 import { useSelector } from "react-redux";
-
-import { useNavigate } from "react-router-dom";
-
-import { useSelector } from "react-redux";
 import { RootState } from "@redux/store";
 
-import { useNavigate } from "react-router-dom";
-
-export default function Admin(props: { [key: string]: any }) {
-  const { ...rest } = props;
-  const location = useLocation();
+export default function Admin({
+  children,
+  ...rest
+}: {
+  children?: React.ReactNode;
+  [key: string]: any;
+}) {
+  const pathname = usePathname();
+  const router = useRouter();
   const [open, setOpen] = React.useState(true);
   const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
 
-  const nav = useNavigate();
   const {
     openModal,
     activeModal,
@@ -40,13 +41,13 @@ export default function Admin(props: { [key: string]: any }) {
     createModal,
     roleModal,
     updateProfileModal,
-  } = useSelector((state: RootState) => state.userSlice);
+  } = useSelector((state: RootState) => state.userSlice || {});
 
   React.useEffect(() => {
     if (typeof window !== "undefined" && !localStorage.token) {
-      nav("/login");
+      router.push("/login");
     }
-  }, [nav]);
+  }, [router]);
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
@@ -55,51 +56,25 @@ export default function Admin(props: { [key: string]: any }) {
   }, []);
 
   React.useEffect(() => {
-    window.addEventListener("resize", () =>
-      window.innerWidth < 1200 ? setOpen(false) : setOpen(true)
-    );
+    const handleResize = () =>
+      window.innerWidth < 1200 ? setOpen(false) : setOpen(true);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
   React.useEffect(() => {
-    getActiveRoute(routes);
-  }, [location.pathname]);
-
-  const getActiveRoute = (routes) => {
-    let activeRoute = "Main Dashboard";
-    for (let i = 0; i < routes.length; i++) {
-      if (
-        window.location.href.indexOf(
-          (routes[i].layout === "/admin" && "/dashboard") + "/" + routes[i].path
-        ) !== -1
-      ) {
-        setCurrentRoute(routes[i].name);
-      }
+    if (!pathname) return;
+    const matched = routes.find((r) => pathname.includes(r.path));
+    if (matched) {
+      setCurrentRoute(matched.name);
     }
-    return activeRoute;
-  };
-  const getActiveNavbar = (routes) => {
-    let activeNavbar = false;
-    for (let i = 0; i < routes.length; i++) {
-      if (
-        window.location.href.indexOf(routes[i].layout + routes[i].path) !== -1
-      ) {
-        return routes[i].secondary;
-      }
-    }
-    return activeNavbar;
-  };
-  const getRoutes = (routes) => {
-    return routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
-        return (
-          <Route path={`/${prop.path}`} element={prop.component} key={key} />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
+  }, [pathname]);
 
-  document.documentElement.dir = "ltr";
+  const getActiveNavbar = (routesArr: any[]) => {
+    if (!pathname) return false;
+    const matched = routesArr.find((r) => pathname.includes(r.path));
+    return matched ? matched.secondary : false;
+  };
 
   return (
     <>
@@ -131,14 +106,7 @@ export default function Admin(props: { [key: string]: any }) {
                 {...rest}
               />
               <div className="pt-5s mx-auto mb-auto h-full min-h-[91vh] p-2 md:pr-2">
-                <Routes>
-                  {getRoutes(routes)}
-
-                  <Route
-                    path="/"
-                    element={<Navigate to="/dashboard/default" replace />}
-                  />
-                </Routes>
+                {children}
               </div>
             </div>
           </main>

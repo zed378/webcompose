@@ -52,16 +52,16 @@ const Dashboard = () => {
   const [rejected, setRejected] = useState(0);
 
   useEffect(() => {
-    getApproaching().then((data) => setApp(data?.total));
-    getMeeting().then((data) => setMeeting(data?.total));
-    getQuoteSent().then((data) => setQs(data?.total));
-    getContractSent().then((data) => setCs(data?.total));
-    getDP().then((data) => setDp(data?.total));
-    getProjectOnProgress().then((data) => setPop(data?.total));
-    getProjectDone().then((data) => setPd(data?.total));
-    getInvoiceSent().then((data) => setIs(data?.total));
-    getLastPaymentDone().then((data) => setLpd(data?.total));
-    getRejected().then((data) => setRejected(data?.total));
+    getApproaching().then((data) => setApp(data?.total || 0));
+    getMeeting().then((data) => setMeeting(data?.total || 0));
+    getQuoteSent().then((data) => setQs(data?.total || 0));
+    getContractSent().then((data) => setCs(data?.total || 0));
+    getDP().then((data) => setDp(data?.total || 0));
+    getProjectOnProgress().then((data) => setPop(data?.total || 0));
+    getProjectDone().then((data) => setPd(data?.total || 0));
+    getInvoiceSent().then((data) => setIs(data?.total || 0));
+    getLastPaymentDone().then((data) => setLpd(data?.total || 0));
+    getRejected().then((data) => setRejected(data?.total || 0));
   }, []);
 
   return (

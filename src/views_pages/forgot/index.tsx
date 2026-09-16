@@ -17,6 +17,14 @@ import { MdLockReset } from "react-icons/md";
 import { FaLock, FaEye, FaEyeSlash, FaRegCheckCircle } from "react-icons/fa";
 import loadingimg from "@assets/images/loadingimg.svg";
 
+function getImgPath(image: any): string {
+  if (!image) return "";
+  if (typeof image === "string") return image;
+  if ((image as any)?.src) return (image as any).src;
+  if ((image as any)?.default) return (image as any).default;
+  return String(image);
+}
+
 // hooks
 import { requestOTP, resetPassword } from "@hooks/authHooks";
 
@@ -143,7 +151,7 @@ export default function Forgot() {
 
         <Fade triggerOnce>
           <img
-            src={bgHero as any}
+            src={getImgPath(bgHero)}
             alt="Hero background"
             className="absolute -bottom-0 -right-14 hidden desktop:block laptop:scale-75 laptop:-bottom-24 laptop:-right-14 pc:scale-100 pc:-bottom-24 pc:-right-14 ultra:scale-110 ultra:bottom-2 ultra:-right-14 w-[700px] "
           />
@@ -170,8 +178,8 @@ export default function Forgot() {
                     >
                       {otpLoading && (
                         <img
-                          src={loadingimg}
-                          alt={loadingimg}
+                          src={getImgPath(loadingimg)}
+                          alt={getImgPath(loadingimg)}
                           srcSet={loadingimg}
                           className="w-4 h-4 animate-spin mr-1 "
                         />
@@ -323,9 +331,9 @@ export default function Forgot() {
                   >
                     {submitLoading && (
                       <img
-                        src={loadingimg}
-                        alt={loadingimg}
-                        srcSet={loadingimg}
+                        src={getImgPath(loadingimg)}
+                        alt={getImgPath(loadingimg)}
+                        srcSet={getImgPath(loadingimg)}
                         className="w-5 h-5 animate-spin mr-1 "
                       />
                     )}{" "}
@@ -375,9 +383,9 @@ export default function Forgot() {
                   >
                     {otpLoading && (
                       <img
-                        src={loadingimg}
-                        alt={loadingimg}
-                        srcSet={loadingimg}
+                        src={getImgPath(loadingimg)}
+                        alt={getImgPath(loadingimg)}
+                        srcSet={getImgPath(loadingimg)}
                         className="w-5 h-5 animate-spin mr-1 "
                       />
                     )}

@@ -10,7 +10,7 @@ import {
   useTable,
 } from "react-table";
 
-const CheckTable = (props) => {
+const CheckTable = (props: { columnsData: any[]; tableData: any[] }) => {
   const { columnsData, tableData } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
@@ -55,9 +55,9 @@ const CheckTable = (props) => {
           mb="24px"
         >
           <thead>
-            {headerGroups.map((headerGroup, index) => (
+            {headerGroups.map((headerGroup: any, index: number) => (
               <tr {...headerGroup.getHeaderGroupProps()} key={index}>
-                {headerGroup.headers.map((column, index) => (
+                {headerGroup.headers.map((column: any, index: number) => (
                   <th
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                     className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
@@ -72,12 +72,12 @@ const CheckTable = (props) => {
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {page.map((row, index) => {
+            {page.map((row: any, index: number) => {
               prepareRow(row);
               return (
                 <tr {...row.getRowProps()} key={index}>
-                  {row.cells.map((cell, index) => {
-                    let data = "";
+                  {row.cells.map((cell: any, index: number) => {
+                    let data: any = "";
                     if (cell.column.Header === "NAME") {
                       data = (
                         <div className="flex items-center gap-2">

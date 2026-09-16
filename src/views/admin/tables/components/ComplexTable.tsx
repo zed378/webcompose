@@ -9,7 +9,7 @@ import {
 import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
 import { useMemo } from "react";
 import Progress from "@components/progress";
-const ComplexTable = (props) => {
+const ComplexTable = (props: any) => {
   const { columnsData, tableData } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
@@ -47,9 +47,9 @@ const ComplexTable = (props) => {
       <div className="mt-8 h-full overflow-x-scroll xl:overflow-hidden">
         <table {...getTableProps()} className="w-full">
           <thead>
-            {headerGroups.map((headerGroup, index) => (
+            {headerGroups.map((headerGroup: any, index: number) => (
               <tr {...headerGroup.getHeaderGroupProps()} key={index}>
-                {headerGroup.headers.map((column, index) => (
+                {headerGroup.headers.map((column: any, index: number) => (
                   <th
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                     key={index}
@@ -64,12 +64,12 @@ const ComplexTable = (props) => {
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {page.map((row, index) => {
+            {page.map((row: any, index: number) => {
               prepareRow(row);
               return (
                 <tr {...row.getRowProps()} key={index}>
-                  {row.cells.map((cell, index) => {
-                    let data = "";
+                  {row.cells.map((cell: any, index: number) => {
+                    let data: React.ReactNode = "";
                     if (cell.column.Header === "NAME") {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">

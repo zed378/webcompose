@@ -1,16 +1,16 @@
+import React from "react";
 import { Fade } from "react-awesome-reveal";
-
 import { BsArrowUpRight } from "react-icons/bs";
 
-export default function PortoCardMobile({ item }) {
+export default function PortoCardMobile({ item }: { item: any }) {
+  const imgSrc = typeof item?.img === "string" ? item.img : item?.img?.src;
   return (
     <div className="w-full rounded-2xl flex flex-col gap-4 ">
       <Fade direction="up">
         <div className="rounded-2xl tablet:h-[40rem] phone:h-[30rem] w-full overflow-hidden relative ">
           <img
-            src={item.img}
-            alt={item.img}
-            srcSet={item.img}
+            src={imgSrc}
+            alt={item.title || "portfolio"}
             className="w-full "
           />
 

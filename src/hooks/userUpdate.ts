@@ -1,6 +1,6 @@
 import { API } from "./api";
 
-export const createNewUser = async (val) => {
+export const createNewUser = async (val: any) => {
   try {
     const { data } = await API.post("/user/add", {
       firstName: val.firstName,
@@ -17,7 +17,7 @@ export const createNewUser = async (val) => {
   }
 };
 
-export const updateUserRole = async (val) => {
+export const updateUserRole = async (val: any) => {
   try {
     const { data } = await API.post("/user/set-role", {
       id: val.id,
@@ -30,7 +30,7 @@ export const updateUserRole = async (val) => {
   }
 };
 
-export const updateFullUser = async (val) => {
+export const updateFullUser = async (val: any) => {
   try {
     const { data } = await API.patch("/user/name", {
       id: val.id,
@@ -45,7 +45,7 @@ export const updateFullUser = async (val) => {
   }
 };
 
-export const activateUser = async (id) => {
+export const activateUser = async (id: string | number) => {
   try {
     const { data } = await API.post("/user/set-status", {
       id,
@@ -58,7 +58,7 @@ export const activateUser = async (id) => {
   }
 };
 
-export const disableUser = async (id) => {
+export const disableUser = async (id: string | number) => {
   try {
     const { data } = await API.post("/user/set-status", {
       id,
@@ -71,7 +71,7 @@ export const disableUser = async (id) => {
   }
 };
 
-export const deleteUser = async (id) => {
+export const deleteUser = async (id: string | number) => {
   try {
     const { data } = await API.delete("/user/" + id);
 
@@ -81,7 +81,7 @@ export const deleteUser = async (id) => {
   }
 };
 
-export const updatePict = async (config, val) => {
+export const updatePict = async (config: any, val: any) => {
   try {
     const { data } = await API.post("/user/profile", val, config);
 
@@ -91,7 +91,7 @@ export const updatePict = async (config, val) => {
   }
 };
 
-export const checkUsername = async (val) => {
+export const checkUsername = async (val: string) => {
   try {
     const { data } = await API.post("/user/checkname", {
       username: val,

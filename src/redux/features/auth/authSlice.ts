@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AuthState } from "@types/index";
+import { AuthState } from "@appTypes/index";
 
 const getToken = (): string | null => {
   if (typeof window !== "undefined" && window.localStorage) {

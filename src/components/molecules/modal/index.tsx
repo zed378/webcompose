@@ -947,10 +947,10 @@ export function ModalUpdateUserPicture() {
   const [progress, setProgress] = useState(100);
   const [upload, setUpload] = useState(false);
 
-  const [id, setId] = useState("");
-  const [data, setData] = useState(null);
+  const [id, setId] = useState<string>("");
+  const [data, setData] = useState<any[] | null>(null);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     try {
       e.preventDefault();
       dispatch(setLoadingUser({ data: true }));
@@ -960,7 +960,7 @@ export function ModalUpdateUserPicture() {
         headers: {
           "Content-type": "multipart/form-data",
         },
-        onUploadProgress: (progressEvent) => {
+        onUploadProgress: (progressEvent: any) => {
           const { loaded, total } = progressEvent;
           let precentage = Math.floor((loaded * 100) / total);
           setProgress(precentage);
@@ -970,13 +970,17 @@ export function ModalUpdateUserPicture() {
       // Store form data as object
       const formData = new FormData();
       formData.set("id", id);
-      formData.set("picture", data[0], data[0].name);
+      if (data && data[0]) {
+        formData.set("picture", data[0], data[0].name);
+      }
 
-      updatePict(config, formData).then(async (data) => {
+      updatePict(config, formData).then(async (resData: any) => {
         dispatch(setLoadingUser({ data: false }));
-        dispatch(setMessage({ data: data.message }));
+        dispatch(setMessage({ data: resData.message }));
 
         if (
+          currentUser &&
+          user &&
           currentUser.firstName === user.firstName &&
           currentUser.lastName === user.lastName
         ) {
@@ -989,19 +993,21 @@ export function ModalUpdateUserPicture() {
                   })
                 );
             });
-          } catch (error) {
+          } catch (error: any) {
             dispatch(setMessage({ data: error.message }));
           }
         }
       });
-    } catch (error) {
+    } catch (error: any) {
       dispatch(setMessage({ data: error.message }));
     }
   };
 
   useEffect(() => {
-    setId(user.id);
-  }, []);
+    if (user?.id) {
+      setId(String(user.id));
+    }
+  }, [user]);
 
   useEffect(() => {
     if (progress === 100) {
@@ -1052,7 +1058,7 @@ export function ModalUpdateUserPicture() {
         )}
 
         <Dropzone
-          onDrop={(file) => {
+          onDrop={(file: any) => {
             setData(file);
           }}
         >
@@ -1064,11 +1070,11 @@ export function ModalUpdateUserPicture() {
               >
                 <input {...getInputProps()} />
                 <p className="text-gray-700 dark:text-white ">
-                  {data
+                  {data && data[0]
                     ? data[0]?.name
                     : "Drag 'n' drop some files here, or click to select files"}
                 </p>
-                {data && (
+                {data && data[0] && (
                   <p className="text-gray-700 dark:text-white ">
                     {converter(data[0].size)}
                   </p>

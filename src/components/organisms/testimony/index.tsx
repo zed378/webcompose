@@ -19,17 +19,17 @@ export default function Testimony() {
     id === 3 && setId(1);
   };
 
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const minSwipeDistance = 50;
 
-  const onTouchStart = (e) => {
+  const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+  const onTouchMove = (e: React.TouchEvent) => setTouchEnd(e.targetTouches[0].clientX);
 
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;

@@ -123,9 +123,9 @@ const ColumnsTable = (props: any) => {
       <div className="mt-8 overflow-x-scroll">
         <table {...getTableProps()} className="w-full">
           <thead>
-            {headerGroups.map((headerGroup, index) => (
+            {headerGroups.map((headerGroup: any, index: number) => (
               <tr {...headerGroup.getHeaderGroupProps()} key={index}>
-                {headerGroup.headers.map((column, index) => (
+                {headerGroup.headers.map((column: any, index: number) => (
                   <th
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                     key={index}
@@ -140,13 +140,13 @@ const ColumnsTable = (props: any) => {
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {page.map((row, index) => {
+            {page.map((row: any, index: number) => {
               prepareRow(row);
 
               return (
                 <tr {...row.getRowProps()} key={index}>
-                  {row.cells.map((cell, index) => {
-                    let data;
+                  {row.cells.map((cell: any, index: number) => {
+                    let data: React.ReactNode = null;
 
                     console.log(cell);
 

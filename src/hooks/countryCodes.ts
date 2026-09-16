@@ -1,6 +1,6 @@
 export interface CountryItem {
-  Dial: string;
-  Name: string;
+  Dial: string | null;
+  Name: string | null;
 }
 
 export const countryData: CountryItem[] = [

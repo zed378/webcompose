@@ -8,8 +8,8 @@ export interface NftCardProps {
   title: string;
   author: string;
   price: string | number;
-  image: string;
-  bidders: string[];
+  image: any;
+  bidders: any[];
   extra?: string;
 }
 

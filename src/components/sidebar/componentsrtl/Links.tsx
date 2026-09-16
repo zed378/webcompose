@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import DashIcon from "@components/icons/DashIcon";
-import { RouteItem } from "@types/index";
+import { RouteItem } from "@appTypes/index";
 
 export interface SidebarLinksProps {
   routes: RouteItem[];

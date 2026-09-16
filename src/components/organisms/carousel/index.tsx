@@ -22,6 +22,14 @@ import kube from "@assets/images/stack/kube.svg";
 import terra from "@assets/images/stack/terra.svg";
 import yaml from "@assets/images/stack/yaml.svg";
 
+function getImgPath(image: any): string {
+  if (!image) return "";
+  if (typeof image === "string") return image;
+  if ((image as any)?.src) return (image as any).src;
+  if ((image as any)?.default) return (image as any).default;
+  return String(image);
+}
+
 export default function Carousel() {
   const images = [
     html,
@@ -56,13 +64,13 @@ export default function Carousel() {
         elementType="div"
         className="py-3 overflow-hidden"
       >
-        {images.map((item) => (
+        {images.map((item, index) => (
           <div
-            key={item}
+            key={index}
             className="bg-white border border-slate-300 rounded flex items-center justify-center grayscale hover:grayscale-0 ultra:h-52 ultra:w-72 pc:h-44 pc:w-64 desktop:h-40 desktop:w-56 laptop:h-36 laptop:w-48 tablet:h-32 tablet:w-44 phone:h-28 phone:w-40"
           >
             <img
-              src={item}
+              src={getImgPath(item)}
               alt={item}
               className="ultra:w-32 pc:w-28 desktop:w-24 laptop:w-20 tablet:w-16 phone:w-14 h-auto"
             />

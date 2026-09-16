@@ -57,7 +57,7 @@
       "@variables/*": [
         "src/variables/*"
       ],
-      "@types/*": [
+      "@appTypes/*": [
         "src/types/*"
       ]
     }

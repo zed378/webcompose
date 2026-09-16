@@ -1,13 +1,20 @@
+"use client";
+
 import React from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 import Navbar from "@components/navbar/RTL";
 import Sidebar from "@components/sidebar/RTL";
 import Footer from "@components/footer/Footer";
 import routes from "@route/routes";
 
-export default function RTL(props: { [key: string]: any }) {
-  const { ...rest } = props;
-  const location = useLocation();
+export default function RTL({
+  children,
+  ...rest
+}: {
+  children?: React.ReactNode;
+  [key: string]: any;
+}) {
+  const pathname = usePathname();
   const [open, setOpen] = React.useState(true);
   const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
 
@@ -21,30 +28,20 @@ export default function RTL(props: { [key: string]: any }) {
     }
   }, []);
 
-  const getActiveNavbar = (routes: any[]) => {
-    let activeNavbar = false;
-    if (typeof window === "undefined") return activeNavbar;
-    for (let i = 0; i < routes.length; i++) {
-      if (
-        window.location.href.indexOf(routes[i].layout + routes[i].path) !== -1
-      ) {
-        return routes[i].secondary;
-      }
+  React.useEffect(() => {
+    if (!pathname) return;
+    const matched = routes.find((r) => pathname.includes(r.path));
+    if (matched) {
+      setCurrentRoute(matched.name);
     }
-    return activeNavbar;
+  }, [pathname]);
+
+  const getActiveNavbar = (routesArr: any[]) => {
+    if (!pathname) return false;
+    const matched = routesArr.find((r) => pathname.includes(r.path));
+    return matched ? matched.secondary : false;
   };
 
-  const getRoutes = (routes: any[]) => {
-    return routes.map((prop, key) => {
-      if (prop.layout === "/rtl") {
-        return (
-          <Route path={`/${prop.path}`} element={prop.component} key={key} />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
   return (
     <div className="flex h-full w-full">
       <Sidebar open={open} onClose={() => setOpen(false)} />
@@ -64,14 +61,7 @@ export default function RTL(props: { [key: string]: any }) {
               {...rest}
             />
             <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2">
-              <Routes>
-                {getRoutes(routes)}
-
-                <Route
-                  path="/"
-                  element={<Navigate to="/admin/default" replace />}
-                />
-              </Routes>
+              {children}
             </div>
             <div className="p-3">
               <Footer />

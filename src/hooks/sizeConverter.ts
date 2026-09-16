@@ -1,4 +1,4 @@
-export const converter = (val) => {
+export const converter = (val: number): string | undefined => {
   if (val < 1024) {
     return val + "byte";
   } else if (val >= 1024 && val < 1024 ** 2) {

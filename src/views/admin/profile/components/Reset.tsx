@@ -36,6 +36,7 @@ const Reset = () => {
 
   const { innerWidth } = useWindowSize();
   useEffect(() => {
+    if (!innerWidth) return;
     if (innerWidth >= 1440) {
       setStyle({
         width: "54px",
@@ -74,7 +75,7 @@ const Reset = () => {
       alert("You already requested");
     } else {
       setOtpLoading(true);
-      requestOTP(user?.email)
+      requestOTP(user?.email || "")
         .then((data) => {
           setMsg(data?.message);
           setIsReqOTP(true);
@@ -98,7 +99,7 @@ const Reset = () => {
 
   const reset = () => {
     setSubmitLoading(true);
-    resetPassword(user?.email, confPass, parseInt(otp))
+    resetPassword(user?.email || "", confPass, parseInt(otp))
       .then((data) => {
         setMsg(data?.message);
         setSubmitLoading(false);
@@ -269,7 +270,6 @@ const Reset = () => {
               value={otp}
               onChange={(val) => setOtp(val)}
               numInputs={6}
-              isInputNum={true}
               shouldAutoFocus={true}
               renderInput={(props: any) => (
                 <input
@@ -279,10 +279,6 @@ const Reset = () => {
               )}
               inputStyle={style}
               renderSeparator={<span className="mx-1">-</span>}
-              focusStyle={{
-                border: "2px solid gray",
-                outline: "none",
-              }}
             />
           </div>
         </div>

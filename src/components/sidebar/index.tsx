@@ -5,10 +5,10 @@ import { HiX } from "react-icons/hi";
 import Links from "./components/Links";
 import routes from "@route/routes";
 import logo from "@assets/images/logo.webp";
-import { SidebarProps } from "@types/index";
+import { SidebarProps } from "@appTypes/index";
 
 const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
-  const logoSrc = (logo as any)?.src || logo;
+  const logoSrc = typeof logo === "string" ? logo : (logo as any)?.src || (logo as any)?.default || logo;
 
   return (
     <div

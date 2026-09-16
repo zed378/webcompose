@@ -1,16 +1,23 @@
+import React from "react";
 import { Fade } from "react-awesome-reveal";
-
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
-export default function TestimonialCard({ item, id, incre, decre }) {
+export interface TestimonialCardProps {
+  item: any;
+  id: number | string;
+  incre: () => void;
+  decre: () => void;
+}
+
+export default function TestimonialCard({ item, id, incre, decre }: TestimonialCardProps) {
+  const imgSrc = typeof item?.img === "string" ? item.img : item?.img?.src;
   return (
     <div className={`${id !== item.id ? "hidden" : "flex"} flex-col gap-6 `}>
       <div className="flex items-center ultra:gap-6 desktop:gap-5 laptop:gap-4 phone:gap-3 relative ">
         <Fade direction="left">
           <img
-            src={item.img}
-            alt={item.img}
-            srcSet={item.img}
+            src={imgSrc}
+            alt={item.name || "Testimonial"}
             className="ultra:w-28 desktop:w-24 laptop:w-20 phone:w-16"
           />
         </Fade>

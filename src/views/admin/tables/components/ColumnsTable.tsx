@@ -8,7 +8,7 @@ import {
   useTable,
 } from "react-table";
 
-const ColumnsTable = (props) => {
+const ColumnsTable = (props: any) => {
   const { columnsData, tableData } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
@@ -46,9 +46,9 @@ const ColumnsTable = (props) => {
       <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
         <table {...getTableProps()} className="w-full">
           <thead>
-            {headerGroups.map((headerGroup, index) => (
+            {headerGroups.map((headerGroup: any, index: number) => (
               <tr {...headerGroup.getHeaderGroupProps()} key={index}>
-                {headerGroup.headers.map((column, index) => (
+                {headerGroup.headers.map((column: any, index: number) => (
                   <th
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                     key={index}
@@ -63,12 +63,12 @@ const ColumnsTable = (props) => {
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {page.map((row, index) => {
+            {page.map((row: any, index: number) => {
               prepareRow(row);
               return (
                 <tr {...row.getRowProps()} key={index}>
-                  {row.cells.map((cell, index) => {
-                    let data;
+                  {row.cells.map((cell: any, index: number) => {
+                    let data: React.ReactNode = null;
                     if (cell.column.Header === "NAME") {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">

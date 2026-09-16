@@ -9,6 +9,14 @@ import coding from "@assets/images/coding.webp";
 import dashboard from "@assets/images/dashboard.webp";
 import laptop from "@assets/images/laptop.webp";
 
+function getImgPath(image: any): string {
+  if (!image) return "";
+  if (typeof image === "string") return image;
+  if ((image as any)?.src) return (image as any).src;
+  if ((image as any)?.default) return (image as any).default;
+  return String(image);
+}
+
 export default function Services() {
   return (
     <>
@@ -26,7 +34,7 @@ export default function Services() {
             <ul className="w-full grid desktop:grid-cols-3 laptop:grid-cols-2 gap-4 mt-4 mb-16 ">
               <li
                 className="min-h-[20rem] rounded-xl overflow-hidden relative h-[32rem] tablet:px-10 phone:px-5 tablet:py-12 phone:py-7 bg-cover "
-                style={{ backgroundImage: `url(${coding})` }}
+                style={{ backgroundImage: `url(${getImgPath(coding)})` }}
               >
                 <div className="vignette"></div>
 
@@ -57,7 +65,7 @@ export default function Services() {
 
               <li
                 className="min-h-[20rem] rounded-xl overflow-hidden relative h-[32rem] tablet:px-10 phone:px-5 tablet:py-12 phone:py-7 bg-cover "
-                style={{ backgroundImage: `url(${laptop})` }}
+                style={{ backgroundImage: `url(${getImgPath(laptop)})` }}
               >
                 <div className="vignette"></div>
 
@@ -89,7 +97,7 @@ export default function Services() {
 
               <li
                 className="min-h-[20rem] rounded-xl overflow-hidden relative h-[32rem] tablet:px-10 phone:px-5 tablet:py-12 phone:py-7 bg-cover "
-                style={{ backgroundImage: `url(${dashboard})` }}
+                style={{ backgroundImage: `url(${getImgPath(dashboard)})` }}
               >
                 <div className="vignette"></div>
 

@@ -7,6 +7,14 @@ import { LoginForm } from "@components/molecules/form";
 // assets
 import bgHero from "@assets/images/bgHero.webp";
 
+function getImgPath(image: any): string {
+  if (!image) return "";
+  if (typeof image === "string") return image;
+  if ((image as any)?.src) return (image as any).src;
+  if ((image as any)?.default) return (image as any).default;
+  return String(image);
+}
+
 export default function Login() {
   return (
     <div className="phone:h-screen desktop:h-screen w-full tablet:p-3 phone:p-1">
@@ -15,7 +23,7 @@ export default function Login() {
 
         <Fade triggerOnce>
           <img
-            src={bgHero as any}
+            src={getImgPath(bgHero)}
             alt="Hero background"
             className="absolute -bottom-0 -right-14 hidden desktop:block laptop:scale-75 laptop:-bottom-24 laptop:-right-14 pc:scale-100 pc:-bottom-24 pc:-right-14 ultra:scale-110 ultra:bottom-2 ultra:-right-14 w-[700px] "
           />

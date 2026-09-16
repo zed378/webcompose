@@ -17,26 +17,34 @@ import dayat1 from "@assets/images/client/dayat.webp";
 import henny from "@assets/images/client/henny.webp";
 import zed from "@assets/images/client/zed.webp";
 
+function getImgPath(image: any): string {
+  if (!image) return "";
+  if (typeof image === "string") return image;
+  if ((image as any)?.src) return (image as any).src;
+  if ((image as any)?.default) return (image as any).default;
+  return String(image);
+}
+
 export const cardData = [
   {
     title: "Professional",
     desc: "We provide high-quality work as a timeline",
-    img: mark,
+    img: getImgPath(mark),
   },
   {
     title: "Experienced",
     desc: "Every project will be done by an experienced front-end and back-end Developer",
-    img: search,
+    img: getImgPath(search),
   },
   {
     title: "Competitive Price",
     desc: "We offer you competitive prices for web development and maintenance services.",
-    img: date,
+    img: getImgPath(date),
   },
   {
     title: "Satisfying",
     desc: "Team members all over the world",
-    img: money,
+    img: getImgPath(money),
   },
 ];
 
@@ -44,19 +52,19 @@ export const portoCard = [
   {
     title: "Mentari Edukids",
     desc: "Mentari Edukids is a tutoring institution that uses the Montessori teaching method as its curriculum. This project is a simple landing page that explains the programs and packages offered by this tutoring place and at the end of the page there will be a call to action that leads to the WhatsApp application for further communication.",
-    img: mentari,
+    img: getImgPath(mentari),
     link: "https://mentariedukids.my.id",
   },
   {
     title: "Digital Wedding Invitation",
     desc: " A digitalized wedding invitation project to make it easier to send invitations and reduce paper. This project has parameters that can be filled in dynamically so that each invited guest has a private invitation.",
-    img: dayat,
+    img: getImgPath(dayat),
     link: "https://www.dayatlubena.my.id/?to=Zawawi+dan+Eva",
   },
   {
     title: "The Journey",
     desc: "The Journey is a simple blog built using ReactJs and ExpressJS. This application has features for posting posts, commenting on posts and liking posts. This application is like a personal diary that we can share with other people.",
-    img: journey,
+    img: getImgPath(journey),
     link: "https://travel.webcompose.id",
   },
 ];
@@ -65,19 +73,19 @@ export const portoMobile = [
   {
     title: "Mentari Edukids",
     desc: "Mentari Edukids is a tutoring institution that uses the Montessori teaching method as its curriculum. This project is a simple landing page that explains the programs and packages offered by this tutoring place and at the end of the page there will be a call to action that leads to the WhatsApp application for further communication.",
-    img: mentarim,
+    img: getImgPath(mentarim),
     link: "https://mentariedukids.my.id",
   },
   {
     title: "Digital Wedding Invitation",
     desc: " A digitalized wedding invitation project to make it easier to send invitations and reduce paper. This project has parameters that can be filled in dynamically so that each invited guest has a private invitation.",
-    img: dayatm,
+    img: getImgPath(dayatm),
     link: "https://www.dayatlubena.my.id/?to=Zawawi+dan+Eva",
   },
   {
     title: "The Journey",
     desc: "The Journey is a simple blog built using ReactJs and ExpressJS. This application has features for posting posts, commenting on posts and liking posts. This application is like a personal diary that we can share with other people.",
-    img: journeym,
+    img: getImgPath(journeym),
     link: "https://travel.webcompose.id",
   },
 ];
@@ -85,21 +93,21 @@ export const portoMobile = [
 export const testimonyCard = [
   {
     id: 1,
-    img: zed,
+    img: getImgPath(zed),
     name: "Muhammad Zawawi",
     title: "Founder Tech Agency",
     desc: "Web Compose places a strong emphasis on the end-user, leading to enhanced retention rates. Their expertise lies in delivering exceptional user experiences and demonstrating a keen understanding of the broader strategic perspective.",
   },
   {
     id: 2,
-    img: dayat1,
+    img: getImgPath(dayat1),
     name: "Moch Rochmat Hidayat",
     title: "Freelancer, Indonesia",
     desc: "Web Compose has facilitated the streamlining of how I extended invitations to my colleagues and friends for my wedding.",
   },
   {
     id: 3,
-    img: henny,
+    img: getImgPath(henny),
     name: "Henny Irmawan",
     title: "CEO & Founder, Mentari Edukids, Indonesia",
     desc: "Alhamdulillah, the outcomes have conformed to our expectations. Furthermore, they have demonstrated a commitment to ongoing enhancements in response to our specific requests. The user interface has been harmonized with our color branding, facilitating a more intuitive comprehension of features that cater to budgetary and business requirements. In addition, their exceptional patience and expedited completion of the project exceeded our initial projections.",

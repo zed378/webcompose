@@ -75,7 +75,7 @@ const HistoryCard = () => {
             <div className="flex h-16 w-16 items-center justify-center">
               <img
                 className="h-full w-full rounded-xl"
-                src={data.image}
+                src={typeof data.image === "string" ? data.image : (data.image as any)?.src}
                 alt=""
               />
             </div>

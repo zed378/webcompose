@@ -10,7 +10,7 @@ import {
   useTable,
 } from "react-table";
 
-const CheckTable = (props) => {
+const CheckTable = (props: any) => {
   const { columnsData, tableData } = props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
@@ -49,15 +49,12 @@ const CheckTable = (props) => {
       <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
         <table
           {...getTableProps()}
-          className="w-full"
-          variant="simple"
-          color="gray-500"
-          mb="24px"
+          className="w-full mb-6 text-gray-500"
         >
           <thead>
-            {headerGroups.map((headerGroup, index) => (
+            {headerGroups.map((headerGroup: any, index: number) => (
               <tr {...headerGroup.getHeaderGroupProps()} key={index}>
-                {headerGroup.headers.map((column, index) => (
+                {headerGroup.headers.map((column: any, index: number) => (
                   <th
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                     className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
@@ -72,12 +69,12 @@ const CheckTable = (props) => {
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {page.map((row, index) => {
+            {page.map((row: any, index: number) => {
               prepareRow(row);
               return (
                 <tr {...row.getRowProps()} key={index}>
-                  {row.cells.map((cell, index) => {
-                    let data = "";
+                  {row.cells.map((cell: any, index: number) => {
+                    let data: React.ReactNode = "";
                     if (cell.column.Header === "NAME") {
                       data = (
                         <div className="flex items-center gap-2">

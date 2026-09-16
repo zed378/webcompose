@@ -1,5 +1,5 @@
 import React from "react";
-import { RouteItem } from "@types/index";
+import { RouteItem } from "@appTypes/index";
 
 // Icon Imports
 import {

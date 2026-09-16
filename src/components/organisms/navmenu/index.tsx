@@ -29,7 +29,7 @@ export default function NavMenu() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (innerWidth >= 1024) {
+    if (innerWidth && innerWidth >= 1024) {
       setIsWeb(true);
     } else {
       setIsWeb(false);
@@ -42,6 +42,7 @@ export default function NavMenu() {
   const sendSrc = send?.src || send;
   const wcSrc = wc?.src || wc;
   const logoMobileSrc = logomobile?.src || logomobile;
+  const profileBaseUrl = process.env.NEXT_PUBLIC_PROFILE || "";
 
   return (
     <div className="focus:outline-none focus:border-none">
@@ -84,7 +85,7 @@ export default function NavMenu() {
                   className="w-14 h-14 rounded-full overflow-hidden bg-cover bg-center "
                   style={{
                     backgroundImage: `url(${
-                      process.env.NEXT_PUBLIC_PROFILE + user?.picture
+                      profileBaseUrl + (user?.picture || "")
                     })`,
                   }}
                 ></div>
@@ -260,7 +261,7 @@ export default function NavMenu() {
                   className="w-14 h-14 rounded-full overflow-hidden bg-cover bg-center "
                   style={{
                     backgroundImage: `url(${
-                      process.env.NEXT_PUBLIC_PROFILE + user?.picture
+                      profileBaseUrl + (user?.picture || "")
                     })`,
                   }}
                 ></div>

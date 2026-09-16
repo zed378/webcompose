@@ -14,12 +14,18 @@ import {
 } from "react-icons/io";
 import avatar from "@assets/img/avatars/avatar4.png";
 
-const Navbar = (props) => {
+const Navbar = (props: {
+  onOpenSidenav?: () => void;
+  brandText?: string;
+  logoText?: string;
+  secondary?: boolean | string;
+  [key: string]: any;
+}) => {
   const { onOpenSidenav, brandText } = props;
   const [darkmode, setDarkmode] = React.useState(false);
 
-  const navbarimageSrc = navbarimage?.src || navbarimage;
-  const avatarSrc = avatar?.src || avatar;
+  const navbarimageSrc = (navbarimage as any)?.src || (navbarimage as any);
+  const avatarSrc = (avatar as any)?.src || (avatar as any);
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">

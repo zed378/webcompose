@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { NavbarProps } from "@types/index";
+import { NavbarProps } from "@appTypes/index";
 
 // components
 import Dropdown from "@components/dropdown";

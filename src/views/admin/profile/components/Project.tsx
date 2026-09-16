@@ -21,7 +21,7 @@ const Project = () => {
       <div className="flex w-full items-center justify-between rounded-2xl bg-white p-3 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
         <div className="flex items-center">
           <div className="">
-            <img className="h-[83px] w-[83px] rounded-lg" src={image1} alt="" />
+            <img className="h-[83px] w-[83px] rounded-lg" src={typeof image1 === 'string' ? image1 : image1.src} alt="" />
           </div>
           <div className="ml-4">
             <p className="text-base font-medium text-navy-700 dark:text-white">
@@ -46,7 +46,7 @@ const Project = () => {
       <div className="mt-3 flex w-full items-center justify-between rounded-2xl bg-white p-3 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
         <div className="flex items-center">
           <div className="">
-            <img className="h-[83px] w-[83px] rounded-lg" src={image3} alt="" />
+            <img className="h-[83px] w-[83px] rounded-lg" src={typeof image3 === 'string' ? image3 : image3.src} alt="" />
           </div>
           <div className="ml-4">
             <p className="text-base font-medium text-navy-700 dark:text-white">
@@ -71,7 +71,7 @@ const Project = () => {
       <div className="mt-3 flex w-full items-center justify-between rounded-2xl bg-white p-3 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
         <div className="flex items-center">
           <div className="">
-            <img className="h-[83px] w-[83px] rounded-lg" src={image2} alt="" />
+            <img className="h-[83px] w-[83px] rounded-lg" src={typeof image2 === 'string' ? image2 : image2.src} alt="" />
           </div>
           <div className="ml-4">
             <p className="text-base font-medium text-navy-700 dark:text-white">
