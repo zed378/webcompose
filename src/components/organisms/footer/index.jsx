@@ -1,5 +1,7 @@
+"use client";
+
 import { Fade } from "react-awesome-reveal";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 // asset
 import logoFooter from "@assets/images/logoFooter.svg";
@@ -15,7 +17,8 @@ export default function Footer() {
   const date = new Date();
   const year = date.getFullYear();
 
-  const nav = useNavigate();
+  const router = useRouter();
+  const logoFooterSrc = logoFooter?.src || logoFooter;
 
   return (
     <div className="bg-[#644A98] ultra:px-24 ultra:pb-16 pc:px-20 pc:pb-14 desktop:px-20 desktop:pt-36 desktop:pb-14 laptop:px-16 laptop:pt-44 laptop:pb-14 tablet:px-20 tablet:pt-36 tablet:pb-14 phone:px-10 phone:pt-36 phone:pb-14 text-white flex flex-col gap-4 relative ">
@@ -23,7 +26,7 @@ export default function Footer() {
 
       <div className="ultra:w-[25%] pc:w-[30%] ">
         <Fade direction="down">
-          <img src={logoFooter} alt={logoFooter} />
+          <img src={logoFooterSrc} alt="Logo Footer" />
         </Fade>
 
         <Fade direction="left">
@@ -51,25 +54,25 @@ export default function Footer() {
           <ul className="flex items-center gap-8 mt-10 mb-12 ">
             <li
               className="cursor-pointer text-white font-medium"
-              onClick={() => nav("/")}
+              onClick={() => router.push("/")}
             >
               Home
             </li>
             <li
               className="cursor-pointer text-white font-medium"
-              onClick={() => nav("/services")}
+              onClick={() => router.push("/services")}
             >
               Our Services
             </li>
             <li
               className="cursor-pointer text-white font-medium"
-              onClick={() => nav("/contact")}
+              onClick={() => router.push("/contact")}
             >
               Contact
             </li>
             <li
               className="cursor-pointer text-white font-medium"
-              onClick={() => nav("/")}
+              onClick={() => router.push("/")}
             >
               Privacy
             </li>

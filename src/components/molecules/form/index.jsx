@@ -1,5 +1,7 @@
+"use client";
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { Fade } from "react-awesome-reveal";
 import { Formik, Form, Field } from "formik";
 import { useDispatch } from "react-redux";
@@ -53,7 +55,7 @@ export function ContactForm() {
           })
           .catch((err) => {
             setLoading(false);
-            setMsg(err.data.message.solution);
+            setMsg(err?.data?.message?.solution || "An error occurred");
             setTimeout(() => {
               setMsg("");
             }, 5000);
@@ -247,8 +249,7 @@ export function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
   const dispatch = useDispatch();
-
-  const nav = useNavigate();
+  const router = useRouter();
 
   return (
     <Formik
@@ -275,13 +276,12 @@ export function LoginForm() {
             setMsg(data.message);
             setTimeout(() => {
               setMsg("");
-              nav("/dashboard/default");
-              window.location.reload(true);
-            }, 3000);
+              router.push("/dashboard/default");
+            }, 2000);
           })
           .catch((err) => {
             setLoading(false);
-            setMsg(err.response.data.message);
+            setMsg(err?.response?.data?.message || "Login failed");
             setTimeout(() => {
               setMsg("");
             }, 5000);
@@ -339,7 +339,7 @@ export function LoginForm() {
 
           <Fade direction="down" cascade duration={500}>
             <ul className="w-full flex flex-col gap-2 ">
-              <label className="text-lg" htmlFor="firstName">
+              <label className="text-lg" htmlFor="password">
                 Password
               </label>
               <Field
@@ -370,13 +370,13 @@ export function LoginForm() {
           <Fade direction="up" cascade duration={500}>
             <p
               className="text-sm text-center mt-2 cursor-pointer "
-              onClick={() => nav("/register")}
+              onClick={() => router.push("/register")}
             >
               Don't have account? Click here to <b>Register!</b>
             </p>
             <p
               className="text-sm text-center cursor-pointer font-medium hover:underline "
-              onClick={() => nav("/forgot")}
+              onClick={() => router.push("/forgot")}
             >
               Forgot Password
             </p>
@@ -390,8 +390,7 @@ export function LoginForm() {
 export function RegisterForm() {
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
-
-  const nav = useNavigate();
+  const router = useRouter();
 
   return (
     <Formik
@@ -417,12 +416,12 @@ export function RegisterForm() {
             setMsg(data.data.message);
             setTimeout(() => {
               setMsg("");
-              nav("/login");
-            }, 8000);
+              router.push("/login");
+            }, 3000);
           })
           .catch((err) => {
             setLoading(false);
-            setMsg(err.response.data.message);
+            setMsg(err?.response?.data?.message || "Registration failed");
             setTimeout(() => {
               setMsg("");
             }, 5000);
@@ -517,7 +516,7 @@ export function RegisterForm() {
 
           <Fade direction="down" cascade duration={500}>
             <ul className="w-full flex flex-col gap-2 ">
-              <label className="text-lg" htmlFor="firstName">
+              <label className="text-lg" htmlFor="password">
                 Password
               </label>
               <Field
@@ -548,9 +547,9 @@ export function RegisterForm() {
           <Fade direction="up" cascade duration={500}>
             <p
               className="text-sm text-center mt-2 cursor-pointer "
-              onClick={() => nav("/login")}
+              onClick={() => router.push("/login")}
             >
-              ALready have account? Click here to <b>Login!</b>
+              Already have account? Click here to <b>Login!</b>
             </p>
           </Fade>
         </Form>

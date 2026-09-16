@@ -1,5 +1,9 @@
+"use client";
+
 import React, { Component } from 'react';
-import Chart from 'react-apexcharts';
+import dynamic from 'next/dynamic';
+
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 class BarChart extends Component {
   constructor(props) {
@@ -20,8 +24,8 @@ class BarChart extends Component {
   render() {
     return (
       <Chart
-        options={this.state.chartOptions}
-        series={this.state.chartData}
+        options={this.state.chartOptions || this.props.chartOptions}
+        series={this.state.chartData || this.props.chartData}
         type="bar"
         width="100%"
         height="100%"

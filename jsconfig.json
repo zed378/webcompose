@@ -4,13 +4,15 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@styles/*": ["src/styles/*"],
-      "@pages/*": ["src/pages/*"],
+      "@pages/*": ["src/views_pages/*"],
       "@redux/*": ["src/redux/*"],
       "@assets/*": ["src/assets/*"],
       "@utils/*": ["src/utils/*"],
       "@hooks/*": ["src/hooks/*"],
       "@layout/*": ["src/layouts/*"],
-      "@route/*": ["src/routes/*"]
+      "@route/*": ["src/routes/*"],
+      "@views/*": ["src/views/*"],
+      "@variables/*": ["src/variables/*"]
     }
   },
   "exclude": ["node_modules"]

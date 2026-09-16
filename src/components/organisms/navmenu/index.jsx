@@ -1,5 +1,7 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import useWindowSize from "@rooks/use-window-size";
 import { Fade, Slide } from "react-awesome-reveal";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,13 +19,12 @@ import { GrClose } from "react-icons/gr";
 export default function NavMenu() {
   const [opacity, setOpacity] = useState("0.4");
   const [modal, setModal] = useState(false);
-  const nav = useNavigate();
+  const router = useRouter();
 
   const { innerWidth } = useWindowSize();
   const [isWeb, setIsWeb] = useState(false);
 
-  const { user } = useSelector((state) => state.auth);
-
+  const { user } = useSelector((state) => state.auth || {});
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,6 +34,13 @@ export default function NavMenu() {
       setIsWeb(false);
     }
   }, [innerWidth]);
+
+  const homeSrc = home?.src || home;
+  const dashSrc = dash?.src || dash;
+  const starsSrc = stars?.src || stars;
+  const sendSrc = send?.src || send;
+  const wcSrc = wc?.src || wc;
+  const logoMobileSrc = logomobile?.src || logomobile;
 
   return (
     <div className="focus:outline-none focus:border-none">
@@ -75,7 +83,7 @@ export default function NavMenu() {
                   className="w-14 h-14 rounded-full overflow-hidden bg-cover bg-center "
                   style={{
                     backgroundImage: `url(${
-                      process.env.REACT_APP_PROFILE + user?.picture
+                      process.env.NEXT_PUBLIC_PROFILE + user?.picture
                     })`,
                   }}
                 ></div>
@@ -99,12 +107,12 @@ export default function NavMenu() {
             <div
               className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer"
               onClick={() => {
-                nav("/");
+                router.push("/");
                 setModal(!modal);
               }}
             >
               <div className="w-[20%] pl-2 pt-1">
-                <img src={home} alt={home} className="w-[22px] h-auto" />
+                <img src={homeSrc} alt="Home" className="w-[22px] h-auto" />
               </div>
 
               <div className="flex flex-col w-[80%]">
@@ -123,12 +131,12 @@ export default function NavMenu() {
               <div
                 className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer"
                 onClick={() => {
-                  nav("/dashboard/default");
+                  router.push("/dashboard/default");
                   setModal(!modal);
                 }}
               >
                 <div className="w-[20%] pl-2 pt-1">
-                  <img src={dash} alt={dash} className="w-[22px] h-auto" />
+                  <img src={dashSrc} alt="Dashboard" className="w-[22px] h-auto" />
                 </div>
 
                 <div className="flex flex-col w-[80%]">
@@ -147,12 +155,12 @@ export default function NavMenu() {
             <div
               className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer"
               onClick={() => {
-                nav("/services");
+                router.push("/services");
                 setModal(!modal);
               }}
             >
               <div className="w-[20%] pl-2 pt-1">
-                <img src={stars} alt={stars} className="w-[22px] h-auto" />
+                <img src={starsSrc} alt="Services" className="w-[22px] h-auto" />
               </div>
 
               <div className="flex flex-col w-[80%]">
@@ -170,12 +178,12 @@ export default function NavMenu() {
             <div
               className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer"
               onClick={() => {
-                nav("/contact");
+                router.push("/contact");
                 setModal(!modal);
               }}
             >
               <div className="w-[20%] pl-2 pt-1">
-                <img src={send} alt={send} className="w-[22px] h-auto" />
+                <img src={sendSrc} alt="Contact Us" className="w-[22px] h-auto" />
               </div>
 
               <div className="flex flex-col w-[80%]">
@@ -196,7 +204,7 @@ export default function NavMenu() {
                 <li
                   className="py-3 flex justify-center bg-[#7859B6] border-[#7859B6] hover:bg-violet-600 text-white rounded-lg cursor-pointer "
                   onClick={() => {
-                    nav("/register");
+                    router.push("/register");
                     setModal(!modal);
                   }}
                 >
@@ -206,7 +214,7 @@ export default function NavMenu() {
                 <li
                   className="py-3 flex justify-center bg-white hover:bg-violet-100 border border-[#7859B6] text-[#7859B6] rounded-lg cursor-pointer "
                   onClick={() => {
-                    nav("/login");
+                    router.push("/login");
                     setModal(!modal);
                   }}
                 >
@@ -236,8 +244,8 @@ export default function NavMenu() {
         <div className="w-full h-screen bg-white absolute top-0 right-0 z-[30]">
           <div className="flex justify-between items-center px-4 py-3">
             <div className="flex items-center gap-3">
-              <img src={logomobile} alt={logomobile} />
-              <img src={wc} alt={wc} className="h-6" />
+              <img src={logoMobileSrc} alt="Logo" />
+              <img src={wcSrc} alt="Web Compose" className="h-6" />
             </div>
 
             <GrClose size={20} onClick={() => setModal(false)} />
@@ -251,7 +259,7 @@ export default function NavMenu() {
                   className="w-14 h-14 rounded-full overflow-hidden bg-cover bg-center "
                   style={{
                     backgroundImage: `url(${
-                      process.env.REACT_APP_PROFILE + user?.picture
+                      process.env.NEXT_PUBLIC_PROFILE + user?.picture
                     })`,
                   }}
                 ></div>
@@ -277,12 +285,12 @@ export default function NavMenu() {
               <div
                 className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer gap-5"
                 onClick={() => {
-                  nav("/");
+                  router.push("/");
                   setModal(!modal);
                 }}
               >
                 <div className="pl-2 pt-1">
-                  <img src={home} alt={home} className="w-[22px] h-auto" />
+                  <img src={homeSrc} alt="Home" className="w-[22px] h-auto" />
                 </div>
 
                 <div className="flex flex-col w-[80%]">
@@ -294,19 +302,18 @@ export default function NavMenu() {
                   </p>
                 </div>
               </div>
-              {/* end of home */}
 
               {/* dashboard */}
               {user && (
                 <div
                   className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer gap-5"
                   onClick={() => {
-                    nav("/dashboard/default");
+                    router.push("/dashboard/default");
                     setModal(!modal);
                   }}
                 >
                   <div className="pl-2 pt-1">
-                    <img src={dash} alt={dash} className="w-[22px] h-auto" />
+                    <img src={dashSrc} alt="Dashboard" className="w-[22px] h-auto" />
                   </div>
 
                   <div className="flex flex-col w-[80%]">
@@ -319,18 +326,17 @@ export default function NavMenu() {
                   </div>
                 </div>
               )}
-              {/* end of dashboard */}
 
               {/* services */}
               <div
                 className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer gap-5"
                 onClick={() => {
-                  nav("/services");
+                  router.push("/services");
                   setModal(!modal);
                 }}
               >
                 <div className="pl-2 pt-1">
-                  <img src={stars} alt={stars} className="w-[22px] h-auto" />
+                  <img src={starsSrc} alt="Services" className="w-[22px] h-auto" />
                 </div>
 
                 <div className="flex flex-col w-[80%]">
@@ -342,18 +348,17 @@ export default function NavMenu() {
                   </p>
                 </div>
               </div>
-              {/* end of services */}
 
               {/* contact us */}
               <div
                 className="flex items-start rounded-xl hover:bg-slate-100 py-1 px-1 cursor-pointer gap-5"
                 onClick={() => {
-                  nav("/contact");
+                  router.push("/contact");
                   setModal(!modal);
                 }}
               >
                 <div className="pl-2 pt-1">
-                  <img src={send} alt={send} className="w-[22px] h-auto" />
+                  <img src={sendSrc} alt="Contact Us" className="w-[22px] h-auto" />
                 </div>
 
                 <div className="flex flex-col w-[80%]">
@@ -365,7 +370,6 @@ export default function NavMenu() {
                   </p>
                 </div>
               </div>
-              {/* end of contact us */}
             </Fade>
 
             {!user ? (
@@ -374,7 +378,7 @@ export default function NavMenu() {
                   <li
                     className="py-3 flex justify-center bg-[#7859B6] border-[#7859B6] hover:bg-violet-600 text-white rounded-lg cursor-pointer "
                     onClick={() => {
-                      nav("/register");
+                      router.push("/register");
                       setModal(!modal);
                     }}
                   >
@@ -384,7 +388,7 @@ export default function NavMenu() {
                   <li
                     className="py-3 flex justify-center bg-white hover:bg-violet-100 border border-[#7859B6] text-[#7859B6] rounded-lg cursor-pointer "
                     onClick={() => {
-                      nav("/login");
+                      router.push("/login");
                       setModal(!modal);
                     }}
                   >

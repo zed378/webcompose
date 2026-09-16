@@ -1,4 +1,6 @@
-import { useNavigate } from "react-router-dom";
+"use client";
+
+import { useRouter } from "next/navigation";
 import { Fade, Slide } from "react-awesome-reveal";
 
 // components
@@ -9,18 +11,20 @@ import logoD from "@assets/images/logodesktop.svg";
 import logoM from "@assets/images/logomobile.svg";
 
 export default function Navbar() {
-  const nav = useNavigate();
+  const router = useRouter();
+  const logoDSrc = logoD?.src || logoD;
+  const logoMSrc = logoM?.src || logoM;
 
   return (
     <div className="w-full flex justify-between items-center">
       {/* logo */}
       <div
-        onClick={() => nav("/")}
+        onClick={() => router.push("/")}
         className="cursor-pointer flex items-center gap-3"
       >
         <Fade cascade>
-          <img src={logoM} alt={logoM} />
-          <img src={logoD} alt={logoD} className="hidden laptop:block" />
+          <img src={logoMSrc} alt="Logo Mobile" />
+          <img src={logoDSrc} alt="Logo Desktop" className="hidden laptop:block" />
         </Fade>
       </div>
       {/* end of logo */}
@@ -30,13 +34,12 @@ export default function Navbar() {
         <Slide direction="right">
           <button
             className="flex items-center justify-center text-black bg-white py-2 px-6 rounded-md hover:bg-purple-200"
-            onClick={() => nav("/contact")}
+            onClick={() => router.push("/contact")}
           >
             + Become Client
           </button>
         </Slide>
 
-        {/* <NavMenu /> */}
         <NavMenu />
       </div>
       {/* end of nav menu */}
