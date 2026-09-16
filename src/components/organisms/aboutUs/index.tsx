@@ -105,7 +105,7 @@ export default function AboutUs() {
         <div className="w-full absolute tablet:top-0 left-0 flex justify-center laptop:pt-20 tablet:pt-64 tablet:mt-0 phone:mt-20 ">
           <Fade direction="up">
             <img
-              src={typeof laptop === "string" ? laptop : (laptop as any)?.src}
+              src={typeof laptop === "string" ? laptop : (laptop as any)?.src || (laptop as any)?.default || laptop}
               alt="Laptop"
               className="ultra:w-[60rem] pc:w-[55rem] desktop:w-[52.5rem] laptop:w-[50rem] tablet:w-[35rem] phone:w-[25rem] "
             />

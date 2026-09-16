@@ -3,7 +3,7 @@ import { Fade } from "react-awesome-reveal";
 import { BsArrowUpRight } from "react-icons/bs";
 
 export default function PortoCardMobile({ item }: { item: any }) {
-  const imgSrc = typeof item?.img === "string" ? item.img : item?.img?.src;
+  const imgSrc = typeof item?.img === "string" ? item.img : item?.img?.src || item?.img?.default || item?.img;
   return (
     <div className="w-full rounded-2xl flex flex-col gap-4 ">
       <Fade direction="up">

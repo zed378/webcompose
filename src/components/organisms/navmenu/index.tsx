@@ -36,12 +36,12 @@ export default function NavMenu() {
     }
   }, [innerWidth]);
 
-  const homeSrc = home?.src || home;
-  const dashSrc = dash?.src || dash;
-  const starsSrc = stars?.src || stars;
-  const sendSrc = send?.src || send;
-  const wcSrc = wc?.src || wc;
-  const logoMobileSrc = logomobile?.src || logomobile;
+  const homeSrc = typeof home === "string" ? home : home?.src || home?.default || home;
+  const dashSrc = typeof dash === "string" ? dash : dash?.src || dash?.default || dash;
+  const starsSrc = typeof stars === "string" ? stars : stars?.src || stars?.default || stars;
+  const sendSrc = typeof send === "string" ? send : send?.src || send?.default || send;
+  const wcSrc = typeof wc === "string" ? wc : wc?.src || wc?.default || wc;
+  const logoMobileSrc = typeof logomobile === "string" ? logomobile : logomobile?.src || logomobile?.default || logomobile;
   const profileBaseUrl = process.env.NEXT_PUBLIC_PROFILE || "";
 
   return (

@@ -11,9 +11,9 @@ import play from "@assets/images/play.webp";
 import { BsArrowDown, BsStarFill, BsFillPlayCircleFill } from "react-icons/bs";
 
 export default function Hero() {
-  const bgHeroSrc = typeof bgHero === "string" ? bgHero : (bgHero as any)?.src;
-  const playSrc = typeof play === "string" ? play : (play as any)?.src;
-  const laptopSrc = typeof laptop === "string" ? laptop : (laptop as any)?.src;
+  const bgHeroSrc = typeof bgHero === "string" ? bgHero : (bgHero as any)?.src || (bgHero as any)?.default || bgHero;
+  const playSrc = typeof play === "string" ? play : (play as any)?.src || (play as any)?.default || play;
+  const laptopSrc = typeof laptop === "string" ? laptop : (laptop as any)?.src || (laptop as any)?.default || laptop;
 
   return (
     <div className="tablet:min-h-screen laptop:h-screen w-full tablet:p-3 phone:p-1">

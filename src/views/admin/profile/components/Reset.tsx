@@ -18,6 +18,7 @@ import { requestOTP, resetPassword } from "@hooks/authHooks";
 
 const Reset = () => {
   const { user } = useSelector((state: RootState) => state.auth);
+  const resolveImg = (img: any) => typeof img === 'string' ? img : img?.src || img?.default || img;
 
   const [pass, setPass] = useState("");
   const [confPass, setConfPass] = useState("");
@@ -153,7 +154,7 @@ const Reset = () => {
           >
             {otpLoading && (
               <img
-                src={loadingimg}
+                src={resolveImg(loadingimg)}
                 alt={loadingimg}
                 srcSet={loadingimg}
                 className="w-4 h-4 animate-spin mr-1 "
@@ -305,7 +306,7 @@ const Reset = () => {
         >
           {submitLoading && (
             <img
-              src={loadingimg}
+              src={resolveImg(loadingimg)}
               alt={loadingimg}
               srcSet={loadingimg}
               className="w-5 h-5 animate-spin mr-1 "

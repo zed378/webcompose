@@ -22,7 +22,7 @@ const NftCard: React.FC<NftCardProps> = ({
   extra = "",
 }) => {
   const [heart, setHeart] = useState(true);
-  const imageSrc = (image as any)?.src || image;
+  const imageSrc = (image as any)?.src || (image as any)?.default || image;
 
   return (
     <Card
@@ -70,7 +70,7 @@ const NftCard: React.FC<NftCardProps> = ({
               >
                 <img
                   className="h-full w-full rounded-full object-cover"
-                  src={(avt as any)?.src || avt}
+                  src={(avt as any)?.src || (avt as any)?.default || avt}
                   alt="Bidder Avatar"
                 />
               </span>

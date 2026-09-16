@@ -10,7 +10,7 @@ export interface TestimonialCardProps {
 }
 
 export default function TestimonialCard({ item, id, incre, decre }: TestimonialCardProps) {
-  const imgSrc = typeof item?.img === "string" ? item.img : item?.img?.src;
+  const imgSrc = typeof item?.img === "string" ? item.img : item?.img?.src || item?.img?.default || item?.img;
   return (
     <div className={`${id !== item.id ? "hidden" : "flex"} flex-col gap-6 `}>
       <div className="flex items-center ultra:gap-6 desktop:gap-5 laptop:gap-4 phone:gap-3 relative ">

@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Why({ item }: { item: any }) {
-  const imgSrc = typeof item?.img === "string" ? item.img : item?.img?.src;
+  const imgSrc = typeof item?.img === "string" ? item.img : item?.img?.src || (item?.img as any)?.default || item?.img;
   return (
     <div className="bg-purple-100/50 ultra:min-h-[15rem] pc:min-h-[17.5rem] desktop:min-h-[18rem] laptop:min-h-[15rem] tablet:min-h-[15rem] phone:min-h-[17.5rem] rounded-3xl relative overflow-hidden pc:p-5 desktop:p-4 laptop:p-5 tablet:p-5 phone:p-4 flex flex-col gap-4 ">
       <h1 className="ultra:text-4xl pc:text-3xl desktop:text-2xl tablet:text-4xl phone:text-2xl font-bold ">

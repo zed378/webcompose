@@ -24,8 +24,8 @@ const Navbar = (props: {
   const { onOpenSidenav, brandText } = props;
   const [darkmode, setDarkmode] = React.useState(false);
 
-  const navbarimageSrc = (navbarimage as any)?.src || (navbarimage as any);
-  const avatarSrc = (avatar as any)?.src || (avatar as any);
+  const navbarimageSrc = typeof navbarimage === "string" ? navbarimage : (navbarimage as any)?.src || (navbarimage as any)?.default || navbarimage;
+  const avatarSrc = typeof avatar === "string" ? avatar : (avatar as any)?.src || (avatar as any)?.default || avatar;
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
