@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "@redux/hooks";
 
 // components
 import Navbar from "@components/navbar";
@@ -20,7 +20,11 @@ import {
 // routes
 import routes from "@route/routes";
 
-export default function DashboardLayout({ children }) {
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(true);
@@ -34,7 +38,7 @@ export default function DashboardLayout({ children }) {
     createModal,
     roleModal,
     updateProfileModal,
-  } = useSelector((state) => state.userSlice || {});
+  } = useAppSelector((state) => state.userSlice || {});
 
   useEffect(() => {
     if (typeof window !== "undefined" && !localStorage.token) {
@@ -65,10 +69,10 @@ export default function DashboardLayout({ children }) {
     }
   }, [pathname]);
 
-  const getActiveNavbar = () => {
+  const getActiveNavbar = (): boolean => {
     if (!pathname) return false;
     const matchedRoute = routes.find((r) => pathname.includes(r.path));
-    return matchedRoute ? matchedRoute.secondary : false;
+    return matchedRoute?.secondary ?? false;
   };
 
   useEffect(() => {
@@ -92,9 +96,7 @@ export default function DashboardLayout({ children }) {
         {/* Navbar & Main Content */}
         <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900 min-h-screen">
           {/* Main Content */}
-          <main
-            className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]`}
-          >
+          <main className="mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]">
             {/* Routes */}
             <div className="h-full">
               <Navbar

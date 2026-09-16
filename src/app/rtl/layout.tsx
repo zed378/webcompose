@@ -5,7 +5,11 @@ import Navbar from "@components/navbar/RTL";
 import Sidebar from "@components/sidebar/RTL";
 import Footer from "@components/footer/Footer";
 
-export default function RtlLayout({ children }) {
+export default function RtlLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
