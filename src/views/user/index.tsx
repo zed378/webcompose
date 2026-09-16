@@ -19,6 +19,14 @@ import { FaUserTie } from "react-icons/fa6";
 import { VscCheckAll } from "react-icons/vsc";
 import nodata from "@assets/img/nodata.svg";
 
+function getImgPath(image: any): string {
+  if (!image) return "";
+  if (typeof image === "string") return image;
+  if ((image as any)?.src) return (image as any).src;
+  if ((image as any)?.default) return (image as any).default;
+  return String(image);
+}
+
 // hooks
 import {
   getSYS,
@@ -401,8 +409,8 @@ export default function UserManagement() {
           >
             <img
               src={nodata}
-              alt={nodata}
-              srcSet={nodata}
+              alt={getImgPath(nodata)}
+              srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
@@ -434,8 +442,8 @@ export default function UserManagement() {
           >
             <img
               src={nodata}
-              alt={nodata}
-              srcSet={nodata}
+              alt={getImgPath(nodata)}
+              srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
@@ -467,8 +475,8 @@ export default function UserManagement() {
           >
             <img
               src={nodata}
-              alt={nodata}
-              srcSet={nodata}
+              alt={getImgPath(nodata)}
+              srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
@@ -499,8 +507,8 @@ export default function UserManagement() {
           >
             <img
               src={nodata}
-              alt={nodata}
-              srcSet={nodata}
+              alt={getImgPath(nodata)}
+              srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
@@ -531,8 +539,8 @@ export default function UserManagement() {
           >
             <img
               src={nodata}
-              alt={nodata}
-              srcSet={nodata}
+              alt={getImgPath(nodata)}
+              srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
@@ -563,8 +571,8 @@ export default function UserManagement() {
           >
             <img
               src={nodata}
-              alt={nodata}
-              srcSet={nodata}
+              alt={getImgPath(nodata)}
+              srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
@@ -595,8 +603,8 @@ export default function UserManagement() {
           >
             <img
               src={nodata}
-              alt={nodata}
-              srcSet={nodata}
+              alt={getImgPath(nodata)}
+              srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
@@ -627,8 +635,8 @@ export default function UserManagement() {
           >
             <img
               src={nodata}
-              alt={nodata}
-              srcSet={nodata}
+              alt={getImgPath(nodata)}
+              srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">

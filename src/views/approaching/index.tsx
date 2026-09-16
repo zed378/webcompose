@@ -19,6 +19,14 @@ import {
 } from "react-icons/ri";
 import nodata from "@assets/img/nodata.svg";
 
+function getImgPath(image: any): string {
+  if (!image) return "";
+  if (typeof image === "string") return image;
+  if ((image as any)?.src) return (image as any).src;
+  if ((image as any)?.default) return (image as any).default;
+  return String(image);
+}
+
 // hooks
 import {
   getApproaching,
@@ -256,9 +264,9 @@ export default function ApproachingManagement() {
             }`}
           >
             <img
-              src={nodata}
-              alt={nodata}
-              srcSet={nodata}
+              src={getImgPath(nodata)}
+              alt={getImgPath(nodata)}
+              srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
