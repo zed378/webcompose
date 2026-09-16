@@ -69,7 +69,6 @@ function CardMenu(props: any) {
       button={
         <button
           onClick={() => setOpen(!open)}
-          open={open}
           className={`${
             hidden ? "hidden" : "flex"
           } items-center text-xl hover:cursor-pointer ${

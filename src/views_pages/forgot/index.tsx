@@ -297,10 +297,6 @@ export default function Forgot() {
                         )}
                         inputStyle={style}
                         renderSeparator={<span className="mx-1">-</span>}
-                        focusStyle={{
-                          border: "2px solid gray",
-                          outline: "none",
-                        }}
                       />
                     </div>
                   </div>

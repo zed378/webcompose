@@ -54,16 +54,16 @@ export default function ApproachingManagement() {
   const [search, setSearch] = useState("");
 
   // approaching data
-  const [appData, setAppData] = useState([]);
-  const allAppData = appData?.filter((val) => {
+  const [appData, setAppData] = useState<any[]>([]);
+  const allAppData = appData?.filter((val: any) => {
     if (search === "") {
       return val;
     } else if (
-      val.company.company_name
-        .toLowerCase()
-        .includes(search.toLocaleLowerCase()) ||
-      val.user.firstName.toLowerCase().includes(search.toLocaleLowerCase()) ||
-      val.user.lastName.toLowerCase().includes(search.toLocaleLowerCase())
+      val.company?.company_name
+        ?.toLowerCase()
+        ?.includes(search.toLocaleLowerCase()) ||
+      val.user?.firstName?.toLowerCase()?.includes(search.toLocaleLowerCase()) ||
+      val.user?.lastName?.toLowerCase()?.includes(search.toLocaleLowerCase())
     ) {
       return val;
     }
@@ -74,69 +74,69 @@ export default function ApproachingManagement() {
 
   useEffect(() => {
     getApproaching().then((data) => {
-      setApp(data?.total);
-      setAppData(data?.data);
+      setApp(data?.total || 0);
+      setAppData(data?.data || []);
     });
     getMeeting().then((data) => {
-      setMeeting(data?.total);
+      setMeeting(data?.total || 0);
     });
     getQuoteSent().then((data) => {
-      setQs(data?.total);
+      setQs(data?.total || 0);
     });
     getContractSent().then((data) => {
-      setCs(data?.total);
+      setCs(data?.total || 0);
     });
     getDP().then((data) => {
-      setDp(data?.total);
+      setDp(data?.total || 0);
     });
     getProjectOnProgress().then((data) => {
-      setPop(data?.total);
+      setPop(data?.total || 0);
     });
     getProjectDone().then((data) => {
-      setPd(data?.total);
+      setPd(data?.total || 0);
     });
     getInvoiceSent().then((data) => {
-      setIs(data?.total);
+      setIs(data?.total || 0);
     });
     getLastPaymentDone().then((data) => {
-      setLpd(data?.total);
+      setLpd(data?.total || 0);
     });
     getRejected().then((data) => {
-      setRejected(data?.total);
+      setRejected(data?.total || 0);
     });
   }, []);
 
   const refetchData = () => {
     getApproaching().then((data) => {
-      setApp(data?.total);
-      setAppData(data?.data);
+      setApp(data?.total || 0);
+      setAppData(data?.data || []);
     });
     getMeeting().then((data) => {
-      setMeeting(data?.total);
+      setMeeting(data?.total || 0);
     });
     getQuoteSent().then((data) => {
-      setQs(data?.total);
+      setQs(data?.total || 0);
     });
     getContractSent().then((data) => {
-      setCs(data?.total);
+      setCs(data?.total || 0);
     });
     getDP().then((data) => {
-      setDp(data?.total);
+      setDp(data?.total || 0);
     });
     getProjectOnProgress().then((data) => {
-      setPop(data?.total);
+      setPop(data?.total || 0);
     });
     getProjectDone().then((data) => {
-      setPd(data?.total);
+      setPd(data?.total || 0);
     });
     getInvoiceSent().then((data) => {
-      setIs(data?.total);
+      setIs(data?.total || 0);
     });
     getLastPaymentDone().then((data) => {
-      setLpd(data?.total);
+      setLpd(data?.total || 0);
     });
     getRejected().then((data) => {
-      setRejected(data?.total);
+      setRejected(data?.total || 0);
     });
   };
 
@@ -258,7 +258,7 @@ export default function ApproachingManagement() {
             <img
               src={nodata}
               alt={nodata}
-              srcet={nodata}
+              srcSet={nodata}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">

@@ -83,8 +83,8 @@ export default function UserManagement() {
   const [search, setSearch] = useState("");
 
   // All User Data
-  const [allData, setAllData] = useState([]);
-  const allUserData = allData.filter((val) => {
+  const [allData, setAllData] = useState<any[]>([]);
+  const allUserData = allData.filter((val: any) => {
     if (search === "") {
       return val;
     } else if (
@@ -96,8 +96,8 @@ export default function UserManagement() {
   });
 
   //  Sys Admin data
-  const [sysData, setSysData] = useState([]);
-  const searchData = sysData.filter((val) => {
+  const [sysData, setSysData] = useState<any[]>([]);
+  const searchData = sysData.filter((val: any) => {
     if (search === "") {
       return val;
     } else if (
@@ -109,8 +109,8 @@ export default function UserManagement() {
   });
 
   // Admin Data
-  const [admData, setAdmData] = useState([]);
-  const adminData = admData.filter((val) => {
+  const [admData, setAdmData] = useState<any[]>([]);
+  const adminData = admData.filter((val: any) => {
     if (search === "") {
       return val;
     } else if (
@@ -122,8 +122,8 @@ export default function UserManagement() {
   });
 
   // Marketing Data
-  const [markData, setMarkData] = useState([]);
-  const marketingData = markData.filter((val) => {
+  const [markData, setMarkData] = useState<any[]>([]);
+  const marketingData = markData.filter((val: any) => {
     if (search === "") {
       return val;
     } else if (
@@ -135,8 +135,8 @@ export default function UserManagement() {
   });
 
   // Authenticated Data
-  const [auth, setAuth] = useState([]);
-  const authData = auth.filter((val) => {
+  const [auth, setAuth] = useState<any[]>([]);
+  const authData = auth.filter((val: any) => {
     if (search === "") {
       return val;
     } else if (
@@ -148,8 +148,8 @@ export default function UserManagement() {
   });
 
   // Client Data
-  const [clt, setClt] = useState([]);
-  const clientData = clt.filter((val) => {
+  const [clt, setClt] = useState<any[]>([]);
+  const clientData = clt.filter((val: any) => {
     if (search === "") {
       return val;
     } else if (
@@ -161,8 +161,8 @@ export default function UserManagement() {
   });
 
   // Developer Data
-  const [devel, setDevel] = useState([]);
-  const devData = devel.filter((val) => {
+  const [devel, setDevel] = useState<any[]>([]);
+  const devData = devel.filter((val: any) => {
     if (search === "") {
       return val;
     } else if (
@@ -174,8 +174,8 @@ export default function UserManagement() {
   });
 
   // HR Data
-  const [hrds, setHrds] = useState([]);
-  const hrdData = hrds.filter((val) => {
+  const [hrds, setHrds] = useState<any[]>([]);
+  const hrdData = hrds.filter((val: any) => {
     if (search === "") {
       return val;
     } else if (
@@ -402,7 +402,7 @@ export default function UserManagement() {
             <img
               src={nodata}
               alt={nodata}
-              srcet={nodata}
+              srcSet={nodata}
               className="max-w-[500px] "
             />
             <h1 className="text-3xl text-indigo-500 font-medium mb-10 ">
@@ -417,7 +417,7 @@ export default function UserManagement() {
       {tbName === "System Admin" && (
         <div className="mt-10">
           <ColumnsTable
-            columnsData={user.role === "SYS" ? userColumns : noAction}
+            columnsData={user?.role === "SYS" ? userColumns : noAction}
             tableData={searchData}
             tableName={tbName}
             setSearch={setSearch}
