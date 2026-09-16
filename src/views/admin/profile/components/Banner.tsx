@@ -22,21 +22,24 @@ const Banner = () => {
   const { user } = useSelector((state: RootState) => state.auth);
 
   const dispatch = useDispatch();
+  const bannerSrc = typeof banner === "string" ? banner : (banner as any)?.src;
+  const avatarSrc = typeof avatar === "string" ? avatar : (avatar as any)?.src;
+  const profileBaseUrl = process.env.NEXT_PUBLIC_PROFILE || "";
 
   return (
     <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
       {/* Background and profile */}
       <div
         className="relative mt-1 flex laptop:h-48 tablet:h-36 phone:h-32 w-full justify-center rounded-xl bg-cover"
-        style={{ backgroundImage: `url(${banner})` }}
+        style={{ backgroundImage: `url(${bannerSrc})` }}
       >
         <div
           className="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-white dark:!border-navy-700 bg-cover bg-center "
           style={{
             backgroundImage: `url(${
               user?.picture
-                ? process.env.REACT_APP_PROFILE + user?.picture
-                : avatar
+                ? profileBaseUrl + user?.picture
+                : avatarSrc
             })`,
           }}
         >

@@ -1,70 +1,135 @@
-# Getting Started with Create React App
+# Web Compose
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Web Compose** is a modern, full-featured web application and agency management platform built with **Next.js 14 App Router**, **TypeScript**, **Tailwind CSS**, and **Redux Toolkit**.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+- **Public Agency Pages**:
+  - **Landing Page** (`/`): High-converting hero banner, portfolio showcase, why us, and client testimonials.
+  - **Services** (`/services`): Overview of web design, development, and maintenance offerings.
+  - **Contact Us** (`/contact`): Interactive contact forms and communication channels.
+- **Authentication**:
+  - Login (`/login`), Register (`/register`), and Password Recovery (`/forgot`).
+- **Admin Dashboard** (`/dashboard`):
+  - **Main Dashboard** (`/dashboard/default`): Analytics overview, top creators, complex tables, and quick stats.
+  - **NFT Marketplace** (`/dashboard/marketplace`): Trending NFTs, recently added items, top creator metrics, and auction history cards.
+  - **Tables & Data Tables** (`/dashboard/tables`, `/dashboard/data-tables`): Interactive data tables built with React Table.
+  - **User & Approach Management** (`/dashboard/user-management`, `/dashboard/approach-management`): CRUD operations with Redux-managed modal dialogs.
+  - **Profile** (`/dashboard/profile`): User profile details, project history, and avatar upload modal.
+- **RTL Layout Support** (`/rtl/rtl-default`): Right-to-left layout configuration for internationalization.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Technology Stack
 
-### `npm test`
+- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/) (Strict Mode enabled)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) & Vanilla CSS modules
+- **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/) with typed hooks (`useAppDispatch`, `useAppSelector`)
+- **Data & Tables**: [React Table](https://react-table.tanstack.com/), [ApexCharts](https://apexcharts.com/)
+- **Icons & Animations**: [React Icons](https://react-icons.github.io/react-icons/), [React Awesome Reveal](https://github.com/salomonelli/react-awesome-reveal)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📁 Project Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```text
+webcompose/
+├── src/
+│   ├── app/                      # Next.js 14 App Router routes & layouts
+│   │   ├── layout.tsx            # Root layout with Redux Provider
+│   │   ├── page.tsx              # Home landing page
+│   │   ├── services/             # Services page
+│   │   ├── contact/              # Contact page
+│   │   ├── login/                # Sign-in page
+│   │   ├── register/             # Sign-up page
+│   │   ├── forgot/               # Forgot password page
+│   │   ├── dashboard/            # Dashboard layout & sub-routes
+│   │   └── rtl/                  # RTL layout & sub-routes
+│   ├── components/               # Reusable UI components
+│   │   ├── card/                 # Card containers (NftCard, CardMenu, etc.)
+│   │   ├── molecules/            # Modal dialogs, Navbar, Porto, Why cards
+│   │   ├── organisms/            # Hero, AboutUs, Testimony, NavMenu
+│   │   ├── navbar/               # Top Navbar & RTL Navbar
+│   │   └── sidebar/              # App Sidebar & RTL Sidebar
+│   ├── redux/                    # Redux Toolkit store & slices
+│   │   ├── store.ts              # Redux store definition
+│   │   ├── hooks.ts              # Typed useAppDispatch & useAppSelector hooks
+│   │   └── features/             # Auth & User slices
+│   ├── types/                    # Centralized TypeScript declarations
+│   │   ├── index.ts              # App interfaces & types
+│   │   └── declarations.d.ts     # Asset module declarations (.svg, .webp, etc.)
+│   ├── views/                    # Dashboard view components
+│   ├── hooks/                    # Custom API, validation, & helper hooks
+│   └── styles/                   # Global CSS & Tailwind imports
+├── tsconfig.json                 # TypeScript compiler configuration & path aliases
+├── tailwind.config.js            # Tailwind CSS theme & plugin config
+├── next.config.js                # Next.js configuration
+└── package.json                  # Dependencies & scripts
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📦 Getting Started
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Node.js**: `v18.x` or higher
+- **npm**: `v9.x` or higher
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Clone the repository and install dependencies using `--legacy-peer-deps`:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+git clone https://github.com/zed378/webcompose.git
+cd webcompose
+npm install --legacy-peer-deps
+```
 
-## Learn More
+### Running Locally
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Start the development server:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm run dev
+```
 
-### Code Splitting
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Building for Production
 
-### Analyzing the Bundle Size
+Compile TypeScript and build the optimized Next.js production bundle:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm run build
+```
 
-### Making a Progressive Web App
+Start the production server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+npm start
+```
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## ⚙️ Path Aliases
 
-### Deployment
+The project uses TypeScript path aliases configured in [`tsconfig.json`](./tsconfig.json):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- `@components/*` -> `src/components/*`
+- `@appTypes/*` -> `src/types/*`
+- `@redux/*` -> `src/redux/*`
+- `@views/*` -> `src/views/*`
+- `@hooks/*` -> `src/hooks/*`
+- `@assets/*` -> `src/assets/*`
+- `@route/*` -> `src/routes/*`
+- `@styles/*` -> `src/styles/*`
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📝 License
+
+This project is maintained by **Web Compose**. All rights reserved.

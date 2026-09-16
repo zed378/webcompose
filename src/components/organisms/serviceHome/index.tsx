@@ -6,6 +6,10 @@ import dashboard from "@assets/images/dashboard.webp";
 import laptop from "@assets/images/laptop.webp";
 
 export default function ServiceHome() {
+  const codingSrc = typeof coding === "string" ? coding : (coding as any)?.src;
+  const laptopSrc = typeof laptop === "string" ? laptop : (laptop as any)?.src;
+  const dashboardSrc = typeof dashboard === "string" ? dashboard : (dashboard as any)?.src;
+
   return (
     <div
       id="ourServices"
@@ -25,7 +29,7 @@ export default function ServiceHome() {
         <ul className="w-full grid desktop:grid-cols-3 laptop:grid-cols-2 gap-4 mt-20 ">
           <li
             className="min-h-[20rem] rounded-xl overflow-hidden relative h-[32rem] tablet:px-10 phone:px-5 tablet:py-12 phone:py-7 bg-cover "
-            style={{ backgroundImage: `url(${coding})` }}
+            style={{ backgroundImage: `url(${codingSrc})` }}
           >
             <div className="vignette"></div>
 
@@ -56,7 +60,7 @@ export default function ServiceHome() {
 
           <li
             className="min-h-[20rem] rounded-xl overflow-hidden relative h-[32rem] tablet:px-10 phone:px-5 tablet:py-12 phone:py-7 bg-cover "
-            style={{ backgroundImage: `url(${laptop})` }}
+            style={{ backgroundImage: `url(${laptopSrc})` }}
           >
             <div className="vignette"></div>
 
@@ -88,7 +92,7 @@ export default function ServiceHome() {
 
           <li
             className="min-h-[20rem] rounded-xl overflow-hidden relative h-[32rem] tablet:px-10 phone:px-5 tablet:py-12 phone:py-7 bg-cover "
-            style={{ backgroundImage: `url(${dashboard})` }}
+            style={{ backgroundImage: `url(${dashboardSrc})` }}
           >
             <div className="vignette"></div>
 

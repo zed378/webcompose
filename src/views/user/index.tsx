@@ -408,7 +408,7 @@ export default function UserManagement() {
             }`}
           >
             <img
-              src={nodata}
+              src={getImgPath(nodata)}
               alt={getImgPath(nodata)}
               srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
@@ -441,7 +441,7 @@ export default function UserManagement() {
             }`}
           >
             <img
-              src={nodata}
+              src={getImgPath(nodata)}
               alt={getImgPath(nodata)}
               srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
@@ -474,7 +474,7 @@ export default function UserManagement() {
             }`}
           >
             <img
-              src={nodata}
+              src={getImgPath(nodata)}
               alt={getImgPath(nodata)}
               srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
@@ -506,7 +506,7 @@ export default function UserManagement() {
             }`}
           >
             <img
-              src={nodata}
+              src={getImgPath(nodata)}
               alt={getImgPath(nodata)}
               srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
@@ -538,7 +538,7 @@ export default function UserManagement() {
             }`}
           >
             <img
-              src={nodata}
+              src={getImgPath(nodata)}
               alt={getImgPath(nodata)}
               srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
@@ -570,7 +570,7 @@ export default function UserManagement() {
             }`}
           >
             <img
-              src={nodata}
+              src={getImgPath(nodata)}
               alt={getImgPath(nodata)}
               srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
@@ -602,7 +602,7 @@ export default function UserManagement() {
             }`}
           >
             <img
-              src={nodata}
+              src={getImgPath(nodata)}
               alt={getImgPath(nodata)}
               srcSet={getImgPath(nodata)}
               className="max-w-[500px] "
@@ -634,7 +634,7 @@ export default function UserManagement() {
             }`}
           >
             <img
-              src={nodata}
+              src={getImgPath(nodata)}
               alt={getImgPath(nodata)}
               srcSet={getImgPath(nodata)}
               className="max-w-[500px] "

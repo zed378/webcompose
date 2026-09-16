@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
@@ -22,45 +21,48 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".",
     "paths": {
       "@components/*": [
-        "src/components/*"
+        "./src/components/*"
       ],
       "@styles/*": [
-        "src/styles/*"
+        "./src/styles/*"
       ],
       "@pages/*": [
-        "src/views_pages/*"
+        "./src/views_pages/*"
       ],
       "@redux/*": [
-        "src/redux/*"
+        "./src/redux/*"
       ],
       "@assets/*": [
-        "src/assets/*"
+        "./src/assets/*"
       ],
       "@utils/*": [
-        "src/utils/*"
+        "./src/utils/*"
       ],
       "@hooks/*": [
-        "src/hooks/*"
+        "./src/hooks/*"
       ],
       "@layout/*": [
-        "src/layouts/*"
+        "./src/layouts/*"
       ],
       "@route/*": [
-        "src/routes/*"
+        "./src/routes/*"
       ],
       "@views/*": [
-        "src/views/*"
+        "./src/views/*"
       ],
       "@variables/*": [
-        "src/variables/*"
+        "./src/variables/*"
       ],
       "@appTypes/*": [
-        "src/types/*"
+        "./src/types/*"
+      ],
+      "@assets/img/*": [
+        "./src/assets/img/*"
       ]
-    }
+    },
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
