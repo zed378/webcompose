@@ -268,7 +268,7 @@ export default function Forgot() {
                           className="absolute end-2.5 bottom-2.5 font-medium rounded-lg text-sm px-4 py-1 text-gray-900 "
                           onClick={() => setInput2(!input2)}
                         >
-                          {input1 ? <FaEye /> : <FaEyeSlash />}
+                          {input2 ? <FaEye /> : <FaEyeSlash />}
                         </button>
                       </div>
 

@@ -27,13 +27,13 @@ export default function AboutUs() {
 
         <Fade cascade direction="down">
           <ul className="desktop:w-[67.5%] flex flex-col gap-4 mt-14 ">
-            <p className="text-gray-400 desktop:text-xl font-light ">
+            <p className="text-gray-600 desktop:text-xl font-light ">
               Founded in 2023, Web Compose is a tech agency masters in web
               development and web maintenance with popular programming
               technology.
             </p>
 
-            <p className="text-gray-400 desktop:text-xl font-light ">
+            <p className="text-gray-600 desktop:text-xl font-light ">
               We assist business owners in building and managing websites and
               applications so they can focus on growing their business with
               automated processes. We are ready to work with you in building web

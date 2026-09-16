@@ -8,7 +8,7 @@ export default function Why({ item }: { item: any }) {
         {item.title}
       </h1>
 
-      <p className="text-gray-400 font-light ultra:w-[60%] pc:w-[75%] desktop:w-[80%] laptop:w-full tablet:w-[80%] ">
+      <p className="text-gray-600 font-light ultra:w-[60%] pc:w-[75%] desktop:w-[80%] laptop:w-full tablet:w-[80%] ">
         {item.desc}
       </p>
 
