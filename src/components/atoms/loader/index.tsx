@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function LoaderAnim() {
   return (
     <div className="loader loader-3">
