@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@redux/store";
 
 // components
 import Dropdown from "./DropDown";
@@ -24,14 +25,14 @@ import {
   setRoleModal,
 } from "@redux/features/user/userSlice";
 
-function CardMenu(props) {
+function CardMenu(props: any) {
   const { transparent, data, refetch, hidden } = props;
   const [open, setOpen] = useState(false);
 
   const dispatch = useDispatch();
 
   const { openModal, activeModal, disableModal, deleteModal, roleModal } =
-    useSelector((state) => state.userSlice);
+    useSelector((state: RootState) => state.userSlice);
 
   useEffect(() => {
     if (!openModal) {

@@ -20,7 +20,12 @@ import { useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 
-export default function Admin(props) {
+import { useSelector } from "react-redux";
+import { RootState } from "@redux/store";
+
+import { useNavigate } from "react-router-dom";
+
+export default function Admin(props: { [key: string]: any }) {
   const { ...rest } = props;
   const location = useLocation();
   const [open, setOpen] = React.useState(true);
@@ -35,11 +40,17 @@ export default function Admin(props) {
     createModal,
     roleModal,
     updateProfileModal,
-  } = useSelector((state) => state.userSlice);
+  } = useSelector((state: RootState) => state.userSlice);
 
   React.useEffect(() => {
-    if (!localStorage.token) {
+    if (typeof window !== "undefined" && !localStorage.token) {
       nav("/login");
+    }
+  }, [nav]);
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      document.documentElement.dir = "ltr";
     }
   }, []);
 

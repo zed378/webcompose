@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@redux/store";
 import { useDebounce } from "use-debounce";
 
 // components
@@ -43,8 +44,8 @@ export function ModalCreatetUser() {
   const [debouncedText] = useDebounce(text, 500);
   const [uname, setUname] = useState("");
 
-  const { message, loading } = useSelector((state) => state.userSlice);
-  const { user: dataLogin } = useSelector((state) => state.auth);
+  const { message, loading } = useSelector((state: RootState) => state.userSlice);
+  const { user: dataLogin } = useSelector((state: RootState) => state.auth);
 
   const [data, setData] = useState({
     firstName: "",
@@ -328,8 +329,8 @@ export function ModalEditUser() {
   const [debouncedText] = useDebounce(text, 500);
   const [uname, setUname] = useState("");
 
-  const { user, message, loading } = useSelector((state) => state.userSlice);
-  const { user: currentUser } = useSelector((state) => state.auth);
+  const { user, message, loading } = useSelector((state: RootState) => state.userSlice);
+  const { user: currentUser } = useSelector((state: RootState) => state.auth);
 
   const [data, setData] = useState({
     id: "",
@@ -526,8 +527,8 @@ export function ModalEditUser() {
 export function ModalEditRole() {
   const dispatch = useDispatch();
 
-  const { user, message, loading } = useSelector((state) => state.userSlice);
-  const { user: dataLogin } = useSelector((state) => state.auth);
+  const { user, message, loading } = useSelector((state: RootState) => state.userSlice);
+  const { user: dataLogin } = useSelector((state: RootState) => state.auth);
 
   const [data, setData] = useState({
     id: "",
@@ -688,7 +689,7 @@ export function ModalEditRole() {
 export function ModalActivateUser() {
   const dispatch = useDispatch();
 
-  const { user, message, loading } = useSelector((state) => state.userSlice);
+  const { user, message, loading } = useSelector((state: RootState) => state.userSlice);
 
   const [id, setId] = useState("");
 
@@ -772,7 +773,7 @@ export function ModalActivateUser() {
 export function ModalDisableUser() {
   const dispatch = useDispatch();
 
-  const { user, message, loading } = useSelector((state) => state.userSlice);
+  const { user, message, loading } = useSelector((state: RootState) => state.userSlice);
 
   const [id, setId] = useState("");
 
@@ -856,7 +857,7 @@ export function ModalDisableUser() {
 export function ModalDeleteUser() {
   const dispatch = useDispatch();
 
-  const { user, message, loading } = useSelector((state) => state.userSlice);
+  const { user, message, loading } = useSelector((state: RootState) => state.userSlice);
 
   const [id, setId] = useState("");
 
@@ -940,8 +941,8 @@ export function ModalDeleteUser() {
 export function ModalUpdateUserPicture() {
   const dispatch = useDispatch();
 
-  const { user, message, loading } = useSelector((state) => state.userSlice);
-  const { user: currentUser } = useSelector((state) => state.auth);
+  const { user, message, loading } = useSelector((state: RootState) => state.userSlice);
+  const { user: currentUser } = useSelector((state: RootState) => state.auth);
 
   const [progress, setProgress] = useState(100);
   const [upload, setUpload] = useState(false);

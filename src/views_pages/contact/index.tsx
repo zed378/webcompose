@@ -19,8 +19,8 @@ export default function ContactUs() {
 
           <Fade triggerOnce>
             <img
-              src={bgContact}
-              alt={bgContact}
+              src={bgContact as any}
+              alt="Contact background"
               className="absolute -bottom-24 -left-14 hidden desktop:block laptop:scale-75 laptop:-bottom-24 laptop:-left-14 pc:scale-100 pc:-bottom-24 pc:-left-14 ultra:scale-110 ultra:-bottom-24 ultra:-left-14 w-[700px] "
             />
           </Fade>

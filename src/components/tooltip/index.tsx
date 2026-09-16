@@ -1,5 +1,15 @@
+import React from "react";
 import { Tooltip } from "@chakra-ui/tooltip";
-const TooltipHorizon = (props) => {
+
+interface TooltipHorizonProps {
+  extra?: string;
+  trigger?: React.ReactNode;
+  content?: React.ReactNode;
+  placement?: any;
+  [key: string]: any;
+}
+
+const TooltipHorizon: React.FC<TooltipHorizonProps> = (props) => {
   const { extra, trigger, content, placement } = props;
   return (
     <Tooltip

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { RootState } from "@redux/store";
 
 // components
 import Widget from "@components/widget/Widget";
@@ -35,7 +36,7 @@ import {
 import { userColumns, noAction } from "./variables/tableColumns";
 
 export default function ApproachingManagement() {
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state: RootState) => state.auth);
 
   // total
   const [app, setApp] = useState(0);

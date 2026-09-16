@@ -7,6 +7,7 @@ import {
 } from "react-table";
 import { formatFullDate } from "node-format-date";
 import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@redux/store";
 
 // components
 import CardMenu from "./CardMenu";
@@ -23,16 +24,16 @@ import {
   setUserData,
 } from "@redux/features/user/userSlice";
 
-const ColumnsTable = (props) => {
+const ColumnsTable = (props: any) => {
   const { columnsData, tableData, tableName, refetch, setSearch, dataTotal } =
     props;
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
 
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state: RootState) => state.auth);
   const { createModal, updateProfileModal } = useSelector(
-    (state) => state.userSlice
+    (state: RootState) => state.userSlice
   );
   const dispatch = useDispatch();
 

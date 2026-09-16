@@ -15,8 +15,8 @@ export default function Login() {
 
         <Fade triggerOnce>
           <img
-            src={bgHero}
-            alt={bgHero}
+            src={bgHero as any}
+            alt="Hero background"
             className="absolute -bottom-0 -right-14 hidden desktop:block laptop:scale-75 laptop:-bottom-24 laptop:-right-14 pc:scale-100 pc:-bottom-24 pc:-right-14 ultra:scale-110 ultra:bottom-2 ultra:-right-14 w-[700px] "
           />
         </Fade>

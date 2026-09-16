@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@redux/store";
 import dateformat from "dateformat";
 
 // components
@@ -18,7 +19,7 @@ import {
 } from "@redux/features/user/userSlice";
 
 const Banner = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state: RootState) => state.auth);
 
   const dispatch = useDispatch();
 

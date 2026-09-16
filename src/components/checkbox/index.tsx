@@ -1,5 +1,11 @@
-const Checkbox = (props) => {
-  const { extra, color, ...rest } = props;
+import React from "react";
+
+export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  extra?: string;
+  color?: string;
+}
+
+const Checkbox: React.FC<CheckboxProps> = ({ extra = "", color, ...rest }) => {
   return (
     <input
       type="checkbox"

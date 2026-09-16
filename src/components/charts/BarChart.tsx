@@ -5,8 +5,18 @@ import dynamic from 'next/dynamic';
 
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
-class BarChart extends Component {
-  constructor(props) {
+export interface BarChartProps {
+  chartData: any[];
+  chartOptions: any;
+}
+
+export interface BarChartState {
+  chartData: any[];
+  chartOptions: any;
+}
+
+class BarChart extends Component<BarChartProps, BarChartState> {
+  constructor(props: BarChartProps) {
     super(props);
     this.state = {
       chartData: [],

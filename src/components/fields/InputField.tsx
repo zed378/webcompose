@@ -1,20 +1,36 @@
-// Custom components
 import React from "react";
 
-function InputField(props) {
-  const { label, id, extra, type, placeholder, variant, state, disabled } =
-    props;
+export interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  id?: string;
+  extra?: string;
+  variant?: string;
+  state?: "error" | "success" | string;
+}
 
+const InputField: React.FC<InputFieldProps> = ({
+  label,
+  id,
+  extra = "",
+  type = "text",
+  placeholder,
+  variant,
+  state,
+  disabled,
+  ...rest
+}) => {
   return (
     <div className={`${extra}`}>
-      <label
-        htmlFor={id}
-        className={`text-sm text-navy-700 dark:text-white ${
-          variant === "auth" ? "ml-1.5 font-medium" : "ml-3 font-bold"
-        }`}
-      >
-        {label}
-      </label>
+      {label && (
+        <label
+          htmlFor={id}
+          className={`text-sm text-navy-700 dark:text-white ${
+            variant === "auth" ? "ml-1.5 font-medium" : "ml-3 font-bold"
+          }`}
+        >
+          {label}
+        </label>
+      )}
       <input
         disabled={disabled}
         type={type}
@@ -29,9 +45,10 @@ function InputField(props) {
             ? "border-green-500 text-green-500 placeholder:text-green-500 dark:!border-green-400 dark:!text-green-400 dark:placeholder:!text-green-400"
             : "border-gray-200 dark:!border-white/10 dark:text-white"
         }`}
+        {...rest}
       />
     </div>
   );
-}
+};
 
 export default InputField;

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useWindowSize from "@rooks/use-window-size";
 import { useSelector } from "react-redux";
+import { RootState } from "@redux/store";
 import { Fade } from "react-awesome-reveal";
 
 // components
@@ -16,7 +17,7 @@ import loadingimg from "@assets/images/loadingimg.svg";
 import { requestOTP, resetPassword } from "@hooks/authHooks";
 
 const Reset = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state: RootState) => state.auth);
 
   const [pass, setPass] = useState("");
   const [confPass, setConfPass] = useState("");
@@ -270,7 +271,7 @@ const Reset = () => {
               numInputs={6}
               isInputNum={true}
               shouldAutoFocus={true}
-              renderInput={(props) => (
+              renderInput={(props: any) => (
                 <input
                   {...props}
                   className="block text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 focus:ring-navy-300 focus:border-navy-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white outline-none "

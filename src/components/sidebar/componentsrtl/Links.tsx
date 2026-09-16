@@ -1,20 +1,24 @@
 "use client";
 
-/* eslint-disable */
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import DashIcon from "@components/icons/DashIcon";
+import { RouteItem } from "@types/index";
 
-export function SidebarLinks(props) {
-  let pathname = usePathname() || "";
+export interface SidebarLinksProps {
+  routes: RouteItem[];
+}
+
+export function SidebarLinks(props: SidebarLinksProps) {
+  const pathname = usePathname() || "";
   const { routes } = props;
 
-  const activeRoute = (routeName) => {
+  const activeRoute = (routeName: string) => {
     return pathname.includes(routeName);
   };
 
-  const createLinks = (routes) => {
+  const createLinks = (routes: RouteItem[]) => {
     return routes.map((route, index) => {
       if (
         route.layout === "/admin" ||
@@ -54,10 +58,11 @@ export function SidebarLinks(props) {
           </Link>
         );
       }
+      return null;
     });
   };
 
-  return createLinks(routes);
+  return <>{createLinks(routes)}</>;
 }
 
 export default SidebarLinks;

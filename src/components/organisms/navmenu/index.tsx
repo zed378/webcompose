@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import useWindowSize from "@rooks/use-window-size";
 import { Fade, Slide } from "react-awesome-reveal";
 import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@redux/store";
 import { removeUser } from "@redux/features/auth/authSlice";
 
 // assets
@@ -24,7 +25,7 @@ export default function NavMenu() {
   const { innerWidth } = useWindowSize();
   const [isWeb, setIsWeb] = useState(false);
 
-  const { user } = useSelector((state) => state.auth || {});
+  const { user } = useSelector((state: RootState) => state.auth || {});
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -1,4 +1,12 @@
-const Switch = (props) => {
+import React from "react";
+
+interface SwitchProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  extra?: string;
+  color?: string;
+  id?: string;
+}
+
+const Switch: React.FC<SwitchProps> = (props) => {
   const { extra, color, ...rest } = props;
   return (
     <input

@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@redux/hooks";
+import { NavbarProps } from "@types/index";
 
 // components
 import Dropdown from "@components/dropdown";
@@ -18,12 +19,12 @@ import avatar from "@assets/img/avatars/default.webp";
 // Hooks
 import { removeUser } from "@redux/features/auth/authSlice";
 
-const Navbar = (props) => {
+const Navbar: React.FC<NavbarProps> = (props) => {
   const { onOpenSidenav, brandText } = props;
   const [darkmode, setDarkmode] = useState(false);
 
-  const { user } = useSelector((state) => state.auth || {});
-  const dispatch = useDispatch();
+  const { user } = useAppSelector((state) => state.auth || {});
+  const dispatch = useAppDispatch();
   const router = useRouter();
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const Navbar = (props) => {
     }
   }, []);
 
-  const avatarSrc = avatar?.src || avatar;
+  const avatarSrc = (avatar as any)?.src || avatar;
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
@@ -145,7 +146,6 @@ const Navbar = (props) => {
                     : avatarSrc
                 })`,
               }}
-              alt="Profile Pics"
             />
           }
           children={

@@ -5,9 +5,12 @@ import dynamic from "next/dynamic";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const PieChart = (props) => {
-  const { series, options } = props;
+export interface PieChartProps {
+  series: any[];
+  options: any;
+}
 
+const PieChart: React.FC<PieChartProps> = ({ series, options }) => {
   return (
     <Chart
       options={options}

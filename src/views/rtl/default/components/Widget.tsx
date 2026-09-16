@@ -1,6 +1,12 @@
 import Card from "@components/card";
 
-const Widget = ({ icon, title, subtitle }) => {
+interface WidgetProps {
+  icon?: React.ReactNode;
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
+}
+
+const Widget: React.FC<WidgetProps> = ({ icon, title, subtitle }) => {
   return (
     <Card extra="!flex-row flex-grow items-center rounded-[20px]">
       <div className="mr-4 flex h-[90px] w-auto flex-row items-center">

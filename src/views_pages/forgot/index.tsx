@@ -42,6 +42,7 @@ export default function Forgot() {
 
   const { innerWidth } = useWindowSize();
   useEffect(() => {
+    if (!innerWidth) return;
     if (innerWidth >= 1440) {
       setStyle({
         width: "54px",
@@ -69,7 +70,7 @@ export default function Forgot() {
     }
   }, [innerWidth]);
 
-  const request = (e) => {
+  const request = (e: any) => {
     e.preventDefault();
     if (isReqOTP) {
       alert("You already requested");
@@ -97,7 +98,7 @@ export default function Forgot() {
     }
   };
 
-  const reset = (e) => {
+  const reset = (e: any) => {
     e.preventDefault();
     setSubmitLoading(true);
     resetPassword(email, confPass, parseInt(otp))
@@ -111,12 +112,12 @@ export default function Forgot() {
 
         setTimeout(() => {
           setMsg("");
-          router.push("/login");
         }, 5000);
       })
       .catch((err) => {
         setMsg(err?.response?.data?.message);
         setSubmitLoading(false);
+        setIsReqOTP(false);
         setOtp("");
 
         setTimeout(() => {
@@ -142,8 +143,8 @@ export default function Forgot() {
 
         <Fade triggerOnce>
           <img
-            src={bgHero}
-            alt={bgHero}
+            src={bgHero as any}
+            alt="Hero background"
             className="absolute -bottom-0 -right-14 hidden desktop:block laptop:scale-75 laptop:-bottom-24 laptop:-right-14 pc:scale-100 pc:-bottom-24 pc:-right-14 ultra:scale-110 ultra:bottom-2 ultra:-right-14 w-[700px] "
           />
         </Fade>
@@ -287,9 +288,8 @@ export default function Forgot() {
                         value={otp}
                         onChange={(val) => setOtp(val)}
                         numInputs={6}
-                        isInputNum={true}
                         shouldAutoFocus={true}
-                        renderInput={(props) => (
+                        renderInput={(props: any) => (
                           <input
                             {...props}
                             className="block text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 focus:ring-navy-300 focus:border-navy-300 outline-none "

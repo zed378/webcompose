@@ -1,6 +1,15 @@
 import Switch from "@components/switch";
 
-const SwitchField = (props) => {
+interface SwitchFieldProps {
+  id: string;
+  label?: string;
+  desc?: string;
+  mt?: string;
+  mb?: string;
+  [key: string]: any;
+}
+
+const SwitchField: React.FC<SwitchFieldProps> = (props) => {
   const { id, label, desc, mt, mb } = props;
   return (
     <div className={`flex justify-between ${mt} ${mb} items-center`}>

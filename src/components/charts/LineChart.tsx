@@ -5,9 +5,12 @@ import dynamic from "next/dynamic";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const LineChart = (props) => {
-  const { series, options } = props;
+export interface ChartProps {
+  series: any[];
+  options: any;
+}
 
+const LineChart: React.FC<ChartProps> = ({ series, options }) => {
   return (
     <Chart
       options={options}

@@ -5,36 +5,25 @@ import Sidebar from "@components/sidebar/RTL";
 import Footer from "@components/footer/Footer";
 import routes from "@route/routes";
 
-export default function RTL(props) {
+export default function RTL(props: { [key: string]: any }) {
   const { ...rest } = props;
   const location = useLocation();
   const [open, setOpen] = React.useState(true);
   const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
 
   React.useEffect(() => {
-    window.addEventListener("resize", () =>
-      window.innerWidth < 1200 ? setOpen(false) : setOpen(true)
-    );
-  }, []);
-  React.useEffect(() => {
-    getActiveRoute(routes);
-  }, [location.pathname]);
-
-  const getActiveRoute = (routes) => {
-    let activeRoute = "RTL";
-    for (let i = 0; i < routes.length; i++) {
-      if (
-        window.location.href.indexOf(
-          routes[i].layout + "/" + routes[i].path
-        ) !== -1
-      ) {
-        setCurrentRoute(routes[i].name);
-      }
+    if (typeof window !== "undefined") {
+      document.documentElement.dir = "rtl";
+      const handleResize = () =>
+        window.innerWidth < 1200 ? setOpen(false) : setOpen(true);
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
     }
-    return activeRoute;
-  };
-  const getActiveNavbar = (routes) => {
+  }, []);
+
+  const getActiveNavbar = (routes: any[]) => {
     let activeNavbar = false;
+    if (typeof window === "undefined") return activeNavbar;
     for (let i = 0; i < routes.length; i++) {
       if (
         window.location.href.indexOf(routes[i].layout + routes[i].path) !== -1
@@ -44,7 +33,8 @@ export default function RTL(props) {
     }
     return activeNavbar;
   };
-  const getRoutes = (routes) => {
+
+  const getRoutes = (routes: any[]) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/rtl") {
         return (
@@ -55,8 +45,6 @@ export default function RTL(props) {
       }
     });
   };
-
-  document.documentElement.dir = "rtl";
   return (
     <div className="flex h-full w-full">
       <Sidebar open={open} onClose={() => setOpen(false)} />

@@ -1,12 +1,17 @@
+"use client";
+
 import React from "react";
 import Dropdown from "@components/dropdown";
-import { AiOutlineUser } from "react-icons/ai";
+import { AiOutlineUser, AiOutlineShop } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
-import { AiOutlineShop } from "react-icons/ai";
 import { TiLightbulb } from "react-icons/ti";
 
-function CardMenu(props) {
+export interface CardMenuProps {
+  transparent?: boolean;
+}
+
+function CardMenu(props: CardMenuProps) {
   const { transparent } = props;
   const [open, setOpen] = React.useState(false);
   return (
@@ -14,7 +19,6 @@ function CardMenu(props) {
       button={
         <button
           onClick={() => setOpen(!open)}
-          open={open}
           className={`flex items-center text-xl hover:cursor-pointer ${
             transparent
               ? "bg-none text-white hover:bg-none active:bg-none"

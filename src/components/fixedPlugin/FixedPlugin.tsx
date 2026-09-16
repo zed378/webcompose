@@ -3,11 +3,19 @@
 import React from "react";
 
 import { RiMoonFill, RiSunFill } from "react-icons/ri";
-export default function FixedPlugin(props) {
+interface FixedPluginProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  [key: string]: any;
+}
+
+export default function FixedPlugin(props: FixedPluginProps) {
   const { ...rest } = props;
-  const [darkmode, setDarkmode] = React.useState(
-    document.body.classList.contains("dark")
-  );
+  const [darkmode, setDarkmode] = React.useState(false);
+
+  React.useEffect(() => {
+    if (typeof document !== "undefined") {
+      setDarkmode(document.body.classList.contains("dark"));
+    }
+  }, []);
 
   return (
     <button

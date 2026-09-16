@@ -1,4 +1,12 @@
-const Radio = (props) => {
+import React from "react";
+
+interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  color?: string;
+  id?: string;
+  name?: string;
+}
+
+const Radio: React.FC<RadioProps> = (props) => {
   const { color, id, name, ...rest } = props;
   return (
     <input

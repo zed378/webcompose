@@ -1,4 +1,12 @@
-const Progress = (props) => {
+import React from "react";
+
+interface ProgressProps {
+  value?: number;
+  color?: string;
+  width?: string;
+}
+
+const Progress: React.FC<ProgressProps> = (props) => {
   const { value, color, width } = props;
   return (
     <div
