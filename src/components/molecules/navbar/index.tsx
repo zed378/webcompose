@@ -12,8 +12,8 @@ import logoM from "@assets/images/logomobile.svg";
 
 export default function Navbar() {
   const router = useRouter();
-  const logoDSrc = logoD?.src || logoD;
-  const logoMSrc = logoM?.src || logoM;
+  const logoDSrc = typeof logoD === "string" ? logoD : (logoD as any)?.src || (logoD as any)?.default || logoD;
+  const logoMSrc = typeof logoM === "string" ? logoM : (logoM as any)?.src || (logoM as any)?.default || logoM;
 
   return (
     <div className="w-full flex justify-between items-center">

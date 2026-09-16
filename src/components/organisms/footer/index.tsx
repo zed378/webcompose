@@ -18,7 +18,7 @@ export default function Footer() {
   const year = date.getFullYear();
 
   const router = useRouter();
-  const logoFooterSrc = logoFooter?.src || logoFooter;
+  const logoFooterSrc = typeof logoFooter === "string" ? logoFooter : (logoFooter as any)?.src || (logoFooter as any)?.default || logoFooter;
 
   return (
     <div className="bg-[#644A98] ultra:px-24 ultra:pb-16 pc:px-20 pc:pb-14 desktop:px-20 desktop:pt-36 desktop:pb-14 laptop:px-16 laptop:pt-44 laptop:pb-14 tablet:px-20 tablet:pt-36 tablet:pb-14 phone:px-10 phone:pt-36 phone:pb-14 text-white flex flex-col gap-4 relative ">

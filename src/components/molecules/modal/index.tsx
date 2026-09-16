@@ -8,7 +8,6 @@ import Dropzone from "react-dropzone";
 
 // assets
 import { AiOutlineClose } from "react-icons/ai";
-import loadingimg from "@assets/images/loadingimg.svg";
 
 // hooks
 import {
@@ -56,7 +55,7 @@ export function ModalCreatetUser() {
     role: "",
   });
 
-  const handleOnchange = (e) => {
+  const handleOnchange = (e: any) => {
     e.preventDefault();
 
     if (e.target.name === "username" && e.target.value !== "") {
@@ -86,8 +85,8 @@ export function ModalCreatetUser() {
 
   useEffect(() => {
     if (debouncedText) {
-      checkUsername(debouncedText).then((data) => {
-        setUname(data.message);
+      checkUsername(debouncedText).then((data: any) => {
+        if (data?.message) setUname(data.message);
       });
     }
   }, [debouncedText]);
@@ -234,7 +233,7 @@ export function ModalCreatetUser() {
             >
               AUTHENTICATED
             </option>
-            {dataLogin.role === "SYS" && (
+            {dataLogin?.role === "SYS" && (
               <option
                 className="text-indigo-500 p-1 border-2 border-indigo-500  "
                 value={"SYS"}
@@ -310,8 +309,8 @@ export function ModalCreatetUser() {
             className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
               dispatch(setLoadingUser({ data: true }));
-              createNewUser(data).then((data) => {
-                dispatch(setMessage({ data: data.message }));
+              createNewUser(data).then((res: any) => {
+                if (res?.message) dispatch(setMessage({ data: res.message }));
               });
             }}
           >
@@ -339,7 +338,7 @@ export function ModalEditUser() {
     username: "",
   });
 
-  const handleOnchange = (e) => {
+  const handleOnchange = (e: any) => {
     e.preventDefault();
 
     if (e.target.name === "username" && e.target.value !== "") {
@@ -356,17 +355,18 @@ export function ModalEditUser() {
   };
 
   useEffect(() => {
-    setData({
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      username: user.username,
-    });
-  }, []);
+    if (user) {
+      setData({
+        id: String(user.id || ""),
+        firstName: user.firstName || "",
+        lastName: user.lastName || "",
+        username: user.username || "",
+      });
+    }
+  }, [user]);
 
   useEffect(() => {
     if (message !== null) {
-      dispatch(setLoadingUser({ data: false }));
       dispatch(setLoadingUser({ data: false }));
       setTimeout(() => {
         dispatch(setMessage({ data: null }));
@@ -379,8 +379,8 @@ export function ModalEditUser() {
 
   useEffect(() => {
     if (debouncedText) {
-      checkUsername(debouncedText).then((data) => {
-        setUname(data.message);
+      checkUsername(debouncedText).then((res: any) => {
+        if (res?.message) setUname(res.message);
       });
     }
   }, [debouncedText]);
@@ -493,24 +493,26 @@ export function ModalEditUser() {
             className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
               dispatch(setLoadingUser({ data: true }));
-              updateFullUser(data).then(async (val) => {
-                dispatch(setMessage({ data: val.message }));
+              updateFullUser(data).then(async (val: any) => {
+                if (val?.message) dispatch(setMessage({ data: val.message }));
 
                 if (
+                  currentUser &&
+                  user &&
                   currentUser.firstName === user.firstName &&
                   currentUser.lastName === user.lastName
                 ) {
                   try {
-                    await API.get("/auth/verify").then(({ data }) => {
-                      data.data &&
+                    await API.get("/auth/verify").then(({ data }: any) => {
+                      data?.data &&
                         dispatch(
                           setUpdateUser({
                             data,
                           })
                         );
                     });
-                  } catch (error) {
-                    dispatch(setMessage({ data: error.message }));
+                  } catch (error: any) {
+                    dispatch(setMessage({ data: error?.message }));
                   }
                 }
               });
@@ -535,7 +537,7 @@ export function ModalEditRole() {
     role: "",
   });
 
-  const handleOnchange = (e) => {
+  const handleOnchange = (e: any) => {
     e.preventDefault();
 
     setData({
@@ -545,11 +547,13 @@ export function ModalEditRole() {
   };
 
   useEffect(() => {
-    setData({
-      id: user.id,
-      role: user.role,
-    });
-  }, []);
+    if (user) {
+      setData({
+        id: String(user.id || ""),
+        role: user.role || "",
+      });
+    }
+  }, [user]);
 
   useEffect(() => {
     if (message !== null) {
@@ -592,7 +596,7 @@ export function ModalEditRole() {
         )}
 
         <h1 className="dark:text-white mt-4 ">
-          Set <b>{user.name}</b> as:
+          Set <b>{user?.name || user?.username}</b> as:
         </h1>
 
         <select
@@ -617,7 +621,7 @@ export function ModalEditRole() {
           >
             AUTHENTICATED
           </option>
-          {dataLogin.role === "SYS" && (
+          {dataLogin?.role === "SYS" && (
             <option
               className="text-indigo-500 p-1 border-2 border-indigo-500  "
               value={"SYS"}
@@ -673,8 +677,8 @@ export function ModalEditRole() {
             className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
               dispatch(setLoadingUser({ data: true }));
-              updateUserRole(data).then((data) => {
-                dispatch(setMessage({ data: data.message }));
+              updateUserRole(data).then((res: any) => {
+                if (res?.message) dispatch(setMessage({ data: res.message }));
               });
             }}
           >
@@ -694,8 +698,10 @@ export function ModalActivateUser() {
   const [id, setId] = useState("");
 
   useEffect(() => {
-    setId(user.id);
-  }, []);
+    if (user?.id) {
+      setId(String(user.id));
+    }
+  }, [user]);
 
   useEffect(() => {
     if (message !== null) {
@@ -738,7 +744,7 @@ export function ModalActivateUser() {
         )}
 
         <h1 className="dark:text-white mt-4 ">
-          Are you sure to activate <b>{user.name}</b>?
+          Are you sure to activate <b>{user?.name || user?.username}</b>?
         </h1>
 
         <div className="w-full flex laptop:flex-row phone:flex-col-reverse mt-7 laptop:justify-end gap-2 ">
@@ -757,8 +763,8 @@ export function ModalActivateUser() {
             className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
               dispatch(setLoadingUser({ data: true }));
-              activateUser(id).then((data) => {
-                dispatch(setMessage({ data: data.message }));
+              activateUser(id).then((res: any) => {
+                if (res?.message) dispatch(setMessage({ data: res.message }));
               });
             }}
           >
@@ -778,8 +784,10 @@ export function ModalDisableUser() {
   const [id, setId] = useState("");
 
   useEffect(() => {
-    setId(user.id);
-  }, []);
+    if (user?.id) {
+      setId(String(user.id));
+    }
+  }, [user]);
 
   useEffect(() => {
     if (message !== null) {
@@ -822,7 +830,7 @@ export function ModalDisableUser() {
         )}
 
         <h1 className="dark:text-white mt-4 ">
-          Are you sure to disable <b>{user.name}</b>?
+          Are you sure to disable <b>{user?.name || user?.username}</b>?
         </h1>
 
         <div className="w-full flex laptop:flex-row phone:flex-col-reverse mt-7 laptop:justify-end gap-2 ">
@@ -841,8 +849,8 @@ export function ModalDisableUser() {
             className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
               dispatch(setLoadingUser({ data: true }));
-              disableUser(id).then((data) => {
-                dispatch(setMessage({ data: data.message }));
+              disableUser(id).then((res: any) => {
+                if (res?.message) dispatch(setMessage({ data: res.message }));
               });
             }}
           >
@@ -862,8 +870,10 @@ export function ModalDeleteUser() {
   const [id, setId] = useState("");
 
   useEffect(() => {
-    setId(user.id);
-  }, []);
+    if (user?.id) {
+      setId(String(user.id));
+    }
+  }, [user]);
 
   useEffect(() => {
     if (message !== null) {
@@ -906,7 +916,7 @@ export function ModalDeleteUser() {
         )}
 
         <h1 className="dark:text-white mt-4 ">
-          Are you sure to delete <b>{user.name}</b>?
+          Are you sure to delete <b>{user?.name || user?.username}</b>?
         </h1>
 
         <div className="w-full flex laptop:flex-row phone:flex-col-reverse mt-7 laptop:justify-end gap-2 ">
@@ -925,8 +935,8 @@ export function ModalDeleteUser() {
             className="border hover:bg-indigo-100 hover:border-indigo-700 hover:text-indigo-700 border-indigo-500 text-indigo-500 rounded-lg text-sm py-1 laptop:w-1/4 phone:w-full "
             onClick={() => {
               dispatch(setLoadingUser({ data: true }));
-              deleteUser(id).then((data) => {
-                dispatch(setMessage({ data: data.message }));
+              deleteUser(id).then((res: any) => {
+                if (res?.message) dispatch(setMessage({ data: res.message }));
               });
             }}
           >
@@ -976,7 +986,7 @@ export function ModalUpdateUserPicture() {
 
       updatePict(config, formData).then(async (resData: any) => {
         dispatch(setLoadingUser({ data: false }));
-        dispatch(setMessage({ data: resData.message }));
+        if (resData?.message) dispatch(setMessage({ data: resData.message }));
 
         if (
           currentUser &&
@@ -985,8 +995,8 @@ export function ModalUpdateUserPicture() {
           currentUser.lastName === user.lastName
         ) {
           try {
-            await API.get("/auth/verify").then(({ data }) => {
-              data.data &&
+            await API.get("/auth/verify").then(({ data }: any) => {
+              data?.data &&
                 dispatch(
                   setUpdateUser({
                     data,
@@ -994,12 +1004,12 @@ export function ModalUpdateUserPicture() {
                 );
             });
           } catch (error: any) {
-            dispatch(setMessage({ data: error.message }));
+            dispatch(setMessage({ data: error?.message }));
           }
         }
       });
     } catch (error: any) {
-      dispatch(setMessage({ data: error.message }));
+      dispatch(setMessage({ data: error?.message }));
     }
   };
 
@@ -1084,23 +1094,8 @@ export function ModalUpdateUserPicture() {
                   <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-700">
                     <div
                       className="bg-indigo-600 h-1.5 rounded-full dark:bg-white"
-                      style={{ width: `${progress + "%"}` }}
+                      style={{ width: `${progress}%` }}
                     ></div>
-                    <p
-                      className={`text-gray-700 dark:text-white flex items-center gap-2 mt-1 ${
-                        progress === 100 && "animate-pulse"
-                      } `}
-                    >
-                      <img
-                        src={loadingimg}
-                        alt={loadingimg}
-                        srcSet={loadingimg}
-                        className="w-5 h-5 animate-spin "
-                      />
-                      {progress === 100
-                        ? "We finishing the process. Wait for a moment."
-                        : `Uploading ${progress}%`}
-                    </p>
                   </div>
                 )}
               </div>
